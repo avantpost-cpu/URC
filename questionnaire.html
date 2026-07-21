@@ -1,0 +1,1652 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1"
+>
+
+<title>Questionnaire d’implication — Section Île-de-France</title>
+
+<style>
+
+:root{
+  --red:#c51f26;
+  --blue:#1f6675;
+  --turquoise:#1cb6bd;
+  --yellow:#f2b324;
+  --ink:#1e1e1e;
+  --paper:#f7f5f0;
+  --white:#ffffff;
+  --light:#ece9e2;
+  --border:#d8d3c9;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:#e9e7e2;
+  color:var(--ink);
+  font-family:Arial, Helvetica, sans-serif;
+  line-height:1.45;
+}
+
+/* BARRE DE PROGRESSION */
+
+.progress-nav{
+  position:sticky;
+  top:0;
+  z-index:30;
+  padding:12px 20px;
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid #d7d3cc;
+  backdrop-filter:blur(8px);
+}
+
+.progress-inner{
+  width:min(1050px, 100%);
+  margin:0 auto;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:8px;
+  font-size:13px;
+  font-weight:800;
+  text-transform:uppercase;
+}
+
+.progress-bar{
+  width:100%;
+  height:9px;
+  overflow:hidden;
+  background:#e2ded5;
+  border-radius:999px;
+}
+
+.progress-fill{
+  width:0;
+  height:100%;
+  background:var(--red);
+  border-radius:999px;
+  transition:width .3s ease;
+}
+
+/* DOCUMENT */
+
+.document{
+  width:min(1050px, calc(100% - 32px));
+  margin:30px auto 70px;
+}
+
+.page{
+  position:relative;
+  margin-bottom:28px;
+  padding:46px;
+  overflow:hidden;
+  background:var(--paper);
+  border-radius:30px;
+  box-shadow:0 12px 34px rgba(0,0,0,.10);
+}
+
+/* INTRODUCTION */
+
+.header-grid{
+  display:grid;
+  grid-template-columns:190px 1fr;
+  gap:36px;
+  align-items:start;
+}
+
+.logo{
+  display:block;
+  width:180px;
+  max-width:100%;
+  height:auto;
+}
+
+.kicker{
+  margin-bottom:10px;
+  color:var(--red);
+  font-size:15px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.hero-title{
+  max-width:760px;
+  margin:0;
+  color:var(--red);
+  font-size:67px;
+  line-height:.92;
+  letter-spacing:-.04em;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.hero-subtitle{
+  max-width:780px;
+  margin:24px 0 0;
+  font-size:24px;
+  line-height:1.25;
+  font-weight:700;
+}
+
+.intro-box{
+  margin-top:38px;
+  padding:28px 30px;
+  color:#ffffff;
+  background:var(--blue);
+  border-radius:26px;
+  font-size:19px;
+}
+
+.intro-box p:last-child{
+  margin-bottom:0;
+}
+
+/* ÉTAPES */
+
+.form-section{
+  scroll-margin-top:95px;
+}
+
+.section-heading{
+  display:grid;
+  grid-template-columns:70px 1fr;
+  gap:18px;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.section-number{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:70px;
+  height:70px;
+  color:#ffffff;
+  background:var(--red);
+  border-radius:50%;
+  font-size:31px;
+  font-weight:900;
+}
+
+.section-title{
+  margin:0;
+  color:var(--red);
+  font-size:42px;
+  line-height:1;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.section-intro{
+  margin:-12px 0 30px 88px;
+  max-width:760px;
+  font-size:18px;
+}
+
+/* CHAMPS */
+
+.field{
+  margin-bottom:28px;
+}
+
+.field:last-child{
+  margin-bottom:0;
+}
+
+label,
+.legend{
+  display:block;
+  margin-bottom:10px;
+  font-size:18px;
+  line-height:1.25;
+  font-weight:800;
+}
+
+.required{
+  color:var(--red);
+}
+
+.help{
+  display:block;
+  margin:-3px 0 12px;
+  color:#67635d;
+  font-size:14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea{
+  display:block;
+  width:100%;
+  padding:15px 17px;
+  color:var(--ink);
+  background:#ffffff;
+  border:2px solid var(--border);
+  border-radius:14px;
+  outline:none;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:17px;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 4px rgba(197,31,38,.11);
+}
+
+.field-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+
+/* CASES ET BOUTONS RADIO */
+
+.options-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:12px;
+}
+
+.option{
+  position:relative;
+}
+
+.option input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+
+.option label{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  min-height:100%;
+  margin:0;
+  padding:15px 16px;
+  background:#ffffff;
+  border:2px solid var(--border);
+  border-radius:14px;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:700;
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    transform .2s ease;
+}
+
+.option label::before{
+  content:"";
+  flex:0 0 20px;
+  width:20px;
+  height:20px;
+  margin-top:1px;
+  background:#ffffff;
+  border:2px solid #aaa49a;
+  border-radius:5px;
+}
+
+.option input[type="radio"] + label::before{
+  border-radius:50%;
+}
+
+.option input:checked + label{
+  color:#ffffff;
+  background:var(--blue);
+  border-color:var(--blue);
+}
+
+.option input:checked + label::before{
+  background:var(--yellow);
+  border-color:var(--yellow);
+  box-shadow:inset 0 0 0 4px var(--blue);
+}
+
+.option input[type="radio"]:checked + label::before{
+  box-shadow:inset 0 0 0 5px var(--blue);
+}
+
+.option label:hover{
+  border-color:var(--red);
+  transform:translateY(-1px);
+}
+
+/* COULEURS DES SECTIONS */
+
+.form-section:nth-of-type(3) .section-number,
+.form-section:nth-of-type(6) .section-number{
+  background:var(--blue);
+}
+
+.form-section:nth-of-type(4) .section-number{
+  color:#1e1e1e;
+  background:var(--yellow);
+}
+
+.form-section:nth-of-type(5) .section-number{
+  background:var(--turquoise);
+}
+
+/* MESSAGE FINAL */
+
+.final-box{
+  padding:38px;
+  color:#ffffff;
+  text-align:center;
+  background:var(--red);
+  border-radius:28px;
+}
+
+.final-box h2{
+  margin:0 0 18px;
+  font-size:43px;
+  line-height:1;
+  text-transform:uppercase;
+}
+
+.final-box p{
+  max-width:760px;
+  margin:0 auto 16px;
+  font-size:20px;
+}
+
+.final-box strong{
+  color:var(--yellow);
+}
+
+.consent-box{
+  margin:28px 0;
+  padding:18px;
+  text-align:left;
+  background:rgba(255,255,255,.12);
+  border-radius:16px;
+}
+
+.consent-box .option label{
+  color:var(--ink);
+}
+
+.submit-button{
+  display:inline-block;
+  width:auto;
+  min-width:260px;
+  padding:17px 28px;
+  color:#1d1d1d;
+  background:var(--yellow);
+  border:0;
+  border-radius:999px;
+  cursor:pointer;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:20px;
+  font-weight:900;
+  transition:transform .2s ease, background .2s ease;
+}
+
+.submit-button:hover{
+  transform:translateY(-2px);
+  background:#ffc039;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:760px){
+
+  .document{
+    width:min(100% - 20px, 1050px);
+    margin-top:14px;
+  }
+
+  .page{
+    padding:28px 20px;
+    border-radius:20px;
+  }
+
+  .header-grid{
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+
+  .logo{
+    width:140px;
+  }
+
+  .hero-title{
+    font-size:45px;
+  }
+
+  .hero-subtitle{
+    font-size:21px;
+  }
+
+  .section-heading{
+    grid-template-columns:55px 1fr;
+    gap:14px;
+  }
+
+  .section-number{
+    width:55px;
+    height:55px;
+    font-size:25px;
+  }
+
+  .section-title{
+    font-size:32px;
+  }
+
+  .section-intro{
+    margin-left:0;
+  }
+
+  .field-grid,
+  .options-grid{
+    grid-template-columns:1fr;
+  }
+
+  .final-box{
+    padding:28px 20px;
+  }
+
+  .final-box h2{
+    font-size:34px;
+  }
+
+  .submit-button{
+    width:100%;
+    min-width:0;
+  }
+
+}
+
+/* IMPRESSION */
+
+@media print{
+
+  body{
+    background:#ffffff;
+  }
+
+  .progress-nav{
+    display:none;
+  }
+
+  .document{
+    width:100%;
+    margin:0;
+  }
+
+  .page{
+    margin:0;
+    box-shadow:none;
+    border-radius:0;
+    page-break-after:always;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="progress-nav">
+
+  <div class="progress-inner">
+
+    <div class="progress-top">
+
+      <span>Questionnaire d’implication</span>
+
+      <span id="progressText">0 % complété</span>
+
+    </div>
+
+    <div class="progress-bar">
+
+      <div
+        class="progress-fill"
+        id="progressFill"
+      ></div>
+
+    </div>
+
+  </div>
+
+</header>
+
+<main class="document">
+
+  <form
+    id="implicationForm"
+    action="https://formspree.io/f/VOTRE_ENDPOINT_FORMSPREE"
+    method="POST"
+  >
+
+    <!-- INTRODUCTION -->
+
+    <section class="page">
+
+      <div class="header-grid">
+
+        <div>
+
+          <img
+            class="logo"
+            src="https://avantpost-cpu.github.io/URC/logo_URC.png"
+            alt="Logo de l’URC"
+          >
+
+        </div>
+
+        <div>
+
+          <div class="kicker">
+            Section Île-de-France
+          </div>
+
+          <h1 class="hero-title">
+            Questionnaire<br>
+            d’implication
+          </h1>
+
+          <p class="hero-subtitle">
+            Construisons ensemble l’activité de la section Île-de-France.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="intro-box">
+
+        <p>
+          Ce questionnaire a pour objectif de mieux connaître les domaines
+          dans lesquels chaque camarade souhaite s’investir, ses compétences,
+          ses disponibilités et les responsabilités qu’il ou elle pourrait
+          prendre dans les mois à venir.
+        </p>
+
+        <p>
+          Les réponses permettront de préparer la mise en place des commissions
+          et de mieux répartir les tâches au sein de la section.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- ÉTAPE 1 -->
+
+    <section
+      class="page form-section"
+      id="etape-1"
+    >
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          1
+        </div>
+
+        <h2 class="section-title">
+          Informations générales
+        </h2>
+
+      </div>
+
+      <div class="field-grid">
+
+        <div class="field">
+
+          <label for="nom">
+            Prénom et nom
+            <span class="required">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="nom"
+            name="Prénom et nom"
+            autocomplete="name"
+            required
+          >
+
+        </div>
+
+        <div class="field">
+
+          <label for="email">
+            Adresse e-mail
+            <span class="required">*</span>
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="Adresse e-mail"
+            autocomplete="email"
+            required
+          >
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <label for="telephone">
+          Numéro de téléphone
+        </label>
+
+        <input
+          type="tel"
+          id="telephone"
+          name="Numéro de téléphone"
+          autocomplete="tel"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          Dans quel secteur géographique milites-tu actuellement ?
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+            <input type="radio" id="secteur-nord" name="Secteur géographique" value="Secteur Nord">
+            <label for="secteur-nord">Secteur Nord</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="secteur-sud" name="Secteur géographique" value="Secteur Sud">
+            <label for="secteur-sud">Secteur Sud</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="secteur-ouest" name="Secteur géographique" value="Secteur Ouest">
+            <label for="secteur-ouest">Secteur Ouest</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="secteur-est" name="Secteur géographique" value="Futur secteur Est">
+            <label for="secteur-est">Futur secteur Est</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="secteur-inconnu" name="Secteur géographique" value="Je ne sais pas encore">
+            <label for="secteur-inconnu">Je ne sais pas encore</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="secteur-aucun" name="Secteur géographique" value="Je ne suis rattaché·e à aucun secteur">
+            <label for="secteur-aucun">Je ne suis rattaché·e à aucun secteur</label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          Es-tu actuellement membre d’une cellule locale ou professionnelle ?
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+            <input type="radio" id="cellule-oui" name="Membre d’une cellule" value="Oui">
+            <label for="cellule-oui">Oui</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="cellule-non" name="Membre d’une cellule" value="Non">
+            <label for="cellule-non">Non</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="cellule-creation" name="Membre d’une cellule" value="En cours de constitution">
+            <label for="cellule-creation">En cours de constitution</label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <label for="nom-cellule">
+          Si oui, laquelle ?
+        </label>
+
+        <input
+          type="text"
+          id="nom-cellule"
+          name="Nom de la cellule"
+        >
+
+      </div>
+
+    </section>
+
+    <!-- ÉTAPE 2 -->
+
+    <section
+      class="page form-section"
+      id="etape-2"
+    >
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          2
+        </div>
+
+        <h2 class="section-title">
+          Domaines d’investissement
+        </h2>
+
+      </div>
+
+      <p class="section-intro">
+        Plusieurs réponses sont possibles.
+      </p>
+
+      <div class="field">
+
+        <div class="legend">
+          Dans quelles commissions souhaiterais-tu t’investir ?
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+            <input type="checkbox" id="commission-organisation" name="Commissions[]" value="Organisation">
+            <label for="commission-organisation">Organisation</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="commission-finances" name="Commissions[]" value="Finances">
+            <label for="commission-finances">Finances</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="commission-propagande" name="Commissions[]" value="Propagande">
+            <label for="commission-propagande">Propagande</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="commission-formation" name="Commissions[]" value="Formation">
+            <label for="commission-formation">Formation</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="commission-femmes" name="Commissions[]" value="Femmes">
+            <label for="commission-femmes">Femmes</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="commission-entreprises" name="Commissions[]" value="Entreprises">
+            <label for="commission-entreprises">Entreprises</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="commission-universite" name="Commissions[]" value="Université">
+            <label for="commission-universite">Université</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="commission-quartiers" name="Commissions[]" value="Quartiers populaires">
+            <label for="commission-quartiers">Quartiers populaires</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="commission-indecis" name="Commissions[]" value="Je ne sais pas encore">
+            <label for="commission-indecis">Je ne sais pas encore</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="commission-autre" name="Commissions[]" value="Autre">
+            <label for="commission-autre">Autre</label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <label for="commission-prioritaire">
+          Parmi ces commissions, laquelle serait ta priorité ?
+        </label>
+
+        <select
+          id="commission-prioritaire"
+          name="Commission prioritaire"
+        >
+          <option value="">Sélectionner une réponse</option>
+          <option>Organisation</option>
+          <option>Finances</option>
+          <option>Propagande</option>
+          <option>Formation</option>
+          <option>Femmes</option>
+          <option>Entreprises</option>
+          <option>Université</option>
+          <option>Quartiers populaires</option>
+          <option>Je ne sais pas encore</option>
+          <option>Autre</option>
+        </select>
+
+      </div>
+
+      <div class="field">
+
+        <label for="raisons-commission">
+          Pour quelles raisons souhaites-tu participer à cette commission ?
+        </label>
+
+        <textarea
+          id="raisons-commission"
+          name="Raisons de la participation à une commission"
+        ></textarea>
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          Souhaiterais-tu participer :
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+            <input type="radio" id="niveau-idf" name="Niveau de participation" value="À une commission de la section Île-de-France">
+            <label for="niveau-idf">À une commission de la section Île-de-France</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="niveau-national" name="Niveau de participation" value="À une commission nationale">
+            <label for="niveau-national">À une commission nationale</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="niveau-deux" name="Niveau de participation" value="Aux deux">
+            <label for="niveau-deux">Aux deux</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="niveau-indecis" name="Niveau de participation" value="Je ne sais pas encore">
+            <label for="niveau-indecis">Je ne sais pas encore</label>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ÉTAPE 3 -->
+
+    <section
+      class="page form-section"
+      id="etape-3"
+    >
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          3
+        </div>
+
+        <h2 class="section-title">
+          Compétences et expérience
+        </h2>
+
+      </div>
+
+      <div class="field">
+
+        <label for="metier">
+          Quel est ton métier ou ton domaine d’activité ?
+        </label>
+
+        <input
+          type="text"
+          id="metier"
+          name="Métier ou domaine d’activité"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label for="secteur-travail">
+          Dans quel secteur travailles-tu ou as-tu travaillé ?
+        </label>
+
+        <select
+          id="secteur-travail"
+          name="Secteur professionnel"
+        >
+          <option value="">Sélectionner une réponse</option>
+          <option>Administration</option>
+          <option>Agriculture</option>
+          <option>Artisanat</option>
+          <option>Bâtiment</option>
+          <option>Commerce</option>
+          <option>Communication</option>
+          <option>Culture</option>
+          <option>Droit</option>
+          <option>Éducation</option>
+          <option>Finance et comptabilité</option>
+          <option>Industrie</option>
+          <option>Informatique et numérique</option>
+          <option>Logistique et transports</option>
+          <option>Médico-social</option>
+          <option>Recherche</option>
+          <option>Santé</option>
+          <option>Services</option>
+          <option>Travail social</option>
+          <option>Sans emploi actuellement</option>
+          <option>Études</option>
+          <option>Retraite</option>
+          <option>Autre</option>
+        </select>
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          Quelles compétences pourrais-tu mettre au service de l’organisation ?
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+            <input type="checkbox" id="competence-reunions" name="Compétences[]" value="Animation de réunions">
+            <label for="competence-reunions">Animation de réunions</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-comptabilite" name="Compétences[]" value="Comptabilité et gestion">
+            <label for="competence-comptabilite">Comptabilité et gestion</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-communication" name="Compétences[]" value="Communication">
+            <label for="competence-communication">Communication</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-graphisme" name="Compétences[]" value="Conception graphique">
+            <label for="competence-graphisme">Conception graphique</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-redaction" name="Compétences[]" value="Écriture et rédaction">
+            <label for="competence-redaction">Écriture et rédaction</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-formation" name="Compétences[]" value="Formation">
+            <label for="competence-formation">Formation</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-projet" name="Compétences[]" value="Gestion de projet">
+            <label for="competence-projet">Gestion de projet</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-informatique" name="Compétences[]" value="Informatique">
+            <label for="competence-informatique">Informatique</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-public" name="Compétences[]" value="Intervention publique">
+            <label for="competence-public">Intervention publique</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-juridique" name="Compétences[]" value="Juridique">
+            <label for="competence-juridique">Juridique</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-logistique" name="Compétences[]" value="Logistique">
+            <label for="competence-logistique">Logistique</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-evenements" name="Compétences[]" value="Organisation d’événements">
+            <label for="competence-evenements">Organisation d’événements</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-photo-video" name="Compétences[]" value="Photographie ou vidéo">
+            <label for="competence-photo-video">Photographie ou vidéo</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-reseaux" name="Compétences[]" value="Réseaux sociaux">
+            <label for="competence-reseaux">Réseaux sociaux</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-recherche" name="Compétences[]" value="Recherche et analyse">
+            <label for="competence-recherche">Recherche et analyse</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-entreprises" name="Compétences[]" value="Relations avec les entreprises">
+            <label for="competence-entreprises">Relations avec les entreprises</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-syndicats" name="Compétences[]" value="Relations avec les syndicats">
+            <label for="competence-syndicats">Relations avec les syndicats</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-traduction" name="Compétences[]" value="Traduction">
+            <label for="competence-traduction">Traduction</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-terrain" name="Compétences[]" value="Travail de terrain">
+            <label for="competence-terrain">Travail de terrain</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="competence-autre" name="Compétences[]" value="Autre">
+            <label for="competence-autre">Autre</label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          As-tu déjà exercé des responsabilités dans une organisation politique,
+          syndicale, associative ou professionnelle ?
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+            <input type="radio" id="responsabilite-oui" name="Responsabilités précédentes" value="Oui">
+            <label for="responsabilite-oui">Oui</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="responsabilite-non" name="Responsabilités précédentes" value="Non">
+            <label for="responsabilite-non">Non</label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <label for="responsabilites-detail">
+          Si oui, lesquelles ?
+        </label>
+
+        <textarea
+          id="responsabilites-detail"
+          name="Détail des responsabilités précédentes"
+        ></textarea>
+
+      </div>
+
+      <div class="field">
+
+        <label for="competence-developper">
+          Y a-t-il une compétence que tu souhaiterais développer grâce à ton engagement ?
+        </label>
+
+        <textarea
+          id="competence-developper"
+          name="Compétence à développer"
+        ></textarea>
+
+      </div>
+
+    </section>
+
+    <!-- ÉTAPE 4 -->
+
+    <section
+      class="page form-section"
+      id="etape-4"
+    >
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          4
+        </div>
+
+        <h2 class="section-title">
+          Type d’implication souhaité
+        </h2>
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          Dans quel type de tâches souhaiterais-tu t’investir ?
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+            <input type="checkbox" id="tache-analyse" name="Tâches souhaitées[]" value="Réfléchir et produire des analyses">
+            <label for="tache-analyse">Réfléchir et produire des analyses</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-reunions" name="Tâches souhaitées[]" value="Participer à des réunions de travail">
+            <label for="tache-reunions">Participer à des réunions de travail</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-initiatives" name="Tâches souhaitées[]" value="Organiser des initiatives">
+            <label for="tache-initiatives">Organiser des initiatives</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-propagande" name="Tâches souhaitées[]" value="Réaliser du matériel de propagande">
+            <label for="tache-propagande">Réaliser du matériel de propagande</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-terrain" name="Tâches souhaitées[]" value="Participer aux actions de terrain">
+            <label for="tache-terrain">Participer aux actions de terrain</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-former" name="Tâches souhaitées[]" value="Former les camarades">
+            <label for="tache-former">Former les camarades</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-parole" name="Tâches souhaitées[]" value="Prendre la parole publiquement">
+            <label for="tache-parole">Prendre la parole publiquement</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-administratif" name="Tâches souhaitées[]" value="Assurer le suivi administratif">
+            <label for="tache-administratif">Assurer le suivi administratif</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-finances" name="Tâches souhaitées[]" value="Gérer les finances">
+            <label for="tache-finances">Gérer les finances</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-coordonner" name="Tâches souhaitées[]" value="Coordonner une équipe">
+            <label for="tache-coordonner">Coordonner une équipe</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-representer" name="Tâches souhaitées[]" value="Représenter la section">
+            <label for="tache-representer">Représenter la section</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-local" name="Tâches souhaitées[]" value="Développer une implantation locale">
+            <label for="tache-local">Développer une implantation locale</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-professionnel" name="Tâches souhaitées[]" value="Développer une implantation professionnelle">
+            <label for="tache-professionnel">Développer une implantation professionnelle</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-ponctuel" name="Tâches souhaitées[]" value="Participer ponctuellement selon les besoins">
+            <label for="tache-ponctuel">Participer ponctuellement selon les besoins</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="tache-autre" name="Tâches souhaitées[]" value="Autre">
+            <label for="tache-autre">Autre</label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          Souhaiterais-tu prendre une responsabilité particulière ?
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+            <input type="checkbox" id="mandat-commission" name="Responsabilités souhaitées[]" value="Participer à une commission">
+            <label for="mandat-commission">Participer à une commission</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="mandat-animation" name="Responsabilités souhaitées[]" value="Animer une commission">
+            <label for="mandat-animation">Animer une commission</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="mandat-bureau" name="Responsabilités souhaitées[]" value="Participer au bureau politique d’un secteur">
+            <label for="mandat-bureau">Participer au bureau politique d’un secteur</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="mandat-ce" name="Responsabilités souhaitées[]" value="Participer au Comité exécutif">
+            <label for="mandat-ce">Participer au Comité exécutif</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="mandat-cellule" name="Responsabilités souhaitées[]" value="Prendre une responsabilité dans une cellule">
+            <label for="mandat-cellule">Prendre une responsabilité dans une cellule</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="mandat-aide" name="Responsabilités souhaitées[]" value="Aider ponctuellement sans mandat particulier">
+            <label for="mandat-aide">Aider ponctuellement sans mandat particulier</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="mandat-indecis" name="Responsabilités souhaitées[]" value="Je ne sais pas encore">
+            <label for="mandat-indecis">Je ne sais pas encore</label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          Te sentirais-tu prêt·e à coordonner une tâche ou un projet ?
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+            <input type="radio" id="coordination-oui" name="Capacité à coordonner" value="Oui">
+            <label for="coordination-oui">Oui</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="coordination-accompagnement" name="Capacité à coordonner" value="Peut-être, avec un accompagnement">
+            <label for="coordination-accompagnement">Peut-être, avec un accompagnement</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="coordination-non" name="Capacité à coordonner" value="Non pour le moment">
+            <label for="coordination-non">Non pour le moment</label>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ÉTAPE 5 -->
+
+    <section
+      class="page form-section"
+      id="etape-5"
+    >
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          5
+        </div>
+
+        <h2 class="section-title">
+          Disponibilités
+        </h2>
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          Combien de temps pourrais-tu consacrer chaque mois à cette activité ?
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+            <input type="radio" id="temps-moins-2" name="Temps mensuel" value="Moins de 2 heures">
+            <label for="temps-moins-2">Moins de 2 heures</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="temps-2-4" name="Temps mensuel" value="Entre 2 et 4 heures">
+            <label for="temps-2-4">Entre 2 et 4 heures</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="temps-4-8" name="Temps mensuel" value="Entre 4 et 8 heures">
+            <label for="temps-4-8">Entre 4 et 8 heures</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="temps-plus-8" name="Temps mensuel" value="Plus de 8 heures">
+            <label for="temps-plus-8">Plus de 8 heures</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="temps-variable" name="Temps mensuel" value="Cela dépend des périodes">
+            <label for="temps-variable">Cela dépend des périodes</label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          À quels moments es-tu généralement disponible ?
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+            <input type="checkbox" id="dispo-journee" name="Disponibilités[]" value="En semaine, en journée">
+            <label for="dispo-journee">En semaine, en journée</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="dispo-soiree" name="Disponibilités[]" value="En semaine, en soirée">
+            <label for="dispo-soiree">En semaine, en soirée</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="dispo-samedi" name="Disponibilités[]" value="Le samedi">
+            <label for="dispo-samedi">Le samedi</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="dispo-dimanche" name="Disponibilités[]" value="Le dimanche">
+            <label for="dispo-dimanche">Le dimanche</label>
+          </div>
+
+          <div class="option">
+            <input type="checkbox" id="dispo-variable" name="Disponibilités[]" value="De manière variable">
+            <label for="dispo-variable">De manière variable</label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          Préférerais-tu participer :
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+            <input type="radio" id="format-presentiel" name="Format préféré" value="Principalement en présentiel">
+            <label for="format-presentiel">Principalement en présentiel</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="format-distance" name="Format préféré" value="Principalement à distance">
+            <label for="format-distance">Principalement à distance</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="format-mixte" name="Format préféré" value="En présentiel et à distance">
+            <label for="format-mixte">En présentiel et à distance</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="format-indifferent" name="Format préféré" value="Sans préférence">
+            <label for="format-indifferent">Sans préférence</label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          À quelle fréquence pourrais-tu participer à une réunion ?
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+            <input type="radio" id="frequence-semaine" name="Fréquence de réunion" value="Une fois par semaine">
+            <label for="frequence-semaine">Une fois par semaine</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="frequence-deux-mois" name="Fréquence de réunion" value="Deux fois par mois">
+            <label for="frequence-deux-mois">Deux fois par mois</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="frequence-mois" name="Fréquence de réunion" value="Une fois par mois">
+            <label for="frequence-mois">Une fois par mois</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="frequence-bimestrielle" name="Fréquence de réunion" value="Une fois tous les deux mois">
+            <label for="frequence-bimestrielle">Une fois tous les deux mois</label>
+          </div>
+
+          <div class="option">
+            <input type="radio" id="frequence-ponctuelle" name="Fréquence de réunion" value="Ponctuellement">
+            <label for="frequence-ponctuelle">Ponctuellement</label>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    
+    <!-- ENVOI -->
+
+    <section class="page">
+
+      <div class="final-box">
+
+        <h2>
+          Merci pour ta participation
+        </h2>
+
+        <p>
+          Tes réponses nous aideront à mieux répartir les responsabilités,
+          à constituer les futures commissions et à permettre à chaque
+          camarade de trouver sa place dans l’activité collective.
+        </p>
+
+        <p>
+          <strong>
+            Ensemble, construisons une organisation plus implantée,
+            plus collective et plus efficace.
+          </strong>
+        </p>
+
+        <div class="consent-box">
+
+          <div class="option">
+
+            <input
+              type="checkbox"
+              id="consentement"
+              name="Consentement au traitement des réponses"
+              value="Oui"
+              required
+            >
+
+            <label for="consentement">
+              J’accepte que mes réponses soient utilisées par la section
+              Île-de-France pour organiser son activité et me recontacter
+              dans ce cadre.
+            </label>
+
+          </div>
+
+        </div>
+
+        <input
+          type="hidden"
+          name="_subject"
+          value="Nouvelle réponse au questionnaire d’implication"
+        >
+
+        <button
+          type="submit"
+          class="submit-button"
+        >
+          Envoyer mes réponses
+        </button>
+
+      </div>
+
+    </section>
+
+  </form>
+
+</main>
+
+<script>
+
+const form = document.getElementById("implicationForm");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+
+function updateProgress(){
+
+  const fields = Array.from(
+    form.querySelectorAll(
+      'input:not([type="hidden"]), select, textarea'
+    )
+  );
+
+  const groups = new Map();
+
+  fields.forEach((field) => {
+
+    if(
+      field.type === "radio" ||
+      field.type === "checkbox"
+    ){
+
+      const key = field.name || field.id;
+
+      if(!groups.has(key)){
+        groups.set(key, []);
+      }
+
+      groups.get(key).push(field);
+
+    }else{
+
+      groups.set(field.id, [field]);
+
+    }
+
+  });
+
+  let completed = 0;
+  let total = 0;
+
+  groups.forEach((group) => {
+
+    total++;
+
+    const first = group[0];
+
+    if(
+      first.type === "radio" ||
+      first.type === "checkbox"
+    ){
+
+      if(group.some((field) => field.checked)){
+        completed++;
+      }
+
+    }else if(first.value.trim() !== ""){
+
+      completed++;
+
+    }
+
+  });
+
+  const percentage = total
+    ? Math.round((completed / total) * 100)
+    : 0;
+
+  progressFill.style.width = percentage + "%";
+  progressText.textContent = percentage + " % complété";
+
+}
+
+form.addEventListener("input", updateProgress);
+form.addEventListener("change", updateProgress);
+
+updateProgress();
+
+</script>
+
+</body>
+
+</html>
