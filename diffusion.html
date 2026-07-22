@@ -1,0 +1,1546 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1"
+>
+
+<title>Disponibilités pour les diffusions — Section Île-de-France</title>
+
+<style>
+
+:root{
+  --red:#c51f26;
+  --blue:#1f6675;
+  --turquoise:#1cb6bd;
+  --yellow:#f2b324;
+  --ink:#1e1e1e;
+  --paper:#f7f5f0;
+  --white:#ffffff;
+  --light:#ece9e2;
+  --border:#d8d3c9;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:#e9e7e2;
+  color:var(--ink);
+  font-family:Arial, Helvetica, sans-serif;
+  line-height:1.45;
+}
+
+/* BARRE DE PROGRESSION */
+
+.progress-nav{
+  position:sticky;
+  top:0;
+  z-index:30;
+  padding:12px 20px;
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid #d7d3cc;
+  backdrop-filter:blur(8px);
+}
+
+.progress-inner{
+  width:min(1050px, 100%);
+  margin:0 auto;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:8px;
+  font-size:13px;
+  font-weight:800;
+  text-transform:uppercase;
+}
+
+.progress-bar{
+  width:100%;
+  height:9px;
+  overflow:hidden;
+  background:#e2ded5;
+  border-radius:999px;
+}
+
+.progress-fill{
+  width:0;
+  height:100%;
+  background:var(--red);
+  border-radius:999px;
+  transition:width .3s ease;
+}
+
+/* DOCUMENT */
+
+.document{
+  width:min(1050px, calc(100% - 32px));
+  margin:30px auto 70px;
+}
+
+.page{
+  position:relative;
+  margin-bottom:28px;
+  padding:46px;
+  overflow:hidden;
+  background:var(--paper);
+  border-radius:30px;
+  box-shadow:0 12px 34px rgba(0,0,0,.10);
+}
+
+/* INTRODUCTION */
+
+.header-grid{
+  display:grid;
+  grid-template-columns:190px 1fr;
+  gap:36px;
+  align-items:start;
+}
+
+.logo{
+  display:block;
+  width:180px;
+  max-width:100%;
+  height:auto;
+}
+
+.kicker{
+  margin-bottom:10px;
+  color:var(--red);
+  font-size:15px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.hero-title{
+  max-width:760px;
+  margin:0;
+  color:var(--red);
+  font-size:67px;
+  line-height:.92;
+  letter-spacing:-.04em;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.hero-subtitle{
+  max-width:780px;
+  margin:24px 0 0;
+  font-size:24px;
+  line-height:1.25;
+  font-weight:700;
+}
+
+.intro-box{
+  margin-top:38px;
+  padding:28px 30px;
+  color:#ffffff;
+  background:var(--blue);
+  border-radius:26px;
+  font-size:19px;
+}
+
+.intro-box p{
+  margin-top:0;
+}
+
+.intro-box p:last-child{
+  margin-bottom:0;
+}
+
+/* ÉTAPES */
+
+.form-section{
+  scroll-margin-top:95px;
+}
+
+.section-heading{
+  display:grid;
+  grid-template-columns:70px 1fr;
+  gap:18px;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.section-number{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:70px;
+  height:70px;
+  color:#ffffff;
+  background:var(--red);
+  border-radius:50%;
+  font-size:31px;
+  font-weight:900;
+}
+
+.section-title{
+  margin:0;
+  color:var(--red);
+  font-size:42px;
+  line-height:1;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.section-intro{
+  margin:-12px 0 30px 88px;
+  max-width:760px;
+  font-size:18px;
+}
+
+/* CHAMPS */
+
+.field{
+  margin-bottom:28px;
+}
+
+.field:last-child{
+  margin-bottom:0;
+}
+
+label,
+.legend{
+  display:block;
+  margin-bottom:10px;
+  font-size:18px;
+  line-height:1.25;
+  font-weight:800;
+}
+
+.required{
+  color:var(--red);
+}
+
+.help{
+  display:block;
+  margin:-3px 0 12px;
+  color:#67635d;
+  font-size:14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+select,
+textarea{
+  display:block;
+  width:100%;
+  padding:15px 17px;
+  color:var(--ink);
+  background:#ffffff;
+  border:2px solid var(--border);
+  border-radius:14px;
+  outline:none;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:17px;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 4px rgba(197,31,38,.11);
+}
+
+.field-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+
+/* CASES ET BOUTONS RADIO */
+
+.options-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:12px;
+}
+
+.option{
+  position:relative;
+}
+
+.option input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+
+.option label{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  min-height:100%;
+  margin:0;
+  padding:15px 16px;
+  background:#ffffff;
+  border:2px solid var(--border);
+  border-radius:14px;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:700;
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    transform .2s ease;
+}
+
+.option label::before{
+  content:"";
+  flex:0 0 20px;
+  width:20px;
+  height:20px;
+  margin-top:1px;
+  background:#ffffff;
+  border:2px solid #aaa49a;
+  border-radius:5px;
+}
+
+.option input[type="radio"] + label::before{
+  border-radius:50%;
+}
+
+.option input:checked + label{
+  color:#ffffff;
+  background:var(--blue);
+  border-color:var(--blue);
+}
+
+.option input:checked + label::before{
+  background:var(--yellow);
+  border-color:var(--yellow);
+  box-shadow:inset 0 0 0 4px var(--blue);
+}
+
+.option input[type="radio"]:checked + label::before{
+  box-shadow:inset 0 0 0 5px var(--blue);
+}
+
+.option label:hover{
+  border-color:var(--red);
+  transform:translateY(-1px);
+}
+
+/* COULEURS DES SECTIONS */
+
+#etape-2 .section-number{
+  background:var(--blue);
+}
+
+#etape-3 .section-number{
+  color:#1e1e1e;
+  background:var(--yellow);
+}
+
+#etape-4 .section-number{
+  background:var(--turquoise);
+}
+
+/* DISPONIBILITÉS */
+
+.availability-list{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.availability-item{
+  position:relative;
+  padding:24px;
+  background:#ffffff;
+  border:2px solid var(--border);
+  border-radius:20px;
+}
+
+.availability-title{
+  margin:0 0 18px;
+  color:var(--blue);
+  font-size:20px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.availability-grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  gap:16px;
+  align-items:end;
+}
+
+.availability-grid .field{
+  margin:0;
+}
+
+.availability-grid label{
+  font-size:15px;
+}
+
+.add-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  margin-top:20px;
+  padding:14px 22px;
+  color:#ffffff;
+  background:var(--blue);
+  border:0;
+  border-radius:999px;
+  cursor:pointer;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:16px;
+  font-weight:900;
+  transition:transform .2s ease, background .2s ease;
+}
+
+.add-button:hover{
+  background:#174f5b;
+  transform:translateY(-2px);
+}
+
+.add-icon{
+  font-size:22px;
+  line-height:1;
+}
+
+.remove-button{
+  position:absolute;
+  top:18px;
+  right:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  padding:0;
+  color:#ffffff;
+  background:var(--red);
+  border:0;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:22px;
+  line-height:1;
+}
+
+.remove-button:hover{
+  background:#9f171d;
+}
+
+/* MESSAGE D’ERREUR */
+
+.form-error{
+  display:none;
+  margin-top:18px;
+  padding:15px 18px;
+  color:#8f151a;
+  background:#fbe3e4;
+  border:2px solid #e4a6a9;
+  border-radius:14px;
+  font-weight:700;
+}
+
+.form-error.visible{
+  display:block;
+}
+
+/* MESSAGE FINAL */
+
+.final-box{
+  padding:38px;
+  color:#ffffff;
+  text-align:center;
+  background:var(--red);
+  border-radius:28px;
+}
+
+.final-box h2{
+  margin:0 0 18px;
+  font-size:43px;
+  line-height:1;
+  text-transform:uppercase;
+}
+
+.final-box p{
+  max-width:760px;
+  margin:0 auto 16px;
+  font-size:20px;
+}
+
+.final-box strong{
+  color:var(--yellow);
+}
+
+.consent-box{
+  margin:28px 0;
+  padding:18px;
+  text-align:left;
+  background:rgba(255,255,255,.12);
+  border-radius:16px;
+}
+
+.consent-box .option label{
+  color:var(--ink);
+}
+
+.submit-button{
+  display:inline-block;
+  width:auto;
+  min-width:260px;
+  padding:17px 28px;
+  color:#1d1d1d;
+  background:var(--yellow);
+  border:0;
+  border-radius:999px;
+  cursor:pointer;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:20px;
+  font-weight:900;
+  transition:transform .2s ease, background .2s ease;
+}
+
+.submit-button:hover{
+  transform:translateY(-2px);
+  background:#ffc039;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:760px){
+
+  .document{
+    width:min(100% - 20px, 1050px);
+    margin-top:14px;
+  }
+
+  .page{
+    padding:28px 20px;
+    border-radius:20px;
+  }
+
+  .header-grid{
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+
+  .logo{
+    width:140px;
+  }
+
+  .hero-title{
+    font-size:43px;
+  }
+
+  .hero-subtitle{
+    font-size:21px;
+  }
+
+  .section-heading{
+    grid-template-columns:55px 1fr;
+    gap:14px;
+  }
+
+  .section-number{
+    width:55px;
+    height:55px;
+    font-size:25px;
+  }
+
+  .section-title{
+    font-size:30px;
+  }
+
+  .section-intro{
+    margin-left:0;
+  }
+
+  .field-grid,
+  .options-grid,
+  .availability-grid{
+    grid-template-columns:1fr;
+  }
+
+  .availability-item{
+    padding:22px 16px;
+  }
+
+  .availability-title{
+    padding-right:40px;
+  }
+
+  .final-box{
+    padding:28px 20px;
+  }
+
+  .final-box h2{
+    font-size:34px;
+  }
+
+  .submit-button,
+  .add-button{
+    width:100%;
+    min-width:0;
+  }
+
+}
+
+/* IMPRESSION */
+
+@media print{
+
+  body{
+    background:#ffffff;
+  }
+
+  .progress-nav{
+    display:none;
+  }
+
+  .document{
+    width:100%;
+    margin:0;
+  }
+
+  .page{
+    margin:0;
+    box-shadow:none;
+    border-radius:0;
+    page-break-after:always;
+  }
+
+  .add-button,
+  .remove-button{
+    display:none;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="progress-nav">
+
+  <div class="progress-inner">
+
+    <div class="progress-top">
+
+      <span>Disponibilités pour les diffusions</span>
+
+      <span id="progressText">0 % complété</span>
+
+    </div>
+
+    <div class="progress-bar">
+
+      <div
+        class="progress-fill"
+        id="progressFill"
+      ></div>
+
+    </div>
+
+  </div>
+
+</header>
+
+<main class="document">
+
+  <form
+    id="diffusionForm"
+    action="https://formspree.io/f/VOTRE_ENDPOINT_FORMSPREE"
+    method="POST"
+  >
+
+    <!-- INTRODUCTION -->
+
+    <section class="page">
+
+      <div class="header-grid">
+
+        <div>
+
+          <img
+            class="logo"
+            src="https://avantpost-cpu.github.io/URC/logo_URC.png"
+            alt="Logo de l’URC"
+          >
+
+        </div>
+
+        <div>
+
+          <div class="kicker">
+            Section Île-de-France
+          </div>
+
+          <h1 class="hero-title">
+            Disponibilités<br>
+            pour les<br>
+            diffusions
+          </h1>
+
+          <p class="hero-subtitle">
+            Inscris-toi aux prochaines séances de diffusion
+            à Saint-Denis ou à Porte de Montmartre.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="intro-box">
+
+        <p>
+          Cet outil permet de recenser les disponibilités des camarades
+          pour organiser les prochaines séances de diffusion.
+        </p>
+
+        <p>
+          Choisis un lieu, puis indique les dates et les horaires
+          auxquels tu peux participer. Tu peux ajouter plusieurs disponibilités.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- ÉTAPE 1 -->
+
+    <section
+      class="page form-section"
+      id="etape-1"
+    >
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          1
+        </div>
+
+        <h2 class="section-title">
+          Tes informations
+        </h2>
+
+      </div>
+
+      <div class="field-grid">
+
+        <div class="field">
+
+          <label for="nom">
+            Prénom et nom
+            <span class="required">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="nom"
+            name="Prénom et nom"
+            autocomplete="name"
+            required
+          >
+
+        </div>
+
+        <div class="field">
+
+          <label for="email">
+            Adresse e-mail
+            <span class="required">*</span>
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="Adresse e-mail"
+            autocomplete="email"
+            required
+          >
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <label for="telephone">
+          Numéro de téléphone
+          <span class="required">*</span>
+        </label>
+
+        <input
+          type="tel"
+          id="telephone"
+          name="Numéro de téléphone"
+          autocomplete="tel"
+          required
+        >
+
+      </div>
+
+    </section>
+
+    <!-- ÉTAPE 2 -->
+
+    <section
+      class="page form-section"
+      id="etape-2"
+    >
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          2
+        </div>
+
+        <h2 class="section-title">
+          Lieu de diffusion
+        </h2>
+
+      </div>
+
+      <p class="section-intro">
+        Choisis un seul lieu.
+      </p>
+
+      <div class="field">
+
+        <div class="legend">
+          Sur quel lieu souhaites-tu participer aux diffusions ?
+          <span class="required">*</span>
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+
+            <input
+              type="radio"
+              id="lieu-saint-denis"
+              name="Lieu de diffusion"
+              value="Saint-Denis"
+              required
+            >
+
+            <label for="lieu-saint-denis">
+              Saint-Denis
+            </label>
+
+          </div>
+
+          <div class="option">
+
+            <input
+              type="radio"
+              id="lieu-montmartre"
+              name="Lieu de diffusion"
+              value="Porte de Montmartre"
+              required
+            >
+
+            <label for="lieu-montmartre">
+              Porte de Montmartre
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ÉTAPE 3 -->
+
+    <section
+      class="page form-section"
+      id="etape-3"
+    >
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          3
+        </div>
+
+        <h2 class="section-title">
+          Tes disponibilités
+        </h2>
+
+      </div>
+
+      <p class="section-intro">
+        Indique une première disponibilité, puis ajoute autant de créneaux
+        que nécessaire.
+      </p>
+
+      <div
+        class="availability-list"
+        id="availabilityList"
+      >
+
+        <div
+          class="availability-item"
+          data-index="1"
+        >
+
+          <h3 class="availability-title">
+            Disponibilité 1
+          </h3>
+
+          <div class="availability-grid">
+
+            <div class="field">
+
+              <label for="date-1">
+                Date
+                <span class="required">*</span>
+              </label>
+
+              <input
+                type="date"
+                id="date-1"
+                name="Disponibilité 1 — Date"
+                required
+              >
+
+            </div>
+
+            <div class="field">
+
+              <label for="debut-1">
+                Heure de début
+                <span class="required">*</span>
+              </label>
+
+              <input
+                type="time"
+                id="debut-1"
+                name="Disponibilité 1 — Heure de début"
+                required
+              >
+
+            </div>
+
+            <div class="field">
+
+              <label for="fin-1">
+                Heure de fin
+                <span class="required">*</span>
+              </label>
+
+              <input
+                type="time"
+                id="fin-1"
+                name="Disponibilité 1 — Heure de fin"
+                required
+              >
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        type="button"
+        class="add-button"
+        id="addAvailability"
+      >
+        <span class="add-icon">+</span>
+        Ajouter une disponibilité
+      </button>
+
+      <div
+        class="form-error"
+        id="timeError"
+      >
+        L’heure de fin doit être postérieure à l’heure de début.
+      </div>
+
+    </section>
+
+    <!-- ÉTAPE 4 -->
+
+    <section
+      class="page form-section"
+      id="etape-4"
+    >
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          4
+        </div>
+
+        <h2 class="section-title">
+          Organisation pratique
+        </h2>
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          Comment souhaites-tu participer ?
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+
+            <input
+              type="radio"
+              id="participation-simple"
+              name="Type de participation"
+              value="Je souhaite simplement participer"
+            >
+
+            <label for="participation-simple">
+              Je souhaite simplement participer
+            </label>
+
+          </div>
+
+          <div class="option">
+
+            <input
+              type="radio"
+              id="participation-coordination"
+              name="Type de participation"
+              value="Je peux coordonner une séance"
+            >
+
+            <label for="participation-coordination">
+              Je peux coordonner une séance
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <div class="legend">
+          Peux-tu aider au transport ou à la récupération du matériel ?
+        </div>
+
+        <div class="options-grid">
+
+          <div class="option">
+
+            <input
+              type="checkbox"
+              id="materiel-transport"
+              name="Aide matérielle[]"
+              value="Je peux transporter du matériel"
+            >
+
+            <label for="materiel-transport">
+              Je peux transporter du matériel
+            </label>
+
+          </div>
+
+          <div class="option">
+
+            <input
+              type="checkbox"
+              id="materiel-recuperation"
+              name="Aide matérielle[]"
+              value="Je peux récupérer le matériel avant la séance"
+            >
+
+            <label for="materiel-recuperation">
+              Je peux récupérer le matériel avant la séance
+            </label>
+
+          </div>
+
+          <div class="option">
+
+            <input
+              type="checkbox"
+              id="materiel-depot"
+              name="Aide matérielle[]"
+              value="Je peux rapporter le matériel après la séance"
+            >
+
+            <label for="materiel-depot">
+              Je peux rapporter le matériel après la séance
+            </label>
+
+          </div>
+
+          <div class="option">
+
+            <input
+              type="checkbox"
+              id="materiel-non"
+              name="Aide matérielle[]"
+              value="Je ne peux pas transporter de matériel"
+            >
+
+            <label for="materiel-non">
+              Je ne peux pas transporter de matériel
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <label for="commentaire">
+          Commentaire ou contrainte particulière
+        </label>
+
+        <span class="help">
+          Tu peux préciser une contrainte horaire, un besoin de covoiturage
+          ou toute autre information utile.
+        </span>
+
+        <textarea
+          id="commentaire"
+          name="Commentaire ou contrainte particulière"
+        ></textarea>
+
+      </div>
+
+    </section>
+
+    <!-- ENVOI -->
+
+    <section class="page">
+
+      <div class="final-box">
+
+        <h2>
+          Merci pour ton inscription
+        </h2>
+
+        <p>
+          Tes disponibilités permettront d’organiser les prochaines
+          séances de diffusion à Saint-Denis et à Porte de Montmartre.
+        </p>
+
+        <p>
+          <strong>
+            Tu seras recontacté·e lorsque les créneaux seront confirmés.
+          </strong>
+        </p>
+
+        <div class="consent-box">
+
+          <div class="option">
+
+            <input
+              type="checkbox"
+              id="consentement"
+              name="Consentement au traitement des réponses"
+              value="Oui"
+              required
+            >
+
+            <label for="consentement">
+              J’accepte que mes coordonnées et mes disponibilités
+              soient utilisées par la section Île-de-France pour organiser
+              les séances de diffusion et me recontacter dans ce cadre.
+            </label>
+
+          </div>
+
+        </div>
+
+        <input
+          type="hidden"
+          name="_subject"
+          value="Nouvelle disponibilité pour une séance de diffusion"
+        >
+
+        <button
+          type="submit"
+          class="submit-button"
+        >
+          Envoyer mes disponibilités
+        </button>
+
+      </div>
+
+    </section>
+
+  </form>
+
+</main>
+
+<script>
+
+const form = document.getElementById("diffusionForm");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+
+const availabilityList = document.getElementById("availabilityList");
+const addAvailabilityButton = document.getElementById("addAvailability");
+const timeError = document.getElementById("timeError");
+
+let availabilityCount = 1;
+
+/* AJOUTER UNE DISPONIBILITÉ */
+
+addAvailabilityButton.addEventListener("click", function(){
+
+  availabilityCount++;
+
+  const item = document.createElement("div");
+
+  item.className = "availability-item";
+  item.dataset.index = availabilityCount;
+
+  item.innerHTML = `
+
+    <button
+      type="button"
+      class="remove-button"
+      aria-label="Supprimer cette disponibilité"
+    >
+      ×
+    </button>
+
+    <h3 class="availability-title">
+      Disponibilité ${availabilityCount}
+    </h3>
+
+    <div class="availability-grid">
+
+      <div class="field">
+
+        <label for="date-${availabilityCount}">
+          Date
+        </label>
+
+        <input
+          type="date"
+          id="date-${availabilityCount}"
+          name="Disponibilité ${availabilityCount} — Date"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label for="debut-${availabilityCount}">
+          Heure de début
+        </label>
+
+        <input
+          type="time"
+          id="debut-${availabilityCount}"
+          name="Disponibilité ${availabilityCount} — Heure de début"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label for="fin-${availabilityCount}">
+          Heure de fin
+        </label>
+
+        <input
+          type="time"
+          id="fin-${availabilityCount}"
+          name="Disponibilité ${availabilityCount} — Heure de fin"
+        >
+
+      </div>
+
+    </div>
+
+  `;
+
+  availabilityList.appendChild(item);
+
+  item
+    .querySelector(".remove-button")
+    .addEventListener("click", function(){
+
+      item.remove();
+      renumberAvailabilities();
+      updateProgress();
+
+    });
+
+  item
+    .querySelectorAll("input")
+    .forEach(function(input){
+
+      input.addEventListener("input", updateProgress);
+      input.addEventListener("change", updateProgress);
+
+    });
+
+  updateProgress();
+
+});
+
+/* RENUMÉROTER LES DISPONIBILITÉS */
+
+function renumberAvailabilities(){
+
+  const items = availabilityList.querySelectorAll(".availability-item");
+
+  items.forEach(function(item, index){
+
+    const number = index + 1;
+
+    item.dataset.index = number;
+
+    const title = item.querySelector(".availability-title");
+
+    if(title){
+      title.textContent = "Disponibilité " + number;
+    }
+
+    const date = item.querySelector('input[type="date"]');
+    const times = item.querySelectorAll('input[type="time"]');
+
+    if(date){
+
+      date.id = "date-" + number;
+      date.name = "Disponibilité " + number + " — Date";
+
+      const label = item.querySelector('label[for^="date-"]');
+
+      if(label){
+        label.setAttribute("for", date.id);
+      }
+
+    }
+
+    if(times[0]){
+
+      times[0].id = "debut-" + number;
+      times[0].name = "Disponibilité " + number + " — Heure de début";
+
+      const label = item.querySelector('label[for^="debut-"]');
+
+      if(label){
+        label.setAttribute("for", times[0].id);
+      }
+
+    }
+
+    if(times[1]){
+
+      times[1].id = "fin-" + number;
+      times[1].name = "Disponibilité " + number + " — Heure de fin";
+
+      const label = item.querySelector('label[for^="fin-"]');
+
+      if(label){
+        label.setAttribute("for", times[1].id);
+      }
+
+    }
+
+  });
+
+  availabilityCount = items.length;
+
+}
+
+/* VÉRIFICATION DES HORAIRES */
+
+function validateTimes(){
+
+  const items = availabilityList.querySelectorAll(".availability-item");
+
+  let valid = true;
+
+  items.forEach(function(item){
+
+    const start = item.querySelector('input[id^="debut-"]');
+    const end = item.querySelector('input[id^="fin-"]');
+
+    if(start && end && start.value && end.value){
+
+      if(end.value <= start.value){
+
+        valid = false;
+
+        start.style.borderColor = "var(--red)";
+        end.style.borderColor = "var(--red)";
+
+      }else{
+
+        start.style.borderColor = "";
+        end.style.borderColor = "";
+
+      }
+
+    }
+
+  });
+
+  timeError.classList.toggle("visible", !valid);
+
+  return valid;
+
+}
+
+/* BARRE DE PROGRESSION */
+
+function updateProgress(){
+
+  const nom = document.getElementById("nom");
+  const email = document.getElementById("email");
+  const telephone = document.getElementById("telephone");
+  const consentement = document.getElementById("consentement");
+
+  const lieuSelected = form.querySelector(
+    'input[name="Lieu de diffusion"]:checked'
+  );
+
+  const firstDate = document.getElementById("date-1");
+  const firstStart = document.getElementById("debut-1");
+  const firstEnd = document.getElementById("fin-1");
+
+  const steps = [
+
+    nom.value.trim() !== "",
+
+    email.value.trim() !== "" &&
+    email.checkValidity(),
+
+    telephone.value.trim() !== "",
+
+    Boolean(lieuSelected),
+
+    firstDate.value !== "",
+
+    firstStart.value !== "",
+
+    firstEnd.value !== "",
+
+    consentement.checked
+
+  ];
+
+  const completed = steps.filter(Boolean).length;
+
+  const percentage = Math.round(
+    completed / steps.length * 100
+  );
+
+  progressFill.style.width = percentage + "%";
+  progressText.textContent = percentage + " % complété";
+
+}
+
+form.addEventListener("input", updateProgress);
+form.addEventListener("change", updateProgress);
+
+/* VALIDATION AVANT ENVOI */
+
+form.addEventListener("submit", function(event){
+
+  if(!validateTimes()){
+
+    event.preventDefault();
+
+    timeError.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+    return;
+
+  }
+
+  const additionalItems = Array.from(
+    availabilityList.querySelectorAll(".availability-item")
+  ).slice(1);
+
+  additionalItems.forEach(function(item){
+
+    const date = item.querySelector('input[type="date"]');
+    const times = item.querySelectorAll('input[type="time"]');
+
+    const values = [
+      date ? date.value : "",
+      times[0] ? times[0].value : "",
+      times[1] ? times[1].value : ""
+    ];
+
+    const hasOneValue = values.some(function(value){
+      return value !== "";
+    });
+
+    const isComplete = values.every(function(value){
+      return value !== "";
+    });
+
+    if(hasOneValue && !isComplete){
+
+      event.preventDefault();
+
+      alert(
+        "Merci de compléter entièrement chaque disponibilité ajoutée, " +
+        "ou de supprimer les créneaux incomplets."
+      );
+
+      item.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+    }
+
+  });
+
+});
+
+updateProgress();
+
+</script>
+
+</body>
+
+</html>
