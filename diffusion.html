@@ -10,7 +10,7 @@
   content="width=device-width, initial-scale=1"
 >
 
-<title>Disponibilités pour les diffusions — Section Île-de-France</title>
+<title>Inscriptions aux diffusions — Section Île-de-France</title>
 
 <style>
 
@@ -24,6 +24,8 @@
   --white:#ffffff;
   --light:#ece9e2;
   --border:#d8d3c9;
+  --disabled:#e6e2da;
+  --muted:#8b867d;
 }
 
 *{
@@ -238,9 +240,6 @@ label,
 input[type="text"],
 input[type="email"],
 input[type="tel"],
-input[type="date"],
-input[type="time"],
-select,
 textarea{
   display:block;
   width:100%;
@@ -256,16 +255,13 @@ textarea{
 }
 
 textarea{
-  min-height:130px;
+  min-height:120px;
   resize:vertical;
 }
 
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="tel"]:focus,
-input[type="date"]:focus,
-input[type="time"]:focus,
-select:focus,
 textarea:focus{
   border-color:var(--red);
   box-shadow:0 0 0 4px rgba(197,31,38,.11);
@@ -277,7 +273,7 @@ textarea:focus{
   gap:22px;
 }
 
-/* CASES ET BOUTONS RADIO */
+/* BOUTONS RADIO ET CASES */
 
 .options-grid{
   display:grid;
@@ -350,7 +346,7 @@ textarea:focus{
   transform:translateY(-1px);
 }
 
-/* COULEURS DES SECTIONS */
+/* COULEURS DES ÉTAPES */
 
 #etape-2 .section-number{
   background:var(--blue);
@@ -365,101 +361,232 @@ textarea:focus{
   background:var(--turquoise);
 }
 
-/* DISPONIBILITÉS */
+/* CALENDRIER */
 
-.availability-list{
+.calendar-information{
   display:flex;
-  flex-direction:column;
-  gap:18px;
-}
-
-.availability-item{
-  position:relative;
-  padding:24px;
+  flex-wrap:wrap;
+  gap:12px 22px;
+  margin-bottom:26px;
+  padding:18px 20px;
   background:#ffffff;
   border:2px solid var(--border);
-  border-radius:20px;
+  border-radius:18px;
 }
 
-.availability-title{
+.calendar-key{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:14px;
+  font-weight:700;
+}
+
+.key-square{
+  width:18px;
+  height:18px;
+  border-radius:5px;
+}
+
+.key-available{
+  background:#ffffff;
+  border:2px solid var(--blue);
+}
+
+.key-selected{
+  background:var(--blue);
+  border:2px solid var(--blue);
+}
+
+.key-disabled{
+  background:var(--disabled);
+  border:2px solid var(--disabled);
+}
+
+.calendars{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:20px;
+}
+
+.calendar-month{
+  padding:20px;
+  background:#ffffff;
+  border:2px solid var(--border);
+  border-radius:22px;
+}
+
+.month-title{
   margin:0 0 18px;
   color:var(--blue);
-  font-size:20px;
+  font-size:23px;
   font-weight:900;
+  text-align:center;
   text-transform:uppercase;
 }
 
-.availability-grid{
+.weekdays{
   display:grid;
-  grid-template-columns:1.4fr 1fr 1fr;
-  gap:16px;
-  align-items:end;
+  grid-template-columns:repeat(7, 1fr);
+  gap:5px;
+  margin-bottom:7px;
 }
 
-.availability-grid .field{
-  margin:0;
-}
-
-.availability-grid label{
-  font-size:15px;
-}
-
-.add-button{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-  margin-top:20px;
-  padding:14px 22px;
-  color:#ffffff;
-  background:var(--blue);
-  border:0;
-  border-radius:999px;
-  cursor:pointer;
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:16px;
+.weekday{
+  padding:4px 0;
+  color:#6d6962;
+  font-size:11px;
   font-weight:900;
-  transition:transform .2s ease, background .2s ease;
+  text-align:center;
+  text-transform:uppercase;
 }
 
-.add-button:hover{
-  background:#174f5b;
-  transform:translateY(-2px);
+.calendar-days{
+  display:grid;
+  grid-template-columns:repeat(7, 1fr);
+  gap:5px;
 }
 
-.add-icon{
-  font-size:22px;
-  line-height:1;
-}
-
-.remove-button{
-  position:absolute;
-  top:18px;
-  right:18px;
+.calendar-day{
+  position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
-  width:34px;
-  height:34px;
+  aspect-ratio:1 / 1;
+  padding:0;
+  color:var(--ink);
+  background:var(--disabled);
+  border:2px solid transparent;
+  border-radius:10px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:14px;
+  font-weight:800;
+  cursor:not-allowed;
+}
+
+.calendar-day.empty{
+  visibility:hidden;
+}
+
+.calendar-day.available{
+  background:#ffffff;
+  border-color:var(--blue);
+  cursor:pointer;
+  transition:
+    color .2s ease,
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.calendar-day.available:hover{
+  color:#ffffff;
+  background:var(--turquoise);
+  border-color:var(--turquoise);
+  transform:translateY(-2px);
+}
+
+.calendar-day.selected{
+  color:#ffffff;
+  background:var(--blue);
+  border-color:var(--blue);
+}
+
+.calendar-day.selected::after{
+  content:"";
+  position:absolute;
+  right:5px;
+  bottom:5px;
+  width:7px;
+  height:7px;
+  background:var(--yellow);
+  border-radius:50%;
+}
+
+.calendar-day.today{
+  outline:3px solid rgba(197,31,38,.25);
+  outline-offset:1px;
+}
+
+/* MESSAGE AVANT CHOIX DU LIEU */
+
+.calendar-locked{
+  padding:30px;
+  color:#6a665f;
+  background:#ece9e2;
+  border:2px dashed #c8c2b8;
+  border-radius:20px;
+  text-align:center;
+  font-size:18px;
+  font-weight:700;
+}
+
+/* RÉCAPITULATIF */
+
+.selection-summary{
+  margin-top:30px;
+  padding:26px;
+  color:#ffffff;
+  background:var(--blue);
+  border-radius:22px;
+}
+
+.selection-summary h3{
+  margin:0 0 16px;
+  color:var(--yellow);
+  font-size:25px;
+  text-transform:uppercase;
+}
+
+.selection-empty{
+  margin:0;
+  font-size:17px;
+}
+
+.selected-dates{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.selected-date{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:12px 14px;
+  color:var(--ink);
+  background:#ffffff;
+  border-radius:12px;
+  font-weight:800;
+}
+
+.remove-date{
+  flex:0 0 auto;
+  width:30px;
+  height:30px;
   padding:0;
   color:#ffffff;
   background:var(--red);
   border:0;
   border-radius:50%;
   cursor:pointer;
-  font-size:22px;
+  font-size:20px;
   line-height:1;
 }
 
-.remove-button:hover{
-  background:#9f171d;
+.remove-date:hover{
+  background:#9e171c;
 }
 
-/* MESSAGE D’ERREUR */
+/* ERREUR */
 
 .form-error{
   display:none;
-  margin-top:18px;
+  margin-top:20px;
   padding:15px 18px;
   color:#8f151a;
   background:#fbe3e4;
@@ -472,7 +599,7 @@ textarea:focus{
   display:block;
 }
 
-/* MESSAGE FINAL */
+/* BLOC FINAL */
 
 .final-box{
   padding:38px;
@@ -514,7 +641,7 @@ textarea:focus{
 .submit-button{
   display:inline-block;
   width:auto;
-  min-width:260px;
+  min-width:280px;
   padding:17px 28px;
   color:#1d1d1d;
   background:var(--yellow);
@@ -533,6 +660,14 @@ textarea:focus{
 }
 
 /* RESPONSIVE */
+
+@media(max-width:900px){
+
+  .calendars{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
 
 @media(max-width:760px){
 
@@ -584,16 +719,21 @@ textarea:focus{
 
   .field-grid,
   .options-grid,
-  .availability-grid{
+  .calendars{
     grid-template-columns:1fr;
   }
 
-  .availability-item{
-    padding:22px 16px;
+  .calendar-month{
+    padding:15px;
   }
 
-  .availability-title{
-    padding-right:40px;
+  .calendar-day{
+    font-size:14px;
+    border-radius:8px;
+  }
+
+  .selected-date{
+    align-items:flex-start;
   }
 
   .final-box{
@@ -604,10 +744,30 @@ textarea:focus{
     font-size:34px;
   }
 
-  .submit-button,
-  .add-button{
+  .submit-button{
     width:100%;
     min-width:0;
+  }
+
+}
+
+@media(max-width:420px){
+
+  .calendar-month{
+    padding:12px;
+  }
+
+  .calendar-days,
+  .weekdays{
+    gap:3px;
+  }
+
+  .calendar-day{
+    font-size:12px;
+  }
+
+  .weekday{
+    font-size:9px;
   }
 
 }
@@ -636,11 +796,6 @@ textarea:focus{
     page-break-after:always;
   }
 
-  .add-button,
-  .remove-button{
-    display:none;
-  }
-
 }
 
 </style>
@@ -655,7 +810,7 @@ textarea:focus{
 
     <div class="progress-top">
 
-      <span>Disponibilités pour les diffusions</span>
+      <span>Inscriptions aux diffusions</span>
 
       <span id="progressText">0 % complété</span>
 
@@ -705,8 +860,8 @@ textarea:focus{
           </div>
 
           <h1 class="hero-title">
-            Disponibilités<br>
-            pour les<br>
+            Inscriptions<br>
+            aux<br>
             diffusions
           </h1>
 
@@ -722,13 +877,13 @@ textarea:focus{
       <div class="intro-box">
 
         <p>
-          Cet outil permet de recenser les disponibilités des camarades
-          pour organiser les prochaines séances de diffusion.
+          Choisis ton lieu de diffusion, puis sélectionne directement
+          dans le calendrier les week-ends pendant lesquels tu es disponible.
         </p>
 
         <p>
-          Choisis un lieu, puis indique les dates et les horaires
-          auxquels tu peux participer. Tu peux ajouter plusieurs disponibilités.
+          Tu peux sélectionner plusieurs samedis ou dimanches.
+          Les jours de semaine ne sont pas accessibles.
         </p>
 
       </div>
@@ -831,13 +986,13 @@ textarea:focus{
       </div>
 
       <p class="section-intro">
-        Choisis un seul lieu.
+        Un seul lieu peut être sélectionné.
       </p>
 
       <div class="field">
 
         <div class="legend">
-          Sur quel lieu souhaites-tu participer aux diffusions ?
+          Où souhaites-tu participer aux diffusions ?
           <span class="required">*</span>
         </div>
 
@@ -901,95 +1056,84 @@ textarea:focus{
       </div>
 
       <p class="section-intro">
-        Indique une première disponibilité, puis ajoute autant de créneaux
-        que nécessaire.
+        Sélectionne tous les samedis et dimanches pendant lesquels
+        tu pourrais participer.
       </p>
 
-      <div
-        class="availability-list"
-        id="availabilityList"
-      >
+      <div class="calendar-information">
 
-        <div
-          class="availability-item"
-          data-index="1"
-        >
+        <div class="calendar-key">
 
-          <h3 class="availability-title">
-            Disponibilité 1
-          </h3>
+          <span class="key-square key-available"></span>
 
-          <div class="availability-grid">
+          <span>Week-end disponible</span>
 
-            <div class="field">
+        </div>
 
-              <label for="date-1">
-                Date
-                <span class="required">*</span>
-              </label>
+        <div class="calendar-key">
 
-              <input
-                type="date"
-                id="date-1"
-                name="Disponibilité 1 — Date"
-                required
-              >
+          <span class="key-square key-selected"></span>
 
-            </div>
+          <span>Date sélectionnée</span>
 
-            <div class="field">
+        </div>
 
-              <label for="debut-1">
-                Heure de début
-                <span class="required">*</span>
-              </label>
+        <div class="calendar-key">
 
-              <input
-                type="time"
-                id="debut-1"
-                name="Disponibilité 1 — Heure de début"
-                required
-              >
+          <span class="key-square key-disabled"></span>
 
-            </div>
-
-            <div class="field">
-
-              <label for="fin-1">
-                Heure de fin
-                <span class="required">*</span>
-              </label>
-
-              <input
-                type="time"
-                id="fin-1"
-                name="Disponibilité 1 — Heure de fin"
-                required
-              >
-
-            </div>
-
-          </div>
+          <span>Jour non sélectionnable</span>
 
         </div>
 
       </div>
 
-      <button
-        type="button"
-        class="add-button"
-        id="addAvailability"
+      <div
+        class="calendar-locked"
+        id="calendarLocked"
       >
-        <span class="add-icon">+</span>
-        Ajouter une disponibilité
-      </button>
+        Choisis d’abord Saint-Denis ou Porte de Montmartre
+        pour accéder au calendrier.
+      </div>
+
+      <div
+        class="calendars"
+        id="calendars"
+        hidden
+      ></div>
+
+      <div class="selection-summary">
+
+        <h3>
+          Tes dates sélectionnées
+        </h3>
+
+        <p
+          class="selection-empty"
+          id="selectionEmpty"
+        >
+          Aucune date sélectionnée pour le moment.
+        </p>
+
+        <ul
+          class="selected-dates"
+          id="selectedDates"
+        ></ul>
+
+      </div>
 
       <div
         class="form-error"
-        id="timeError"
+        id="dateError"
       >
-        L’heure de fin doit être postérieure à l’heure de début.
+        Sélectionne au moins une date dans le calendrier.
       </div>
+
+      <input
+        type="hidden"
+        id="selectedDatesInput"
+        name="Dates sélectionnées"
+      >
 
     </section>
 
@@ -1057,7 +1201,7 @@ textarea:focus{
       <div class="field">
 
         <div class="legend">
-          Peux-tu aider au transport ou à la récupération du matériel ?
+          Peux-tu aider à transporter le matériel ?
         </div>
 
         <div class="options-grid">
@@ -1065,14 +1209,14 @@ textarea:focus{
           <div class="option">
 
             <input
-              type="checkbox"
-              id="materiel-transport"
-              name="Aide matérielle[]"
-              value="Je peux transporter du matériel"
+              type="radio"
+              id="transport-oui"
+              name="Transport du matériel"
+              value="Oui"
             >
 
-            <label for="materiel-transport">
-              Je peux transporter du matériel
+            <label for="transport-oui">
+              Oui
             </label>
 
           </div>
@@ -1080,44 +1224,14 @@ textarea:focus{
           <div class="option">
 
             <input
-              type="checkbox"
-              id="materiel-recuperation"
-              name="Aide matérielle[]"
-              value="Je peux récupérer le matériel avant la séance"
+              type="radio"
+              id="transport-non"
+              name="Transport du matériel"
+              value="Non"
             >
 
-            <label for="materiel-recuperation">
-              Je peux récupérer le matériel avant la séance
-            </label>
-
-          </div>
-
-          <div class="option">
-
-            <input
-              type="checkbox"
-              id="materiel-depot"
-              name="Aide matérielle[]"
-              value="Je peux rapporter le matériel après la séance"
-            >
-
-            <label for="materiel-depot">
-              Je peux rapporter le matériel après la séance
-            </label>
-
-          </div>
-
-          <div class="option">
-
-            <input
-              type="checkbox"
-              id="materiel-non"
-              name="Aide matérielle[]"
-              value="Je ne peux pas transporter de matériel"
-            >
-
-            <label for="materiel-non">
-              Je ne peux pas transporter de matériel
+            <label for="transport-non">
+              Non
             </label>
 
           </div>
@@ -1133,8 +1247,8 @@ textarea:focus{
         </label>
 
         <span class="help">
-          Tu peux préciser une contrainte horaire, un besoin de covoiturage
-          ou toute autre information utile.
+          Tu peux notamment préciser tes horaires, une indisponibilité
+          partielle ou un besoin particulier.
         </span>
 
         <textarea
@@ -1163,7 +1277,7 @@ textarea:focus{
 
         <p>
           <strong>
-            Tu seras recontacté·e lorsque les créneaux seront confirmés.
+            Tu seras recontacté·e lorsque les séances seront confirmées.
           </strong>
         </p>
 
@@ -1180,8 +1294,8 @@ textarea:focus{
             >
 
             <label for="consentement">
-              J’accepte que mes coordonnées et mes disponibilités
-              soient utilisées par la section Île-de-France pour organiser
+              J’accepte que mes coordonnées et mes disponibilités soient
+              utilisées par la section Île-de-France pour organiser
               les séances de diffusion et me recontacter dans ce cadre.
             </label>
 
@@ -1192,14 +1306,14 @@ textarea:focus{
         <input
           type="hidden"
           name="_subject"
-          value="Nouvelle disponibilité pour une séance de diffusion"
+          value="Nouvelle inscription à une séance de diffusion"
         >
 
         <button
           type="submit"
           class="submit-button"
         >
-          Envoyer mes disponibilités
+          Envoyer mon inscription
         </button>
 
       </div>
@@ -1212,218 +1326,432 @@ textarea:focus{
 
 <script>
 
+/*
+==========================================================
+RÉGLAGE DES MOIS AFFICHÉS
+==========================================================
+
+Les mois JavaScript commencent à 0 :
+
+0 = janvier
+1 = février
+2 = mars
+3 = avril
+4 = mai
+5 = juin
+6 = juillet
+7 = août
+8 = septembre
+9 = octobre
+10 = novembre
+11 = décembre
+*/
+
+const displayedMonths = [
+  { year:2026, month:7 },
+  { year:2026, month:8 },
+  { year:2026, month:9 }
+];
+
+/*
+==========================================================
+DATES EXCLUES FACULTATIVES
+==========================================================
+
+Tous les samedis et dimanches sont actuellement disponibles.
+
+Pour empêcher la sélection d’une date particulière,
+ajoute-la ci-dessous au format AAAA-MM-JJ.
+
+Exemple :
+
+const unavailableDates = {
+  "Saint-Denis":[
+    "2026-08-15",
+    "2026-09-06"
+  ],
+
+  "Porte de Montmartre":[
+    "2026-08-16"
+  ]
+};
+*/
+
+const unavailableDates = {
+
+  "Saint-Denis":[],
+
+  "Porte de Montmartre":[]
+
+};
+
+/* ÉLÉMENTS */
+
 const form = document.getElementById("diffusionForm");
+
 const progressFill = document.getElementById("progressFill");
 const progressText = document.getElementById("progressText");
 
-const availabilityList = document.getElementById("availabilityList");
-const addAvailabilityButton = document.getElementById("addAvailability");
-const timeError = document.getElementById("timeError");
+const calendarsContainer = document.getElementById("calendars");
+const calendarLocked = document.getElementById("calendarLocked");
 
-let availabilityCount = 1;
+const selectedDatesList = document.getElementById("selectedDates");
+const selectionEmpty = document.getElementById("selectionEmpty");
+const selectedDatesInput = document.getElementById("selectedDatesInput");
 
-/* AJOUTER UNE DISPONIBILITÉ */
+const dateError = document.getElementById("dateError");
 
-addAvailabilityButton.addEventListener("click", function(){
+let selectedDates = new Set();
+let currentLocation = "";
 
-  availabilityCount++;
+/* NOMS FRANÇAIS */
 
-  const item = document.createElement("div");
+const monthNames = [
+  "Janvier",
+  "Février",
+  "Mars",
+  "Avril",
+  "Mai",
+  "Juin",
+  "Juillet",
+  "Août",
+  "Septembre",
+  "Octobre",
+  "Novembre",
+  "Décembre"
+];
 
-  item.className = "availability-item";
-  item.dataset.index = availabilityCount;
+const weekdayLabels = [
+  "L",
+  "M",
+  "M",
+  "J",
+  "V",
+  "S",
+  "D"
+];
 
-  item.innerHTML = `
+/* FORMAT AAAA-MM-JJ */
 
-    <button
-      type="button"
-      class="remove-button"
-      aria-label="Supprimer cette disponibilité"
-    >
-      ×
-    </button>
+function formatDateKey(year, month, day){
 
-    <h3 class="availability-title">
-      Disponibilité ${availabilityCount}
-    </h3>
+  const monthNumber = String(month + 1).padStart(2, "0");
+  const dayNumber = String(day).padStart(2, "0");
 
-    <div class="availability-grid">
-
-      <div class="field">
-
-        <label for="date-${availabilityCount}">
-          Date
-        </label>
-
-        <input
-          type="date"
-          id="date-${availabilityCount}"
-          name="Disponibilité ${availabilityCount} — Date"
-        >
-
-      </div>
-
-      <div class="field">
-
-        <label for="debut-${availabilityCount}">
-          Heure de début
-        </label>
-
-        <input
-          type="time"
-          id="debut-${availabilityCount}"
-          name="Disponibilité ${availabilityCount} — Heure de début"
-        >
-
-      </div>
-
-      <div class="field">
-
-        <label for="fin-${availabilityCount}">
-          Heure de fin
-        </label>
-
-        <input
-          type="time"
-          id="fin-${availabilityCount}"
-          name="Disponibilité ${availabilityCount} — Heure de fin"
-        >
-
-      </div>
-
-    </div>
-
-  `;
-
-  availabilityList.appendChild(item);
-
-  item
-    .querySelector(".remove-button")
-    .addEventListener("click", function(){
-
-      item.remove();
-      renumberAvailabilities();
-      updateProgress();
-
-    });
-
-  item
-    .querySelectorAll("input")
-    .forEach(function(input){
-
-      input.addEventListener("input", updateProgress);
-      input.addEventListener("change", updateProgress);
-
-    });
-
-  updateProgress();
-
-});
-
-/* RENUMÉROTER LES DISPONIBILITÉS */
-
-function renumberAvailabilities(){
-
-  const items = availabilityList.querySelectorAll(".availability-item");
-
-  items.forEach(function(item, index){
-
-    const number = index + 1;
-
-    item.dataset.index = number;
-
-    const title = item.querySelector(".availability-title");
-
-    if(title){
-      title.textContent = "Disponibilité " + number;
-    }
-
-    const date = item.querySelector('input[type="date"]');
-    const times = item.querySelectorAll('input[type="time"]');
-
-    if(date){
-
-      date.id = "date-" + number;
-      date.name = "Disponibilité " + number + " — Date";
-
-      const label = item.querySelector('label[for^="date-"]');
-
-      if(label){
-        label.setAttribute("for", date.id);
-      }
-
-    }
-
-    if(times[0]){
-
-      times[0].id = "debut-" + number;
-      times[0].name = "Disponibilité " + number + " — Heure de début";
-
-      const label = item.querySelector('label[for^="debut-"]');
-
-      if(label){
-        label.setAttribute("for", times[0].id);
-      }
-
-    }
-
-    if(times[1]){
-
-      times[1].id = "fin-" + number;
-      times[1].name = "Disponibilité " + number + " — Heure de fin";
-
-      const label = item.querySelector('label[for^="fin-"]');
-
-      if(label){
-        label.setAttribute("for", times[1].id);
-      }
-
-    }
-
-  });
-
-  availabilityCount = items.length;
+  return `${year}-${monthNumber}-${dayNumber}`;
 
 }
 
-/* VÉRIFICATION DES HORAIRES */
+/* DATE LISIBLE */
 
-function validateTimes(){
+function formatReadableDate(dateKey){
 
-  const items = availabilityList.querySelectorAll(".availability-item");
+  const parts = dateKey.split("-");
 
-  let valid = true;
+  const date = new Date(
+    Number(parts[0]),
+    Number(parts[1]) - 1,
+    Number(parts[2])
+  );
 
-  items.forEach(function(item){
+  return new Intl.DateTimeFormat(
+    "fr-FR",
+    {
+      weekday:"long",
+      day:"numeric",
+      month:"long",
+      year:"numeric"
+    }
+  ).format(date);
 
-    const start = item.querySelector('input[id^="debut-"]');
-    const end = item.querySelector('input[id^="fin-"]');
+}
 
-    if(start && end && start.value && end.value){
+/* PREMIER JOUR DU MOIS AVEC LUNDI EN PREMIER */
 
-      if(end.value <= start.value){
+function getMondayFirstDay(year, month){
 
-        valid = false;
+  const nativeDay = new Date(year, month, 1).getDay();
 
-        start.style.borderColor = "var(--red)";
-        end.style.borderColor = "var(--red)";
+  return nativeDay === 0
+    ? 6
+    : nativeDay - 1;
+
+}
+
+/* CRÉATION DES CALENDRIERS */
+
+function createCalendars(){
+
+  calendarsContainer.innerHTML = "";
+
+  displayedMonths.forEach(function(monthData){
+
+    const year = monthData.year;
+    const month = monthData.month;
+
+    const monthElement = document.createElement("section");
+
+    monthElement.className = "calendar-month";
+
+    const title = document.createElement("h3");
+
+    title.className = "month-title";
+    title.textContent = monthNames[month] + " " + year;
+
+    monthElement.appendChild(title);
+
+    const weekdays = document.createElement("div");
+
+    weekdays.className = "weekdays";
+
+    weekdayLabels.forEach(function(label){
+
+      const weekday = document.createElement("div");
+
+      weekday.className = "weekday";
+      weekday.textContent = label;
+
+      weekdays.appendChild(weekday);
+
+    });
+
+    monthElement.appendChild(weekdays);
+
+    const calendarDays = document.createElement("div");
+
+    calendarDays.className = "calendar-days";
+
+    const firstDay = getMondayFirstDay(year, month);
+
+    for(let i = 0; i < firstDay; i++){
+
+      const emptyCell = document.createElement("div");
+
+      emptyCell.className = "calendar-day empty";
+
+      calendarDays.appendChild(emptyCell);
+
+    }
+
+    const daysInMonth = new Date(
+      year,
+      month + 1,
+      0
+    ).getDate();
+
+    for(let day = 1; day <= daysInMonth; day++){
+
+      const date = new Date(year, month, day);
+      const nativeWeekday = date.getDay();
+
+      const isWeekend =
+        nativeWeekday === 0 ||
+        nativeWeekday === 6;
+
+      const dateKey = formatDateKey(
+        year,
+        month,
+        day
+      );
+
+      const excludedDates =
+        unavailableDates[currentLocation] || [];
+
+      const isExcluded =
+        excludedDates.includes(dateKey);
+
+      const button = document.createElement("button");
+
+      button.type = "button";
+      button.className = "calendar-day";
+      button.textContent = day;
+      button.dataset.date = dateKey;
+
+      if(isWeekend && !isExcluded){
+
+        button.classList.add("available");
+
+        button.setAttribute(
+          "aria-label",
+          "Sélectionner le " + formatReadableDate(dateKey)
+        );
+
+        button.addEventListener(
+          "click",
+          function(){
+
+            toggleDate(dateKey);
+
+          }
+        );
 
       }else{
 
-        start.style.borderColor = "";
-        end.style.borderColor = "";
+        button.disabled = true;
+
+        button.setAttribute(
+          "aria-label",
+          "Date non disponible"
+        );
 
       }
 
+      if(selectedDates.has(dateKey)){
+
+        button.classList.add("selected");
+
+      }
+
+      calendarDays.appendChild(button);
+
     }
+
+    monthElement.appendChild(calendarDays);
+    calendarsContainer.appendChild(monthElement);
 
   });
 
-  timeError.classList.toggle("visible", !valid);
+}
 
-  return valid;
+/* SÉLECTION D’UNE DATE */
+
+function toggleDate(dateKey){
+
+  if(selectedDates.has(dateKey)){
+
+    selectedDates.delete(dateKey);
+
+  }else{
+
+    selectedDates.add(dateKey);
+
+  }
+
+  updateCalendarSelection();
+  updateSummary();
+  updateProgress();
+
+  dateError.classList.remove("visible");
 
 }
+
+/* MISE À JOUR VISUELLE DU CALENDRIER */
+
+function updateCalendarSelection(){
+
+  const buttons = calendarsContainer.querySelectorAll(
+    ".calendar-day.available"
+  );
+
+  buttons.forEach(function(button){
+
+    button.classList.toggle(
+      "selected",
+      selectedDates.has(button.dataset.date)
+    );
+
+  });
+
+}
+
+/* RÉCAPITULATIF */
+
+function updateSummary(){
+
+  selectedDatesList.innerHTML = "";
+
+  const sortedDates = Array.from(selectedDates).sort();
+
+  if(sortedDates.length === 0){
+
+    selectionEmpty.hidden = false;
+    selectedDatesInput.value = "";
+
+    return;
+
+  }
+
+  selectionEmpty.hidden = true;
+
+  sortedDates.forEach(function(dateKey){
+
+    const item = document.createElement("li");
+
+    item.className = "selected-date";
+
+    const text = document.createElement("span");
+
+    text.textContent = formatReadableDate(dateKey);
+
+    const removeButton = document.createElement("button");
+
+    removeButton.type = "button";
+    removeButton.className = "remove-date";
+    removeButton.textContent = "×";
+
+    removeButton.setAttribute(
+      "aria-label",
+      "Retirer le " + formatReadableDate(dateKey)
+    );
+
+    removeButton.addEventListener(
+      "click",
+      function(){
+
+        selectedDates.delete(dateKey);
+
+        updateCalendarSelection();
+        updateSummary();
+        updateProgress();
+
+      }
+    );
+
+    item.appendChild(text);
+    item.appendChild(removeButton);
+
+    selectedDatesList.appendChild(item);
+
+  });
+
+  selectedDatesInput.value = sortedDates
+    .map(formatReadableDate)
+    .join(" | ");
+
+}
+
+/* CHANGEMENT DE LIEU */
+
+const locationInputs = form.querySelectorAll(
+  'input[name="Lieu de diffusion"]'
+);
+
+locationInputs.forEach(function(input){
+
+  input.addEventListener(
+    "change",
+    function(){
+
+      currentLocation = input.value;
+
+      /*
+      Les dates précédemment sélectionnées sont effacées
+      lorsque la personne change de lieu.
+      */
+
+      selectedDates.clear();
+
+      calendarLocked.hidden = true;
+      calendarsContainer.hidden = false;
+
+      createCalendars();
+      updateSummary();
+      updateProgress();
+
+    }
+  );
+
+});
 
 /* BARRE DE PROGRESSION */
 
@@ -1434,15 +1762,11 @@ function updateProgress(){
   const telephone = document.getElementById("telephone");
   const consentement = document.getElementById("consentement");
 
-  const lieuSelected = form.querySelector(
+  const selectedLocation = form.querySelector(
     'input[name="Lieu de diffusion"]:checked'
   );
 
-  const firstDate = document.getElementById("date-1");
-  const firstStart = document.getElementById("debut-1");
-  const firstEnd = document.getElementById("fin-1");
-
-  const steps = [
+  const requiredSteps = [
 
     nom.value.trim() !== "",
 
@@ -1451,22 +1775,18 @@ function updateProgress(){
 
     telephone.value.trim() !== "",
 
-    Boolean(lieuSelected),
+    Boolean(selectedLocation),
 
-    firstDate.value !== "",
-
-    firstStart.value !== "",
-
-    firstEnd.value !== "",
+    selectedDates.size > 0,
 
     consentement.checked
 
   ];
 
-  const completed = steps.filter(Boolean).length;
+  const completedSteps = requiredSteps.filter(Boolean).length;
 
   const percentage = Math.round(
-    completed / steps.length * 100
+    completedSteps / requiredSteps.length * 100
   );
 
   progressFill.style.width = percentage + "%";
@@ -1479,63 +1799,31 @@ form.addEventListener("change", updateProgress);
 
 /* VALIDATION AVANT ENVOI */
 
-form.addEventListener("submit", function(event){
+form.addEventListener(
+  "submit",
+  function(event){
 
-  if(!validateTimes()){
-
-    event.preventDefault();
-
-    timeError.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
-
-    return;
-
-  }
-
-  const additionalItems = Array.from(
-    availabilityList.querySelectorAll(".availability-item")
-  ).slice(1);
-
-  additionalItems.forEach(function(item){
-
-    const date = item.querySelector('input[type="date"]');
-    const times = item.querySelectorAll('input[type="time"]');
-
-    const values = [
-      date ? date.value : "",
-      times[0] ? times[0].value : "",
-      times[1] ? times[1].value : ""
-    ];
-
-    const hasOneValue = values.some(function(value){
-      return value !== "";
-    });
-
-    const isComplete = values.every(function(value){
-      return value !== "";
-    });
-
-    if(hasOneValue && !isComplete){
+    if(selectedDates.size === 0){
 
       event.preventDefault();
 
-      alert(
-        "Merci de compléter entièrement chaque disponibilité ajoutée, " +
-        "ou de supprimer les créneaux incomplets."
-      );
+      dateError.classList.add("visible");
 
-      item.scrollIntoView({
-        behavior:"smooth",
-        block:"center"
-      });
+      document
+        .getElementById("etape-3")
+        .scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+
+      return;
 
     }
 
-  });
+    updateSummary();
 
-});
+  }
+);
 
 updateProgress();
 
