@@ -14,8 +14,8 @@
 <section class="page"><div class="final"><h2 style="color:white">Valider l’inscription</h2><div class="consent"><label><input type="checkbox" id="consent" required> J’accepte que mes coordonnées soient utilisées par la section Île-de-France pour organiser cette séance et me recontacter.</label></div><div id="formMessage" class="message"></div><button class="submit" id="submit" type="submit">Réserver ce dimanche</button></div></section>
 </form></main>
 <script>
-const SUPABASE_URL='VOTRE_URL_SUPABASE';
-const SUPABASE_ANON_KEY='VOTRE_CLE_ANON_SUPABASE';
+const SUPABASE_URL='https://kzqoxggchcdhmdydgooe.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_P2J2awOCTYEYwrWIup6stg_n0u7adqe';
 const db=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 const form=document.querySelector('#form'),calendar=document.querySelector('#calendar'),slotId=document.querySelector('#slotId');
 const nameField=document.querySelector('#name'),emailField=document.querySelector('#email'),phoneField=document.querySelector('#phone'),commentField=document.querySelector('#comment'),consentField=document.querySelector('#consent'),progressFillEl=document.querySelector('#progressFill'),progressTextEl=document.querySelector('#progressText');
@@ -30,3 +30,4 @@ form.addEventListener('input',progress);form.addEventListener('change',progress)
 form.onsubmit=async e=>{e.preventDefault();const message=document.querySelector('#formMessage');message.className='message';if(!slotId.value)return show(document.querySelector('#slotMessage'),'Sélectionne un dimanche disponible.');const button=document.querySelector('#submit');button.disabled=true;button.textContent='Réservation en cours…';const transport=form.querySelector('[name=transport]:checked');const participation=form.querySelector('[name=participation]:checked');const {error}=await db.rpc('reserve_diffusion_slot',{p_slot_id:Number(slotId.value),p_full_name:nameField.value,p_email:emailField.value,p_phone:phoneField.value,p_participation_type:participation?.value||null,p_can_transport:transport?transport.value==='true':null,p_comment:commentField.value});if(error){show(message,error.message.includes('slot_unavailable')?'Ce dimanche vient d’être réservé. Choisis-en un autre.':'L’inscription n’a pas pu être enregistrée.');await loadSlots();button.disabled=false;button.textContent='Réserver ce dimanche';return}show(message,'Ton inscription est bien enregistrée. Tu seras recontacté·e lorsque la séance sera confirmée.','success');form.querySelectorAll('input,textarea,button').forEach(x=>x.disabled=true);progressFillEl.style.width='100%';progressTextEl.textContent='100 % complété'};
 loadSlots();progress();
 </script></body></html>
+
