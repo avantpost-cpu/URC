@@ -29,7 +29,8 @@ h1{margin:4px 0 0;color:#fff;font-size:55px;line-height:.95;letter-spacing:-.04e
 .intro{margin:0;color:#fff;font-size:17px;line-height:1.4}
 .home-layout{display:grid;grid-template-columns:270px 1fr;gap:20px;align-items:stretch}
 .home-layout>.page{margin-bottom:0}
-.access-page{display:flex;flex-direction:column;padding:25px 20px;background:var(--blue);backdrop-filter:none}
+.access-column{display:flex;min-width:0;flex-direction:column;gap:12px}
+.access-page{display:flex;flex:1;flex-direction:column;margin:0;padding:22px 20px;background:var(--blue);backdrop-filter:none}
 .access-title{margin:0 0 12px;color:#fff;font-size:25px;line-height:1}
 .access-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(3,1fr);gap:8px}
 .access-card{position:relative;min-height:0;padding:11px 14px;overflow:hidden;border-radius:14px;color:var(--ink);background:var(--cream);text-decoration:none;transition:transform .2s,box-shadow .2s}
@@ -39,7 +40,7 @@ h1{margin:4px 0 0;color:#fff;font-size:55px;line-height:.95;letter-spacing:-.04e
 .access-card p{position:relative;z-index:2;margin:0;padding-right:20px;color:var(--ink);font-size:11px;line-height:1.2}
 .instagram-handle{display:block;margin-top:4px;color:var(--red);font-weight:900}
 .access-arrow{position:absolute;right:13px;bottom:7px;color:var(--red);font-size:31px;font-weight:900;line-height:1}
-.radio-card{margin-top:10px;padding:12px 13px;color:#fff;background:#111;border-radius:15px}
+.radio-card{flex:0 0 auto;padding:15px 14px;color:#fff;background:#111;border-radius:24px;box-shadow:0 12px 34px #0002}
 .radio-head{display:flex;align-items:center;gap:8px}
 .radio-live-dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px #c51f2633}
 .radio-copy{min-width:0;line-height:1.05}
@@ -72,7 +73,7 @@ h1{margin:4px 0 0;color:#fff;font-size:55px;line-height:.95;letter-spacing:-.04e
 .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:17px;color:var(--blue);font-size:11px;font-weight:900;text-transform:uppercase}
 .dot{display:inline-block;width:11px;height:11px;margin-right:6px;border-radius:50%;vertical-align:-1px;background:var(--red)}
 .dot.option{background:var(--yellow)}
-@media(max-width:860px){.home-layout{grid-template-columns:1fr}.access-grid{grid-template-columns:repeat(3,1fr);grid-template-rows:1fr}.home-layout>.page{margin-bottom:0}.radio-card{max-width:310px}}
+@media(max-width:860px){.home-layout{grid-template-columns:1fr}.access-grid{grid-template-columns:repeat(3,1fr);grid-template-rows:1fr}.home-layout>.page{margin-bottom:0}}
 @media(max-width:760px){body::before{background-size:auto 115%;opacity:.65}.document{width:min(100% - 16px,940px);margin-top:12px}.page{padding:24px 17px}.hero{padding:25px 22px 0}.header{grid-template-columns:1fr}.hero-art{min-height:180px}.logo{width:115px;margin:0}.crowd{left:-22px;bottom:0;width:175px}.hero h1{font-size:39px}.subtitle{font-size:17px}.intro{padding-bottom:25px;font-size:16px}.access-grid,.calendar-layout{grid-template-columns:1fr}.access-grid{grid-template-rows:repeat(3,1fr)}.access-card{min-height:88px}.calendar-page{padding:14px;border-width:5px}.calendar-head{align-items:flex-start}.month{font-size:70px}.year{font-size:23px}.calendar-title{font-size:12px}.day{min-height:51px;padding:5px;font-size:14px}.weekday{font-size:9px}.events{margin-top:4px}}
 </style>
 </head>
@@ -82,11 +83,14 @@ h1{margin:4px 0 0;color:#fff;font-size:55px;line-height:.95;letter-spacing:-.04e
 <section class="page hero"><div class="header"><div class="hero-art"><img class="logo" src="https://avantpost-cpu.github.io/URC/logo_URC2.png" alt="Logo URC"><img class="crowd" src="https://avantpost-cpu.github.io/URC/foule.png" alt=""></div><div class="hero-copy"><div class="kicker">Section Île-de-France</div><h1>La commune<br>en mouvement</h1><p class="subtitle">Retrouve ici les outils et les prochains rendez-vous de la section.</p><p class="intro">Inscris-toi à une diffusion, télécharge les affiches et garde en vue les prochaines dates importantes.</p></div></div></section>
 
 <div class="home-layout">
+<div class="access-column">
 <section class="page access-page"><h2 class="access-title">Accès rapides</h2><div class="access-grid">
 <a class="access-card diffusion" href="./diffusion.html"><h3>Participer à une diffusion</h3><p>Choisis ton lieu, ton dimanche et le matériel que tu peux apporter.</p><span class="access-arrow" aria-hidden="true">→</span></a>
 <a class="access-card posters" href="https://communerouge.fr/affiches.html"><h3>Télécharger les affiches</h3><p>Retrouve les visuels et le matériel de communication.</p><span class="access-arrow" aria-hidden="true">→</span></a>
 <a class="access-card instagram" href="https://www.instagram.com/urc_paris_idf/" target="_blank" rel="noopener noreferrer"><h3>Suivre l’URC sur Instagram</h3><p>Actualités, actions et rendez-vous.<span class="instagram-handle">@urc_paris_idf</span></p><span class="access-arrow" aria-hidden="true">→</span></a>
-</div><div class="radio-card"><div class="radio-head"><span class="radio-live-dot" aria-hidden="true"></span><span class="radio-copy"><strong>Radio Alhara</strong><span id="radioStatus">En direct de Bethléem — chargement…</span></span><button class="radio-toggle" id="radioToggle" type="button" aria-label="Lancer Radio Alhara" aria-pressed="false">▶</button></div><audio class="radio-audio" id="radioPlayer" autoplay preload="auto"><source src="https://stream.radiojar.com/78cxy6wkxtzuv" type="audio/mpeg"></audio></div></section>
+</div></section>
+<div class="radio-card"><div class="radio-head"><span class="radio-live-dot" aria-hidden="true"></span><span class="radio-copy"><strong>Radio Alhara</strong><span id="radioStatus">En direct de Bethléem — chargement…</span></span><button class="radio-toggle" id="radioToggle" type="button" aria-label="Lancer Radio Alhara" aria-pressed="false">▶</button></div><audio class="radio-audio" id="radioPlayer" autoplay preload="auto"><source src="https://stream.radiojar.com/78cxy6wkxtzuv" type="audio/mpeg"></audio></div>
+</div>
 
 <section class="page calendar-page"><div class="calendar-head"><div style="display:flex;align-items:flex-end;gap:20px"><div class="month" id="calendarMonth">SEP</div><div class="year" id="calendarYear">20<br>26</div></div><div class="calendar-title">Prochaines<br>dates repères</div></div><div class="calendar-layout"><div><div class="month-grid" id="publicMonthGrid">
 <div class="weekday">Lun</div><div class="weekday">Mar</div><div class="weekday">Mer</div><div class="weekday">Jeu</div><div class="weekday">Ven</div><div class="weekday">Sam</div><div class="weekday">Dim</div>
