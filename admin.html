@@ -15,7 +15,7 @@ button,input,select,textarea{font:inherit}
 label{display:block;margin-bottom:6px;font-weight:800}
 input,select,textarea{width:100%;padding:11px 13px;border:2px solid var(--line);border-radius:10px;background:white}
 textarea{min-height:85px}
-.btn{padding:11px 16px;border:0;border-radius:999px;background:var(--blue);color:#fff;font-weight:900;cursor:pointer}
+.btn{display:inline-block;padding:11px 16px;border:0;border-radius:999px;background:var(--blue);color:#fff;text-decoration:none;font-weight:900;cursor:pointer}
 .btn.red{background:var(--red)}
 .btn.yellow{background:var(--yellow);color:#222}
 .btn.light{background:#e4e0d8;color:#222}
@@ -81,8 +81,8 @@ dialog::backdrop{background:#0008}
 }
 
 </style></head><body><main class="wrap">
-<section id="loginView" class="card login"><div class="brand"><img src="https://avantpost-cpu.github.io/URC/logo_URC.png" alt="URC"><div><h1>Administration</h1><div class="muted">Gestion des diffusions</div></div></div><form id="loginForm" style="margin-top:25px"><div class="field"><label for="loginPassword">Mot de passe</label><input id="loginPassword" type="password" autocomplete="current-password" autofocus required></div><div id="loginMessage" class="message error"></div><button class="btn" type="submit">Se connecter</button></form></section>
-<div id="adminView" class="hidden"><section class="card top"><div class="brand"><img src="https://avantpost-cpu.github.io/URC/logo_URC.png" alt="URC"><div><h1>Diffusions</h1><div id="adminEmail" class="muted"></div></div></div><button id="logout" class="btn light">Se déconnecter</button></section>
+<section id="loginView" class="card login"><div class="brand"><img src="https://avantpost-cpu.github.io/URC/logo_URC.png" alt="URC"><div><h1>Administration</h1><div class="muted">Gestion des diffusions</div></div></div><form id="loginForm" style="margin-top:25px"><div class="field"><label for="loginPassword">Mot de passe</label><input id="loginPassword" type="password" autocomplete="current-password" autofocus required></div><div id="loginMessage" class="message error"></div><div class="toolbar"><button class="btn" type="submit">Se connecter</button><a class="btn light" href="./index.html">Retour à l’accueil</a></div></form></section>
+<div id="adminView" class="hidden"><section class="card top"><div class="brand"><img src="https://avantpost-cpu.github.io/URC/logo_URC.png" alt="URC"><div><h1>Diffusions</h1><div id="adminEmail" class="muted"></div></div></div><div class="toolbar"><a class="btn light" href="./index.html">Accueil</a><button id="logout" class="btn light">Se déconnecter</button></div></section>
 
 <section class="card"><div class="stats"><div class="stat"><strong id="totalCount">0</strong>inscriptions</div><div class="stat"><strong id="availableCount">0</strong>créneaux avec des places</div><div class="stat"><strong id="bookedCount">0</strong>créneaux complets</div><div class="stat"><strong id="blockedCount">0</strong>créneaux bloqués</div></div></section>
 
