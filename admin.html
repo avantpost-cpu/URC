@@ -1,30 +1,195 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administration des diffusions — URC</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
-:root{--red:#c51f26;--blue:#1f6675;--yellow:#f2b324;--paper:#f7f5f0;--line:#d8d3c9;--green:#18845a}*{box-sizing:border-box}body{margin:0;background:#e9e7e2 url('https://avantpost-cpu.github.io/URC/fond.jpg') center/cover fixed no-repeat;color:#1e1e1e;font:15px/1.4 Arial,sans-serif}button,input,select,textarea{font:inherit}.wrap{width:min(1240px,calc(100% - 24px));margin:24px auto}.card{padding:26px;margin-bottom:20px;background:var(--paper);border-radius:22px;box-shadow:0 8px 25px #0002}.top{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:18px}.brand img{width:90px}.brand h1{margin:0;color:var(--red);font-size:34px;text-transform:uppercase}.muted{color:#6d6962}.login{max-width:480px;margin:10vh auto}.field{margin-bottom:16px}label{display:block;margin-bottom:6px;font-weight:800}input,select,textarea{width:100%;padding:11px 13px;border:2px solid var(--line);border-radius:10px;background:white}textarea{min-height:85px}.btn{padding:11px 16px;border:0;border-radius:999px;background:var(--blue);color:#fff;font-weight:900;cursor:pointer}.btn.red{background:var(--red)}.btn.yellow{background:var(--yellow);color:#222}.btn.light{background:#e4e0d8;color:#222}.btn.small{padding:7px 11px;font-size:13px}.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0}.toolbar input,.toolbar select{width:auto;min-width:190px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{padding:18px;border-radius:15px;background:white;border:2px solid var(--line)}.stat strong{display:block;font-size:28px;color:var(--blue)}.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.slot{padding:15px;background:#fff;border:2px solid var(--line);border-radius:14px}.slot strong,.slot span{display:block}.badge{display:inline-block!important;width:max-content;margin:8px 0;padding:4px 8px;border-radius:20px;font-size:12px;font-weight:900}.available{background:#dff3e8;color:#145b3a}.booked{background:#fde6d5;color:#8d4315}.blocked{background:#e4e0d8;color:#555}.tablebox{overflow:auto}table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:var(--blue);color:#fff;white-space:nowrap}.actions{display:flex;gap:6px}.empty{padding:25px;text-align:center}.message{display:none;padding:11px 14px;margin:12px 0;border-radius:10px;font-weight:800}.message.show{display:block}.error{color:#8f151a;background:#fbe3e4}.success{color:#145b3a;background:#dff3e8}.hidden{display:none!important}dialog{width:min(680px,calc(100% - 24px));border:0;border-radius:20px;padding:0;box-shadow:0 15px 60px #0007}dialog::backdrop{background:#0008}.modal{padding:26px}.modal-head{display:flex;justify-content:space-between;align-items:center}.modal h2{color:var(--red);text-transform:uppercase}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.close{border:0;background:none;font-size:30px;cursor:pointer}@media(max-width:850px){.stats,.slots{grid-template-columns:1fr 1fr}.top,.brand{align-items:flex-start}.brand h1{font-size:25px}.grid{grid-template-columns:1fr}}@media(max-width:520px){.stats,.slots{grid-template-columns:1fr}.brand img{width:65px}.top{display:block}.top>.btn{margin-top:15px}}
+:root{--red:#c51f26;--blue:#1f6675;--yellow:#f2b324;--paper:#f7f5f0;--line:#d8d3c9;--green:#18845a}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e7e2 url('https://avantpost-cpu.github.io/URC/fond.jpg') center/cover fixed no-repeat;color:#1e1e1e;font:15px/1.4 Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+.wrap{width:min(1240px,calc(100% - 24px));margin:24px auto}
+.card{padding:26px;margin-bottom:20px;background:var(--paper);border-radius:22px;box-shadow:0 8px 25px #0002}
+.top{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:18px}
+.brand img{width:90px}
+.brand h1{margin:0;color:var(--red);font-size:34px;text-transform:uppercase}
+.muted{color:#6d6962}
+.login{max-width:480px;margin:10vh auto}
+.field{margin-bottom:16px}
+label{display:block;margin-bottom:6px;font-weight:800}
+input,select,textarea{width:100%;padding:11px 13px;border:2px solid var(--line);border-radius:10px;background:white}
+textarea{min-height:85px}
+.btn{padding:11px 16px;border:0;border-radius:999px;background:var(--blue);color:#fff;font-weight:900;cursor:pointer}
+.btn.red{background:var(--red)}
+.btn.yellow{background:var(--yellow);color:#222}
+.btn.light{background:#e4e0d8;color:#222}
+.btn.small{padding:7px 11px;font-size:13px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0}
+.toolbar input,.toolbar select{width:auto;min-width:190px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stat{padding:18px;border-radius:15px;background:white;border:2px solid var(--line)}
+.stat strong{display:block;font-size:28px;color:var(--blue)}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.slot{padding:15px;background:#fff;border:2px solid var(--line);border-radius:14px}
+.slot strong,.slot span{display:block}
+.badge{display:inline-block!important;width:max-content;margin:8px 0;padding:4px 8px;border-radius:20px;font-size:12px;font-weight:900}
+.available{background:#dff3e8;color:#145b3a}
+.booked{background:#fde6d5;color:#8d4315}
+.blocked{background:#e4e0d8;color:#555}
+.equipment-summary{margin:5px 0 12px;padding:10px;border-radius:10px;background:#eef5f6}
+.equipment-head{display:flex!important;justify-content:space-between;font-size:12px;font-weight:900}
+.equipment-bar{height:8px;margin:6px 0;background:#d7e1e2;border-radius:8px;overflow:hidden}
+.equipment-fill{height:100%;background:var(--yellow)}
+.equipment-detail{font-size:11px;line-height:1.35}
+.equipment-missing{color:#8f151a}
+.equipment-edit{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.equipment-edit label{display:flex;align-items:flex-start;gap:7px;padding:8px;border:1px solid var(--line);border-radius:8px;font-size:12px;font-weight:600}
+.equipment-edit input{flex:0 0 auto;width:auto;margin-top:2px}
+.tablebox{overflow:auto}
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{padding:11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--blue);color:#fff;white-space:nowrap}
+.actions{display:flex;gap:6px}
+.empty{padding:25px;text-align:center}
+.message{display:none;padding:11px 14px;margin:12px 0;border-radius:10px;font-weight:800}
+.message.show{display:block}
+.error{color:#8f151a;background:#fbe3e4}
+.success{color:#145b3a;background:#dff3e8}
+.hidden{display:none!important}
+dialog{width:min(680px,calc(100% - 24px));border:0;border-radius:20px;padding:0;box-shadow:0 15px 60px #0007}
+dialog::backdrop{background:#0008}
+.modal{padding:26px}
+.modal-head{display:flex;justify-content:space-between;align-items:center}
+.modal h2{color:var(--red);text-transform:uppercase}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.close{border:0;background:none;font-size:30px;cursor:pointer}
+@media(max-width:850px){.stats,.slots{grid-template-columns:1fr 1fr}
+.top,.brand{align-items:flex-start}
+.brand h1{font-size:25px}
+.grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){.stats,.slots{grid-template-columns:1fr}
+.brand img{width:65px}
+.top{display:block}
+.top>.btn{margin-top:15px}
+}
+
 </style></head><body><main class="wrap">
 <section id="loginView" class="card login"><div class="brand"><img src="https://avantpost-cpu.github.io/URC/logo_URC.png" alt="URC"><div><h1>Administration</h1><div class="muted">Gestion des diffusions</div></div></div><form id="loginForm" style="margin-top:25px"><div class="field"><label for="loginPassword">Mot de passe</label><input id="loginPassword" type="password" autocomplete="current-password" autofocus required></div><div id="loginMessage" class="message error"></div><button class="btn" type="submit">Se connecter</button></form></section>
 <div id="adminView" class="hidden"><section class="card top"><div class="brand"><img src="https://avantpost-cpu.github.io/URC/logo_URC.png" alt="URC"><div><h1>Diffusions</h1><div id="adminEmail" class="muted"></div></div></div><button id="logout" class="btn light">Se déconnecter</button></section>
 <section class="card"><div class="stats"><div class="stat"><strong id="totalCount">0</strong>inscriptions</div><div class="stat"><strong id="availableCount">0</strong>créneaux avec des places</div><div class="stat"><strong id="bookedCount">0</strong>créneaux complets</div><div class="stat"><strong id="blockedCount">0</strong>créneaux bloqués</div></div></section>
 <section class="card"><div class="top"><div><h2>Créneaux de septembre</h2><div class="muted">Bloquer ou rouvrir indépendamment chaque lieu.</div></div><button id="refresh" class="btn light">Actualiser</button></div><div id="adminMessage" class="message"></div><div id="slots" class="slots"></div></section>
-<section class="card"><div class="top"><div><h2>Inscriptions</h2><div class="muted">Toutes les informations enregistrées.</div></div><button id="export" class="btn yellow">Exporter en CSV</button></div><div class="toolbar"><input id="search" placeholder="Rechercher un nom, e-mail…"><select id="locationFilter"><option value="">Tous les lieux</option><option>Saint-Denis</option><option>Porte de Montmartre</option></select><select id="dateFilter"><option value="">Toutes les dates</option></select></div><div class="tablebox"><table><thead><tr><th>Date</th><th>Lieu</th><th>Nom</th><th>Coordonnées</th><th>Participation</th><th>Transport</th><th>Commentaire</th><th>Inscription</th><th>Actions</th></tr></thead><tbody id="bookings"></tbody></table></div></section></div></main>
-<dialog id="editDialog"><form id="editForm" class="modal"><div class="modal-head"><h2>Modifier l’inscription</h2><button class="close" type="button" id="closeDialog">×</button></div><input id="editId" type="hidden"><input id="oldSlotId" type="hidden"><div class="grid"><div class="field"><label for="editName">Prénom et nom</label><input id="editName" required></div><div class="field"><label for="editEmail">E-mail</label><input id="editEmail" type="email" required></div><div class="field"><label for="editPhone">Téléphone</label><input id="editPhone" required></div><div class="field"><label for="editSlot">Date et lieu</label><select id="editSlot" required></select></div><div class="field"><label for="editParticipation">Participation</label><select id="editParticipation"><option value="">Non renseigné</option><option>Je souhaite simplement participer</option><option>Je peux coordonner une séance</option></select></div><div class="field"><label for="editTransport">Transport du matériel</label><select id="editTransport"><option value="">Non renseigné</option><option value="true">Oui</option><option value="false">Non</option></select></div></div><div class="field"><label for="editComment">Commentaire</label><textarea id="editComment"></textarea></div><div id="editMessage" class="message error"></div><div class="toolbar"><button class="btn" type="submit">Enregistrer</button><button class="btn light" type="button" id="cancelEdit">Annuler</button></div></form></dialog>
+<section class="card"><div class="top"><div><h2>Inscriptions</h2><div class="muted">Toutes les informations enregistrées.</div></div><button id="export" class="btn yellow">Exporter en CSV</button></div><div class="toolbar"><input id="search" placeholder="Rechercher un nom, e-mail…"><select id="locationFilter"><option value="">Tous les lieux</option><option>Saint-Denis</option><option>Porte de Montmartre</option></select><select id="dateFilter"><option value="">Toutes les dates</option></select></div><div class="tablebox"><table><thead><tr><th>Date</th><th>Lieu</th><th>Nom</th><th>Coordonnées</th><th>Participation</th><th>Transport</th><th>Matériel apporté</th><th>Commentaire</th><th>Inscription</th><th>Actions</th></tr></thead><tbody id="bookings"></tbody></table></div></section></div></main>
+<dialog id="editDialog"><form id="editForm" class="modal"><div class="modal-head"><h2>Modifier l’inscription</h2><button class="close" type="button" id="closeDialog">×</button></div><input id="editId" type="hidden"><input id="oldSlotId" type="hidden"><div class="grid"><div class="field"><label for="editName">Prénom et nom</label><input id="editName" required></div><div class="field"><label for="editEmail">E-mail</label><input id="editEmail" type="email" required></div><div class="field"><label for="editPhone">Téléphone</label><input id="editPhone" required></div><div class="field"><label for="editSlot">Date et lieu</label><select id="editSlot" required></select></div><div class="field"><label for="editParticipation">Participation</label><select id="editParticipation"><option value="">Non renseigné</option><option>Je souhaite simplement participer</option><option>Je peux coordonner une séance</option></select></div><div class="field"><label for="editTransport">Transport du matériel</label><select id="editTransport"><option value="">Non renseigné</option><option value="true">Oui</option><option value="false">Non</option></select></div></div><div class="field"><label>Matériel apporté</label><div id="editEquipment" class="equipment-edit"></div></div><div class="field"><label for="editComment">Commentaire</label><textarea id="editComment"></textarea></div><div id="editMessage" class="message error"></div><div class="toolbar"><button class="btn" type="submit">Enregistrer</button><button class="btn light" type="button" id="cancelEdit">Annuler</button></div></form></dialog>
 <script>
 const SUPABASE_URL='https://kzqoxggchcdhmdydgooe.supabase.co';const SUPABASE_ANON_KEY='sb_publishable_P2J2awOCTYEYwrWIup6stg_n0u7adqe';const ADMIN_EMAIL='illustrations@cyrillesethi.com';const db=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);let slots=[],bookings=[];
-const $=s=>document.querySelector(s),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const dateLabel=d=>new Intl.DateTimeFormat('fr-FR',{weekday:'short',day:'numeric',month:'long'}).format(new Date(d+'T12:00:00'));function msg(el,text,type='success'){el.textContent=text;el.className=`message ${type} show`;setTimeout(()=>el.className='message',4500)}
-async function verifyAdmin(user){if(!user)return false;const {data}=await db.from('diffusion_admins').select('user_id').eq('user_id',user.id).maybeSingle();return !!data}
-async function showSession(){const {data:{session}}=await db.auth.getSession();if(session&&await verifyAdmin(session.user)){$('#loginView').classList.add('hidden');$('#adminView').classList.remove('hidden');$('#adminEmail').textContent=session.user.email;await load()}else{$('#loginView').classList.remove('hidden');$('#adminView').classList.add('hidden');if(session)await db.auth.signOut()}}
-$('#loginForm').onsubmit=async e=>{e.preventDefault();const {data,error}=await db.auth.signInWithPassword({email:ADMIN_EMAIL,password:$('#loginPassword').value});if(error||!await verifyAdmin(data.user)){if(data.user)await db.auth.signOut();$('#loginPassword').select();return msg($('#loginMessage'),'Mot de passe incorrect.','error')}showSession()};$('#logout').onclick=async()=>{await db.auth.signOut();$('#loginPassword').value='';showSession()};
-async function load(){const [sr,br]=await Promise.all([db.from('diffusion_slots').select('*').gte('slot_date','2026-09-01').lte('slot_date','2026-09-30').order('slot_date').order('location'),db.from('diffusion_bookings').select('*,diffusion_slots(*)').order('created_at',{ascending:false})]);if(sr.error||br.error)return msg($('#adminMessage'),'Impossible de charger les données.','error');slots=sr.data;bookings=br.data;renderSlots();renderBookings();renderStats();fillFilters()}
+const $=s=>document.querySelector(s),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}
+[c]));const dateLabel=d=>new Intl.DateTimeFormat('fr-FR',{weekday:'short',day:'numeric',month:'long'}
+).format(new Date(d+'T12:00:00'));function msg(el,text,type='success'){el.textContent=text;el.className=`message ${type}
+ show`;setTimeout(()=>el.className='message',4500)}
+
+async function verifyAdmin(user){if(!user)return false;const {data}
+=await db.from('diffusion_admins').select('user_id').eq('user_id',user.id).maybeSingle();return !!data}
+
+async function showSession(){const {data:{session}
+}
+=await db.auth.getSession();if(session&&await verifyAdmin(session.user)){$('#loginView').classList.add('hidden');$('#adminView').classList.remove('hidden');$('#adminEmail').textContent=session.user.email;await load()}
+else{$('#loginView').classList.remove('hidden');$('#adminView').classList.add('hidden');if(session)await db.auth.signOut()}
+}
+
+$('#loginForm').onsubmit=async e=>{e.preventDefault();const {data,error}
+=await db.auth.signInWithPassword({email:ADMIN_EMAIL,password:$('#loginPassword').value}
+);if(error||!await verifyAdmin(data.user)){if(data.user)await db.auth.signOut();$('#loginPassword').select();return msg($('#loginMessage'),'Mot de passe incorrect.','error')}
+showSession()}
+;$('#logout').onclick=async()=>{await db.auth.signOut();$('#loginPassword').value='';showSession()}
+;
+async function load(){const [sr,br]=await Promise.all([db.from('diffusion_slots').select('*').gte('slot_date','2026-09-01').lte('slot_date','2026-09-30').order('slot_date').order('location'),db.from('diffusion_bookings').select('*,diffusion_slots(*)').order('created_at',{ascending:false}
+)]);if(sr.error||br.error)return msg($('#adminMessage'),'Impossible de charger les données.','error');slots=sr.data;bookings=br.data;renderSlots();renderBookings();renderStats();fillFilters()}
+
 function slotCount(id){return bookings.filter(b=>Number(b.slot_id)===Number(id)).length}
+
+const EQUIPMENT=[
+  ['table','Table'],['panneau','Panneau « Café gratuit »'],['cafe','Thermos de café'],
+  ['tracts','Tracts / manifestes / pétitions'],['drapeau','Drapeau pour la table'],
+  ['stylo','Stylo pour la pétition'],['gobelets','Gobelets'],['lest','De quoi caler les pétitions']
+];
+const equipmentLabel=id=>EQUIPMENT.find(x=>x[0]===id)?.[1]||id;
+function bookingEquipment(comment){const match=String(comment||'').match(/^\[\[MATERIEL:(\[[^\n]*\])\]\]/);if(!match)return [];try{return JSON.parse(match[1]).filter(id=>EQUIPMENT.some(x=>x[0]===id))}catch{return []}}
+function visibleComment(comment){return String(comment||'').replace(/^\[\[MATERIEL:\[[^\n]*\]\]\]\n?/,'').trim()}
+function storedComment(equipment,comment){const text=String(comment||'').trim();return `[[MATERIEL:${JSON.stringify(equipment)}]]${text?'\n'+text:''}`}
+function slotEquipment(id){return [...new Set(bookings.filter(b=>Number(b.slot_id)===Number(id)).flatMap(b=>bookingEquipment(b.comment)))]}
+function equipmentNames(ids){return ids.length?ids.map(equipmentLabel).join(', '):'—'}
+
 function renderStats(){const open=slots.filter(s=>s.status!=='blocked'&&slotCount(s.id)<Number(s.capacity||3)).length,full=slots.filter(s=>slotCount(s.id)>=Number(s.capacity||3)).length;$('#totalCount').textContent=bookings.length;$('#availableCount').textContent=open;$('#bookedCount').textContent=full;$('#blockedCount').textContent=slots.filter(s=>s.status==='blocked').length}
-function renderSlots(){$('#slots').innerHTML=slots.map(s=>{const count=slotCount(s.id),capacity=Number(s.capacity||3),state=s.status==='blocked'?'blocked':count>=capacity?'booked':'available',label=s.status==='blocked'?'Bloqué':count>=capacity?'Complet':`${capacity-count} place${capacity-count>1?'s':''} libre${capacity-count>1?'s':''}`;return `<article class="slot"><strong>${esc(dateLabel(s.slot_date))}</strong><span>${esc(s.location)}</span><span class="badge ${state}">${count}/${capacity} inscrit${count>1?'s':''} — ${label}</span>${s.status!=='blocked'?`<button class="btn small light" data-block="${s.id}">Bloquer</button>`:`<button class="btn small" data-open="${s.id}">Rouvrir</button>`}</article>`}).join('');document.querySelectorAll('[data-block]').forEach(b=>b.onclick=()=>setSlot(b.dataset.block,'blocked'));document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>setSlot(b.dataset.open,'available'))}
-async function setSlot(id,status){const {error}=await db.from('diffusion_slots').update({status}).eq('id',id);if(error)return msg($('#adminMessage'),'Modification impossible.','error');msg($('#adminMessage'),status==='blocked'?'Créneau bloqué.':'Créneau rouvert.');load()}
+
+function renderSlots(){$('#slots').innerHTML=slots.map(s=>{const count=slotCount(s.id),capacity=Number(s.capacity||3),state=s.status==='blocked'?'blocked':count>=capacity?'booked':'available',label=s.status==='blocked'?'Bloqué':count>=capacity?'Complet':`${capacity-count}
+ place${capacity-count>1?'s':''}
+ libre${capacity-count>1?'s':''}
+`;return `<article class="slot"><strong>${esc(dateLabel(s.slot_date))}
+</strong><span>${esc(s.location)}
+</span><span class="badge ${state}
+">${count}
+/${capacity}
+ inscrit${count>1?'s':''}
+ — ${label}
+</span>${s.status!=='blocked'?`<button class="btn small light" data-block="${s.id}
+">Bloquer</button>`:`<button class="btn small" data-open="${s.id}
+">Rouvrir</button>`}
+</article>`}
+).join('');document.querySelectorAll('[data-block]').forEach(b=>b.onclick=()=>setSlot(b.dataset.block,'blocked'));document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>setSlot(b.dataset.open,'available'))}
+
+async function setSlot(id,status){const {error}
+=await db.from('diffusion_slots').update({status}
+).eq('id',id);if(error)return msg($('#adminMessage'),'Modification impossible.','error');msg($('#adminMessage'),status==='blocked'?'Créneau bloqué.':'Créneau rouvert.');load()}
+
 function filtered(){const q=$('#search').value.toLowerCase(),loc=$('#locationFilter').value,date=$('#dateFilter').value;return bookings.filter(b=>(!q||[b.full_name,b.email,b.phone,b.comment].some(v=>String(v||'').toLowerCase().includes(q)))&&(!loc||b.diffusion_slots.location===loc)&&(!date||b.diffusion_slots.slot_date===date))}
-function renderBookings(){const list=filtered();$('#bookings').innerHTML=list.length?list.map(b=>`<tr><td>${esc(dateLabel(b.diffusion_slots.slot_date))}</td><td>${esc(b.diffusion_slots.location)}</td><td><strong>${esc(b.full_name)}</strong></td><td>${esc(b.email)}<br>${esc(b.phone)}</td><td>${esc(b.participation_type||'—')}</td><td>${b.can_transport===null?'—':b.can_transport?'Oui':'Non'}</td><td>${esc(b.comment||'—')}</td><td>${esc(new Date(b.created_at).toLocaleString('fr-FR'))}</td><td><div class="actions"><button class="btn small" data-edit="${b.id}">Modifier</button><button class="btn small red" data-delete="${b.id}">Annuler</button></div></td></tr>`).join(''):'<tr><td colspan="9" class="empty">Aucune inscription.</td></tr>';document.querySelectorAll('[data-edit]').forEach(x=>x.onclick=()=>openEdit(x.dataset.edit));document.querySelectorAll('[data-delete]').forEach(x=>x.onclick=()=>cancelBooking(x.dataset.delete))}
-function fillFilters(){const current=$('#dateFilter').value,dates=[...new Set(slots.map(s=>s.slot_date))];$('#dateFilter').innerHTML='<option value="">Toutes les dates</option>'+dates.map(d=>`<option value="${d}">${esc(dateLabel(d))}</option>`).join('');$('#dateFilter').value=current}
-function openEdit(id){const b=bookings.find(x=>x.id===id);$('#editId').value=b.id;$('#oldSlotId').value=b.slot_id;$('#editName').value=b.full_name;$('#editEmail').value=b.email;$('#editPhone').value=b.phone;$('#editParticipation').value=b.participation_type||'';$('#editTransport').value=b.can_transport===null?'':String(b.can_transport);$('#editComment').value=b.comment||'';$('#editSlot').innerHTML=slots.filter(s=>s.id===b.slot_id||(s.status!=='blocked'&&slotCount(s.id)<Number(s.capacity||3))).map(s=>`<option value="${s.id}">${esc(dateLabel(s.slot_date))} — ${esc(s.location)} — ${slotCount(s.id)}/${Number(s.capacity||3)}${s.id===b.slot_id?' (actuel)':''}</option>`).join('');$('#editSlot').value=b.slot_id;$('#editDialog').showModal()}
-$('#editForm').onsubmit=async e=>{e.preventDefault();const id=$('#editId').value,old=Number($('#oldSlotId').value),next=Number($('#editSlot').value);if(next!==old){const {error}=await db.rpc('admin_move_diffusion_booking',{p_booking_id:id,p_new_slot_id:next});if(error)return msg($('#editMessage'),'Le nouveau créneau n’est plus disponible.','error')}const transport=$('#editTransport').value;const {error}=await db.from('diffusion_bookings').update({full_name:$('#editName').value.trim(),email:$('#editEmail').value.trim(),phone:$('#editPhone').value.trim(),participation_type:$('#editParticipation').value||null,can_transport:transport===''?null:transport==='true',comment:$('#editComment').value.trim()||null,updated_at:new Date().toISOString()}).eq('id',id);if(error)return msg($('#editMessage'),'Les informations n’ont pas pu être modifiées.','error');$('#editDialog').close();msg($('#adminMessage'),'Inscription mise à jour.');load()};
-async function cancelBooking(id){if(!confirm('Annuler cette inscription et libérer le créneau ?'))return;const {error}=await db.rpc('admin_cancel_diffusion_booking',{p_booking_id:id});if(error)return msg($('#adminMessage'),'Annulation impossible.','error');msg($('#adminMessage'),'Inscription annulée et créneau libéré.');load()}
+
+function renderBookings(){const list=filtered();$('#bookings').innerHTML=list.length?list.map(b=>`<tr><td>${esc(dateLabel(b.diffusion_slots.slot_date))}
+</td><td>${esc(b.diffusion_slots.location)}
+</td><td><strong>${esc(b.full_name)}
+</strong></td><td>${esc(b.email)}
+<br>${esc(b.phone)}
+</td><td>${esc(b.participation_type||'—')}
+</td><td>${b.can_transport===null?'—':b.can_transport?'Oui':'Non'}
+</td><td>${esc(b.comment||'—')}
+</td><td>${esc(new Date(b.created_at).toLocaleString('fr-FR'))}
+</td><td><div class="actions"><button class="btn small" data-edit="${b.id}
+">Modifier</button><button class="btn small red" data-delete="${b.id}
+">Annuler</button></div></td></tr>`).join(''):'<tr><td colspan="9" class="empty">Aucune inscription.</td></tr>';document.querySelectorAll('[data-edit]').forEach(x=>x.onclick=()=>openEdit(x.dataset.edit));document.querySelectorAll('[data-delete]').forEach(x=>x.onclick=()=>cancelBooking(x.dataset.delete))}
+
+function fillFilters(){const current=$('#dateFilter').value,dates=[...new Set(slots.map(s=>s.slot_date))];$('#dateFilter').innerHTML='<option value="">Toutes les dates</option>'+dates.map(d=>`<option value="${d}
+">${esc(dateLabel(d))}
+</option>`).join('');$('#dateFilter').value=current}
+
+function openEdit(id){const b=bookings.find(x=>x.id===id);$('#editId').value=b.id;$('#oldSlotId').value=b.slot_id;$('#editName').value=b.full_name;$('#editEmail').value=b.email;$('#editPhone').value=b.phone;$('#editParticipation').value=b.participation_type||'';$('#editTransport').value=b.can_transport===null?'':String(b.can_transport);$('#editComment').value=b.comment||'';$('#editSlot').innerHTML=slots.filter(s=>s.id===b.slot_id||(s.status!=='blocked'&&slotCount(s.id)<Number(s.capacity||3))).map(s=>`<option value="${s.id}
+">${esc(dateLabel(s.slot_date))}
+ — ${esc(s.location)}
+ — ${slotCount(s.id)}
+/${Number(s.capacity||3)}
+${s.id===b.slot_id?' (actuel)':''}
+</option>`).join('');$('#editSlot').value=b.slot_id;$('#editDialog').showModal()}
+
+$('#editForm').onsubmit=async e=>{e.preventDefault();const id=$('#editId').value,old=Number($('#oldSlotId').value),next=Number($('#editSlot').value);if(next!==old){const {error}
+=await db.rpc('admin_move_diffusion_booking',{p_booking_id:id,p_new_slot_id:next}
+);if(error)return msg($('#editMessage'),'Le nouveau créneau n’est plus disponible.','error')}
+const transport=$('#editTransport').value;const {error}
+=await db.from('diffusion_bookings').update({full_name:$('#editName').value.trim(),email:$('#editEmail').value.trim(),phone:$('#editPhone').value.trim(),participation_type:$('#editParticipation').value||null,can_transport:transport===''?null:transport==='true',comment:$('#editComment').value.trim()||null,updated_at:new Date().toISOString()}
+).eq('id',id);if(error)return msg($('#editMessage'),'Les informations n’ont pas pu être modifiées.','error');$('#editDialog').close();msg($('#adminMessage'),'Inscription mise à jour.');load()}
+;
+async function cancelBooking(id){if(!confirm('Annuler cette inscription et libérer le créneau ?'))return;const {error}
+=await db.rpc('admin_cancel_diffusion_booking',{p_booking_id:id}
+);if(error)return msg($('#adminMessage'),'Annulation impossible.','error');msg($('#adminMessage'),'Inscription annulée et créneau libéré.');load()}
+
 $('#closeDialog').onclick=$('#cancelEdit').onclick=()=>$('#editDialog').close();$('#refresh').onclick=load;['#search','#locationFilter','#dateFilter'].forEach(s=>$(s).addEventListener(s==='#search'?'input':'change',renderBookings));
-$('#export').onclick=()=>{const heads=['Date','Lieu','Nom','E-mail','Téléphone','Participation','Transport','Commentaire','Inscription'];const rows=filtered().map(b=>[b.diffusion_slots.slot_date,b.diffusion_slots.location,b.full_name,b.email,b.phone,b.participation_type||'',b.can_transport===null?'':b.can_transport?'Oui':'Non',b.comment||'',b.created_at]);const csv=[heads,...rows].map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv'}));a.download='inscriptions-diffusions.csv';a.click();URL.revokeObjectURL(a.href)};
+$('#export').onclick=()=>{const heads=['Date','Lieu','Nom','E-mail','Téléphone','Participation','Transport','Commentaire','Inscription'];const rows=filtered().map(b=>[b.diffusion_slots.slot_date,b.diffusion_slots.location,b.full_name,b.email,b.phone,b.participation_type||'',b.can_transport===null?'':b.can_transport?'Oui':'Non',b.comment||'',b.created_at]);const csv=[heads,...rows].map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv'}
+));a.download='inscriptions-diffusions.csv';a.click();URL.revokeObjectURL(a.href)}
+;
+/* Affichage du matériel dans les créneaux et les inscriptions */
+function renderSlots(){$('#slots').innerHTML=slots.map(s=>{const count=slotCount(s.id),capacity=Number(s.capacity||3),state=s.status==='blocked'?'blocked':count>=capacity?'booked':'available',label=s.status==='blocked'?'Bloqué':count>=capacity?'Complet':`${capacity-count} place${capacity-count>1?'s':''} libre${capacity-count>1?'s':''}`;const supplied=slotEquipment(s.id),missing=EQUIPMENT.filter(x=>!supplied.includes(x[0])).map(x=>x[1]),percent=Math.round(supplied.length/EQUIPMENT.length*100);return `<article class="slot"><strong>${esc(dateLabel(s.slot_date))}</strong><span>${esc(s.location)}</span><span class="badge ${state}">${count}/${capacity} inscrit${count>1?'s':''} — ${label}</span><div class="equipment-summary"><span class="equipment-head"><b>Matériel</b><b>${percent} % (${supplied.length}/8)</b></span><div class="equipment-bar"><div class="equipment-fill" style="width:${percent}%"></div></div><div class="equipment-detail"><b>Prévu :</b> ${esc(equipmentNames(supplied))}</div><div class="equipment-detail equipment-missing"><b>Manque :</b> ${esc(missing.length?missing.join(', '):'Rien, tout est prévu !')}</div></div>${s.status!=='blocked'?`<button class="btn small light" data-block="${s.id}">Bloquer</button>`:`<button class="btn small" data-open="${s.id}">Rouvrir</button>`}</article>`}).join('');document.querySelectorAll('[data-block]').forEach(b=>b.onclick=()=>setSlot(b.dataset.block,'blocked'));document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>setSlot(b.dataset.open,'available'))}
+
+function renderBookings(){const list=filtered();$('#bookings').innerHTML=list.length?list.map(b=>`<tr><td>${esc(dateLabel(b.diffusion_slots.slot_date))}</td><td>${esc(b.diffusion_slots.location)}</td><td><strong>${esc(b.full_name)}</strong></td><td>${esc(b.email)}<br>${esc(b.phone)}</td><td>${esc(b.participation_type||'—')}</td><td>${b.can_transport===null?'—':b.can_transport?'Oui':'Non'}</td><td>${esc(equipmentNames(bookingEquipment(b.comment)))}</td><td>${esc(visibleComment(b.comment)||'—')}</td><td>${esc(new Date(b.created_at).toLocaleString('fr-FR'))}</td><td><div class="actions"><button class="btn small" data-edit="${b.id}">Modifier</button><button class="btn small red" data-delete="${b.id}">Annuler</button></div></td></tr>`).join(''):'<tr><td colspan="10" class="empty">Aucune inscription.</td></tr>';document.querySelectorAll('[data-edit]').forEach(x=>x.onclick=()=>openEdit(x.dataset.edit));document.querySelectorAll('[data-delete]').forEach(x=>x.onclick=()=>cancelBooking(x.dataset.delete))}
+
+function openEdit(id){const b=bookings.find(x=>x.id===id),selected=bookingEquipment(b.comment);$('#editId').value=b.id;$('#oldSlotId').value=b.slot_id;$('#editName').value=b.full_name;$('#editEmail').value=b.email;$('#editPhone').value=b.phone;$('#editParticipation').value=b.participation_type||'';$('#editTransport').value=b.can_transport===null?'':String(b.can_transport);$('#editComment').value=visibleComment(b.comment);$('#editEquipment').innerHTML=EQUIPMENT.map(([key,label])=>`<label><input type="checkbox" name="editEquipment" value="${key}" ${selected.includes(key)?'checked':''}> <span>${esc(label)}</span></label>`).join('');$('#editSlot').innerHTML=slots.filter(s=>s.id===b.slot_id||(s.status!=='blocked'&&slotCount(s.id)<Number(s.capacity||3))).map(s=>`<option value="${s.id}">${esc(dateLabel(s.slot_date))} — ${esc(s.location)} — ${slotCount(s.id)}/${Number(s.capacity||3)}${s.id===b.slot_id?' (actuel)':''}</option>`).join('');$('#editSlot').value=b.slot_id;$('#editDialog').showModal()}
+
+$('#editForm').onsubmit=async e=>{e.preventDefault();const id=$('#editId').value,old=Number($('#oldSlotId').value),next=Number($('#editSlot').value);if(next!==old){const {error}=await db.rpc('admin_move_diffusion_booking',{p_booking_id:id,p_new_slot_id:next});if(error)return msg($('#editMessage'),'Le nouveau créneau n’est plus disponible.','error')}const transport=$('#editTransport').value,equipment=[...document.querySelectorAll('[name=editEquipment]:checked')].map(x=>x.value);const {error}=await db.from('diffusion_bookings').update({full_name:$('#editName').value.trim(),email:$('#editEmail').value.trim(),phone:$('#editPhone').value.trim(),participation_type:$('#editParticipation').value||null,can_transport:transport===''?null:transport==='true',comment:storedComment(equipment,$('#editComment').value),updated_at:new Date().toISOString()}).eq('id',id);if(error)return msg($('#editMessage'),'Les informations n’ont pas pu être modifiées.','error');$('#editDialog').close();msg($('#adminMessage'),'Inscription mise à jour.');load()};
+
+$('#export').onclick=()=>{const heads=['Date','Lieu','Nom','E-mail','Téléphone','Participation','Transport','Matériel apporté','Commentaire','Inscription'];const rows=filtered().map(b=>[b.diffusion_slots.slot_date,b.diffusion_slots.location,b.full_name,b.email,b.phone,b.participation_type||'',b.can_transport===null?'':b.can_transport?'Oui':'Non',equipmentNames(bookingEquipment(b.comment)),visibleComment(b.comment),b.created_at]);const csv=[heads,...rows].map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv'}));a.download='inscriptions-diffusions.csv';a.click();URL.revokeObjectURL(a.href)};
+
 showSession();
 </script></body></html>
