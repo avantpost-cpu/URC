@@ -27,19 +27,21 @@ h1,h2,h3{font-family:'Archivo Black Local','Arial Black',sans-serif;font-weight:
 h1{margin:4px 0 0;color:#fff;font-size:55px;line-height:.95;letter-spacing:-.04em}
 .subtitle{margin:20px 0 12px;color:#080808;font-size:21px;line-height:1.3;font-weight:900}
 .intro{margin:0;color:#fff;font-size:17px;line-height:1.4}
-.access-title{margin:0 0 20px;color:var(--red);font-size:34px;line-height:1}
-.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.access-card{position:relative;min-height:220px;padding:26px;overflow:hidden;border-radius:19px;color:#fff;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.home-layout{display:grid;grid-template-columns:270px 1fr;gap:20px;align-items:stretch}
+.home-layout>.page{margin-bottom:0}
+.access-page{padding:25px 20px}
+.access-title{margin:0 0 16px;color:var(--red);font-size:27px;line-height:1}
+.access-grid{display:grid;grid-template-columns:1fr;gap:13px}
+.access-card{position:relative;min-height:145px;padding:20px;overflow:hidden;border-radius:16px;color:#fff;text-decoration:none;transition:transform .2s,box-shadow .2s}
 .access-card:hover{transform:translateY(-4px);box-shadow:0 12px 24px #0003}
-.access-card.diffusion{background:var(--blue)}
+.access-card.diffusion{background:var(--red)}
 .access-card.posters{background:var(--red)}
-.access-number{display:grid;place-items:center;width:50px;height:50px;margin-bottom:22px;border-radius:50%;color:var(--ink);background:var(--yellow);font:900 24px Arial}
-.access-card h3{position:relative;z-index:2;margin:0 0 9px;font-size:27px;line-height:1}
-.access-card p{position:relative;z-index:2;max-width:75%;margin:0;line-height:1.35}
-.access-arrow{position:absolute;right:22px;bottom:16px;color:var(--yellow);font-size:50px;font-weight:900;line-height:1}
-.calendar-page{padding:30px;background:var(--cream);border:7px solid var(--blue);backdrop-filter:none}
+.access-card h3{position:relative;z-index:2;margin:0 0 8px;padding-right:25px;font-size:20px;line-height:1.05}
+.access-card p{position:relative;z-index:2;margin:0;padding-right:20px;font-size:13px;line-height:1.3}
+.access-arrow{position:absolute;right:14px;bottom:10px;color:var(--yellow);font-size:37px;font-weight:900;line-height:1}
+.calendar-page{padding:23px;background:var(--cream);border:7px solid var(--blue);backdrop-filter:none}
 .calendar-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:25px;color:var(--blue)}
-.month{font-family:'Archivo Black Local','Arial Black',sans-serif;font-size:clamp(70px,12vw,116px);line-height:.72;letter-spacing:-.08em;text-transform:uppercase}
+.month{font-family:'Archivo Black Local','Arial Black',sans-serif;font-size:clamp(66px,8vw,88px);line-height:.72;letter-spacing:-.08em;text-transform:uppercase}
 .year{font-size:28px;font-weight:900;line-height:.9}
 .calendar-title{text-align:right;font-weight:900;text-transform:uppercase}
 .calendar-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:25px}
@@ -60,17 +62,19 @@ h1{margin:4px 0 0;color:#fff;font-size:55px;line-height:.95;letter-spacing:-.04e
 .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:17px;color:var(--blue);font-size:11px;font-weight:900;text-transform:uppercase}
 .dot{display:inline-block;width:11px;height:11px;margin-right:6px;border-radius:50%;vertical-align:-1px;background:var(--red)}
 .dot.option{background:var(--yellow)}
-@media(max-width:760px){body::before{background-size:auto 115%;opacity:.65}.document{width:min(100% - 16px,940px);margin-top:12px}.page{padding:24px 17px}.hero{padding:25px 22px 0}.header{grid-template-columns:1fr}.hero-art{min-height:180px}.logo{width:115px;margin:0}.crowd{left:-22px;bottom:0;width:175px}.hero h1{font-size:39px}.subtitle{font-size:17px}.intro{padding-bottom:25px;font-size:16px}.access-grid,.calendar-layout{grid-template-columns:1fr}.access-card{min-height:190px}.calendar-page{padding:14px;border-width:5px}.calendar-head{align-items:flex-start}.month{font-size:70px}.year{font-size:23px}.calendar-title{font-size:12px}.day{min-height:51px;padding:5px;font-size:14px}.weekday{font-size:9px}.events{margin-top:4px}}
+@media(max-width:860px){.home-layout{grid-template-columns:1fr}.access-grid{grid-template-columns:1fr 1fr}.home-layout>.page{margin-bottom:0}}
+@media(max-width:760px){body::before{background-size:auto 115%;opacity:.65}.document{width:min(100% - 16px,940px);margin-top:12px}.page{padding:24px 17px}.hero{padding:25px 22px 0}.header{grid-template-columns:1fr}.hero-art{min-height:180px}.logo{width:115px;margin:0}.crowd{left:-22px;bottom:0;width:175px}.hero h1{font-size:39px}.subtitle{font-size:17px}.intro{padding-bottom:25px;font-size:16px}.access-grid,.calendar-layout{grid-template-columns:1fr}.access-card{min-height:135px}.calendar-page{padding:14px;border-width:5px}.calendar-head{align-items:flex-start}.month{font-size:70px}.year{font-size:23px}.calendar-title{font-size:12px}.day{min-height:51px;padding:5px;font-size:14px}.weekday{font-size:9px}.events{margin-top:4px}}
 </style>
 </head>
 <body>
 <header class="topbar"><div class="topbar-inner"><span>Commune Rouge — Île-de-France</span><a class="admin-link" href="./admin.html">Admin</a></div></header>
 <main class="document">
-<section class="page hero"><div class="header"><div class="hero-art"><img class="logo" src="https://avantpost-cpu.github.io/URC/logo_URC2.png" alt="Logo URC"><img class="crowd" src="https://avantpost-cpu.github.io/URC/foule.png" alt=""></div><div class="hero-copy"><div class="kicker">Section Île-de-France</div><h1>Point de<br>rencontre</h1><p class="subtitle">Retrouve ici les outils et les prochains rendez-vous de la section.</p><p class="intro">Inscris-toi à une diffusion, télécharge les affiches et garde en vue les prochaines dates importantes.</p></div></div></section>
+<section class="page hero"><div class="header"><div class="hero-art"><img class="logo" src="https://avantpost-cpu.github.io/URC/logo_URC2.png" alt="Logo URC"><img class="crowd" src="https://avantpost-cpu.github.io/URC/foule.png" alt=""></div><div class="hero-copy"><div class="kicker">Section Île-de-France</div><h1>La commune<br>en mouvement</h1><p class="subtitle">Retrouve ici les outils et les prochains rendez-vous de la section.</p><p class="intro">Inscris-toi à une diffusion, télécharge les affiches et garde en vue les prochaines dates importantes.</p></div></div></section>
 
-<section class="page"><h2 class="access-title">Accès rapides</h2><div class="access-grid">
-<a class="access-card diffusion" href="./diffusion.html"><span class="access-number">1</span><h3>Participer à une diffusion</h3><p>Choisis ton lieu, ton dimanche et indique le matériel que tu peux apporter.</p><span class="access-arrow" aria-hidden="true">→</span></a>
-<a class="access-card posters" href="https://communerouge.fr/affiches.html"><span class="access-number">2</span><h3>Télécharger les affiches</h3><p>Retrouve les visuels et le matériel de communication disponibles.</p><span class="access-arrow" aria-hidden="true">→</span></a>
+<div class="home-layout">
+<section class="page access-page"><h2 class="access-title">Accès rapides</h2><div class="access-grid">
+<a class="access-card diffusion" href="./diffusion.html"><h3>Participer à une diffusion</h3><p>Choisis ton lieu, ton dimanche et le matériel que tu peux apporter.</p><span class="access-arrow" aria-hidden="true">→</span></a>
+<a class="access-card posters" href="https://communerouge.fr/affiches.html"><h3>Télécharger les affiches</h3><p>Retrouve les visuels et le matériel de communication.</p><span class="access-arrow" aria-hidden="true">→</span></a>
 </div></section>
 
 <section class="page calendar-page"><div class="calendar-head"><div style="display:flex;align-items:flex-end;gap:20px"><div class="month" id="calendarMonth">SEP</div><div class="year" id="calendarYear">20<br>26</div></div><div class="calendar-title">Prochaines<br>dates repères</div></div><div class="calendar-layout"><div><div class="month-grid" id="publicMonthGrid">
@@ -88,6 +92,7 @@ h1{margin:4px 0 0;color:#fff;font-size:55px;line-height:.95;letter-spacing:-.04e
 <div class="event-line"><div class="event-date">26 sept.</div><p><strong>Initiation boxe</strong>À Saint-Denis.</p></div>
 <div class="event-line"><div class="event-date">29 sept.</div><p><strong>Réunion de section</strong>Le soir.</p></div>
 </div></div></section>
+</div>
 </main>
 <script>
 const SUPABASE_URL='https://kzqoxggchcdhmdydgooe.supabase.co';
