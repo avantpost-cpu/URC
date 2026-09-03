@@ -73,7 +73,7 @@ h1{margin:4px 0 0;color:#fff;font-size:55px;line-height:.95;letter-spacing:-.04e
 <a class="access-card posters" href="https://communerouge.fr/affiches.html"><span class="access-number">2</span><h3>Télécharger les affiches</h3><p>Retrouve les visuels et le matériel de communication disponibles.</p><span class="access-arrow" aria-hidden="true">→</span></a>
 </div></section>
 
-<section class="page calendar-page"><div class="calendar-head"><div style="display:flex;align-items:flex-end;gap:20px"><div class="month">SEP</div><div class="year">20<br>26</div></div><div class="calendar-title">Prochaines<br>dates repères</div></div><div class="calendar-layout"><div><div class="month-grid">
+<section class="page calendar-page"><div class="calendar-head"><div style="display:flex;align-items:flex-end;gap:20px"><div class="month" id="calendarMonth">SEP</div><div class="year" id="calendarYear">20<br>26</div></div><div class="calendar-title">Prochaines<br>dates repères</div></div><div class="calendar-layout"><div><div class="month-grid" id="publicMonthGrid">
 <div class="weekday">Lun</div><div class="weekday">Mar</div><div class="weekday">Mer</div><div class="weekday">Jeu</div><div class="weekday">Ven</div><div class="weekday">Sam</div><div class="weekday">Dim</div>
 <div class="day empty"></div><div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div>
 <div class="day">7</div><div class="day event">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day">13</div>
@@ -81,7 +81,7 @@ h1{margin:4px 0 0;color:#fff;font-size:55px;line-height:.95;letter-spacing:-.04e
 <div class="day option">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day event">26</div><div class="day">27</div>
 <div class="day">28</div><div class="day event">29</div><div class="day">30</div><div class="day empty"></div><div class="day empty"></div><div class="day empty"></div><div class="day empty"></div>
 </div><div class="legend"><span><i class="dot"></i>Date confirmée</span><span><i class="dot option"></i>Date à confirmer</span></div></div>
-<div class="events">
+<div class="events" id="publicEvents">
 <div class="event-line"><div class="event-date">8 sept.</div><p><strong>Réunion de section</strong>210 quai de Jemmapes, 19 h.</p></div>
 <div class="event-line"><div class="event-date">18 sept.</div><p><strong>Réunion de secteur</strong>UL 18e, 19 h.</p></div>
 <div class="event-line"><div class="event-date">20/21</div><p><strong>Réunion publique</strong>« Paix dans le 18e » — date à confirmer.</p></div>
@@ -89,5 +89,16 @@ h1{margin:4px 0 0;color:#fff;font-size:55px;line-height:.95;letter-spacing:-.04e
 <div class="event-line"><div class="event-date">29 sept.</div><p><strong>Réunion de section</strong>Le soir.</p></div>
 </div></div></section>
 </main>
+<script>
+const SUPABASE_URL='https://kzqoxggchcdhmdydgooe.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_P2J2awOCTYEYwrWIup6stg_n0u7adqe';
+const apiHeaders={apikey:SUPABASE_ANON_KEY,Authorization:`Bearer ${SUPABASE_ANON_KEY}`};
+const html=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const isoLocal=d=>{const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${day}`};
+async function api(table,query=''){const response=await fetch(`${SUPABASE_URL}/rest/v1/${table}${query}`,{headers:apiHeaders});if(!response.ok)throw new Error(await response.text());return response.json()}
+function renderPublicCalendar(monthValue,events){const first=new Date(monthValue+'T12:00:00'),year=first.getFullYear(),month=first.getMonth(),days=new Date(year,month+1,0).getDate(),offset=(new Date(year,month,1).getDay()+6)%7,last=offset+days,total=Math.ceil(last/7)*7;document.querySelector('#calendarMonth').textContent=new Intl.DateTimeFormat('fr-FR',{month:'short'}).format(first).replace('.','').toUpperCase();document.querySelector('#calendarYear').innerHTML=String(year).slice(0,2)+'<br>'+String(year).slice(2);const marked=new Map();events.forEach(e=>{marked.set(e.event_date,e.status);if(e.alternate_date)marked.set(e.alternate_date,e.status)});let cells=['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'].map(d=>`<div class="weekday">${d}</div>`).join('');for(let i=0;i<total;i++){const day=i-offset+1;if(day<1||day>days){cells+='<div class="day empty"></div>';continue}const key=isoLocal(new Date(year,month,day)),status=marked.get(key);cells+=`<div class="day ${status==='tentative'?'option':status?'event':''}">${day}</div>`}document.querySelector('#publicMonthGrid').innerHTML=cells;document.querySelector('#publicEvents').innerHTML=events.length?events.map(e=>{const d1=new Date(e.event_date+'T12:00:00'),d2=e.alternate_date?new Date(e.alternate_date+'T12:00:00'):null,dateText=d2?`${d1.getDate()}/${d2.getDate()}`:`${d1.getDate()} ${new Intl.DateTimeFormat('fr-FR',{month:'short'}).format(d1)}`;return `<div class="event-line"><div class="event-date" style="${e.status==='tentative'?'color:#8b6100':''}">${html(dateText)}</div><p><strong>${html(e.title)}</strong>${e.details?'<span>'+html(e.details)+'</span>':''}${e.status==='tentative'?' — date à confirmer.':''}</p></div>`}).join(''):'<div class="event-line"><p>Aucune date repère annoncée pour ce mois.</p></div>'}
+async function loadPublicCalendar(){try{const [settings,allEvents]=await Promise.all([api('calendar_settings','?id=eq.1&select=displayed_month'),api('calendar_events','?select=*&order=event_date.asc')]);const month=(settings[0]?.displayed_month||'2026-09-01').slice(0,7)+'-01',start=new Date(month+'T12:00:00'),end=new Date(start.getFullYear(),start.getMonth()+1,0),events=allEvents.filter(e=>{const d1=new Date(e.event_date+'T12:00:00'),d2=e.alternate_date?new Date(e.alternate_date+'T12:00:00'):d1;return(d1>=start&&d1<=end)||(d2>=start&&d2<=end)});renderPublicCalendar(month,events)}catch(error){console.warn('Le calendrier dynamique n’est pas encore configuré.',error)}}
+loadPublicCalendar();
+</script>
 </body>
 </html>
