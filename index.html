@@ -30,15 +30,25 @@ h1{margin:4px 0 0;color:#fff;font-size:55px;line-height:.95;letter-spacing:-.04e
 .home-layout{display:grid;grid-template-columns:270px 1fr;gap:20px;align-items:stretch}
 .home-layout>.page{margin-bottom:0}
 .access-page{display:flex;flex-direction:column;padding:25px 20px;background:var(--blue);backdrop-filter:none}
-.access-title{margin:0 0 16px;color:#fff;font-size:27px;line-height:1}
-.access-grid{display:grid;flex:1;grid-template-columns:1fr;grid-template-rows:repeat(3,1fr);gap:11px}
-.access-card{position:relative;min-height:0;padding:15px 16px;overflow:hidden;border-radius:16px;color:var(--ink);background:var(--cream);text-decoration:none;transition:transform .2s,box-shadow .2s}
+.access-title{margin:0 0 12px;color:#fff;font-size:25px;line-height:1}
+.access-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(3,1fr);gap:8px}
+.access-card{position:relative;min-height:0;padding:11px 14px;overflow:hidden;border-radius:14px;color:var(--ink);background:var(--cream);text-decoration:none;transition:transform .2s,box-shadow .2s}
 .access-card:hover{transform:translateY(-4px);box-shadow:0 12px 24px #0003}
 .access-card.diffusion,.access-card.posters,.access-card.instagram{background:var(--cream)}
-.access-card h3{position:relative;z-index:2;margin:0 0 6px;padding-right:25px;color:var(--red);font-size:17px;line-height:1.05}
-.access-card p{position:relative;z-index:2;margin:0;padding-right:20px;color:var(--ink);font-size:12px;line-height:1.25}
+.access-card h3{position:relative;z-index:2;margin:0 0 4px;padding-right:25px;color:var(--red);font-size:15px;line-height:1.05}
+.access-card p{position:relative;z-index:2;margin:0;padding-right:20px;color:var(--ink);font-size:11px;line-height:1.2}
 .instagram-handle{display:block;margin-top:4px;color:var(--red);font-weight:900}
-.access-arrow{position:absolute;right:14px;bottom:10px;color:var(--red);font-size:37px;font-weight:900;line-height:1}
+.access-arrow{position:absolute;right:13px;bottom:7px;color:var(--red);font-size:31px;font-weight:900;line-height:1}
+.radio-card{margin-top:10px;padding:12px 13px;color:#fff;background:#111;border-radius:15px}
+.radio-head{display:flex;align-items:center;gap:8px}
+.radio-live-dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px #c51f2633}
+.radio-copy{min-width:0;line-height:1.05}
+.radio-copy strong{display:block;color:var(--yellow);font-family:'Archivo Black Local','Arial Black',sans-serif;font-size:15px;font-weight:400;text-transform:uppercase}
+.radio-copy span{display:block;margin-top:4px;color:#fff;font-size:10px;font-weight:900}
+.radio-toggle{display:grid;flex:0 0 40px;width:40px;height:40px;margin-left:auto;place-items:center;padding:0 0 0 2px;color:#111;background:var(--yellow);border:0;border-radius:50%;font-size:16px;cursor:pointer}
+.radio-toggle:hover{transform:scale(1.06)}
+.radio-toggle:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.radio-audio{display:none}
 .calendar-page{padding:23px;background:rgba(242,228,216,.30);border:0;backdrop-filter:none}
 .calendar-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:25px;color:var(--blue)}
 .month{font-family:'Archivo Black Local','Arial Black',sans-serif;font-size:clamp(66px,8vw,88px);line-height:.72;letter-spacing:-.08em;text-transform:uppercase}
@@ -62,8 +72,8 @@ h1{margin:4px 0 0;color:#fff;font-size:55px;line-height:.95;letter-spacing:-.04e
 .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:17px;color:var(--blue);font-size:11px;font-weight:900;text-transform:uppercase}
 .dot{display:inline-block;width:11px;height:11px;margin-right:6px;border-radius:50%;vertical-align:-1px;background:var(--red)}
 .dot.option{background:var(--yellow)}
-@media(max-width:860px){.home-layout{grid-template-columns:1fr}.access-grid{grid-template-columns:repeat(3,1fr);grid-template-rows:1fr}.home-layout>.page{margin-bottom:0}}
-@media(max-width:760px){body::before{background-size:auto 115%;opacity:.65}.document{width:min(100% - 16px,940px);margin-top:12px}.page{padding:24px 17px}.hero{padding:25px 22px 0}.header{grid-template-columns:1fr}.hero-art{min-height:180px}.logo{width:115px;margin:0}.crowd{left:-22px;bottom:0;width:175px}.hero h1{font-size:39px}.subtitle{font-size:17px}.intro{padding-bottom:25px;font-size:16px}.access-grid,.calendar-layout{grid-template-columns:1fr}.access-grid{grid-template-rows:repeat(3,1fr)}.access-card{min-height:115px}.calendar-page{padding:14px;border-width:5px}.calendar-head{align-items:flex-start}.month{font-size:70px}.year{font-size:23px}.calendar-title{font-size:12px}.day{min-height:51px;padding:5px;font-size:14px}.weekday{font-size:9px}.events{margin-top:4px}}
+@media(max-width:860px){.home-layout{grid-template-columns:1fr}.access-grid{grid-template-columns:repeat(3,1fr);grid-template-rows:1fr}.home-layout>.page{margin-bottom:0}.radio-card{max-width:310px}}
+@media(max-width:760px){body::before{background-size:auto 115%;opacity:.65}.document{width:min(100% - 16px,940px);margin-top:12px}.page{padding:24px 17px}.hero{padding:25px 22px 0}.header{grid-template-columns:1fr}.hero-art{min-height:180px}.logo{width:115px;margin:0}.crowd{left:-22px;bottom:0;width:175px}.hero h1{font-size:39px}.subtitle{font-size:17px}.intro{padding-bottom:25px;font-size:16px}.access-grid,.calendar-layout{grid-template-columns:1fr}.access-grid{grid-template-rows:repeat(3,1fr)}.access-card{min-height:88px}.calendar-page{padding:14px;border-width:5px}.calendar-head{align-items:flex-start}.month{font-size:70px}.year{font-size:23px}.calendar-title{font-size:12px}.day{min-height:51px;padding:5px;font-size:14px}.weekday{font-size:9px}.events{margin-top:4px}}
 </style>
 </head>
 <body>
@@ -76,7 +86,7 @@ h1{margin:4px 0 0;color:#fff;font-size:55px;line-height:.95;letter-spacing:-.04e
 <a class="access-card diffusion" href="./diffusion.html"><h3>Participer à une diffusion</h3><p>Choisis ton lieu, ton dimanche et le matériel que tu peux apporter.</p><span class="access-arrow" aria-hidden="true">→</span></a>
 <a class="access-card posters" href="https://communerouge.fr/affiches.html"><h3>Télécharger les affiches</h3><p>Retrouve les visuels et le matériel de communication.</p><span class="access-arrow" aria-hidden="true">→</span></a>
 <a class="access-card instagram" href="https://www.instagram.com/urc_paris_idf/" target="_blank" rel="noopener noreferrer"><h3>Suivre l’URC sur Instagram</h3><p>Actualités, actions et rendez-vous.<span class="instagram-handle">@urc_paris_idf</span></p><span class="access-arrow" aria-hidden="true">→</span></a>
-</div></section>
+</div><div class="radio-card"><div class="radio-head"><span class="radio-live-dot" aria-hidden="true"></span><span class="radio-copy"><strong>Radio Alhara</strong><span id="radioStatus">En direct de Bethléem — chargement…</span></span><button class="radio-toggle" id="radioToggle" type="button" aria-label="Lancer Radio Alhara" aria-pressed="false">▶</button></div><audio class="radio-audio" id="radioPlayer" autoplay preload="auto"><source src="https://stream.radiojar.com/78cxy6wkxtzuv" type="audio/mpeg"></audio></div></section>
 
 <section class="page calendar-page"><div class="calendar-head"><div style="display:flex;align-items:flex-end;gap:20px"><div class="month" id="calendarMonth">SEP</div><div class="year" id="calendarYear">20<br>26</div></div><div class="calendar-title">Prochaines<br>dates repères</div></div><div class="calendar-layout"><div><div class="month-grid" id="publicMonthGrid">
 <div class="weekday">Lun</div><div class="weekday">Mar</div><div class="weekday">Mer</div><div class="weekday">Jeu</div><div class="weekday">Ven</div><div class="weekday">Sam</div><div class="weekday">Dim</div>
@@ -107,6 +117,11 @@ function renderPublicCalendar(monthValue,events){const first=new Date(monthValue
 async function loadPublicCalendar(){try{const [settings,allEvents]=await Promise.all([api('calendar_settings','?id=eq.1&select=displayed_month'),api('calendar_events','?select=*&order=event_date.asc')]);const month=(settings[0]?.displayed_month||'2026-09-01').slice(0,7)+'-01',start=new Date(month+'T12:00:00'),end=new Date(start.getFullYear(),start.getMonth()+1,0),events=allEvents.filter(e=>{const d1=new Date(e.event_date+'T12:00:00'),d2=e.alternate_date?new Date(e.alternate_date+'T12:00:00'):d1;return(d1>=start&&d1<=end)||(d2>=start&&d2<=end)});renderPublicCalendar(month,events)}catch(error){console.warn('Le calendrier dynamique n’est pas encore configuré.',error)}}
 loadPublicCalendar();
 recordPageView('accueil');
+const radioPlayer=document.querySelector('#radioPlayer');
+const radioToggle=document.querySelector('#radioToggle');
+const radioStatus=document.querySelector('#radioStatus');
+function showRadioState(playing){radioToggle.textContent=playing?'❚❚':'▶';radioToggle.setAttribute('aria-pressed',String(playing));radioToggle.setAttribute('aria-label',playing?'Mettre Radio Alhara en pause':'Lancer Radio Alhara');radioStatus.textContent=playing?'En direct de Bethléem — lecture en cours':'En direct de Bethléem — appuie pour écouter'}
+if(radioPlayer&&radioToggle){radioToggle.addEventListener('click',async()=>{if(radioPlayer.paused){try{await radioPlayer.play();showRadioState(true)}catch(error){radioStatus.textContent='Le direct est momentanément indisponible'}}else{radioPlayer.pause();showRadioState(false)}});radioPlayer.addEventListener('playing',()=>showRadioState(true));radioPlayer.addEventListener('pause',()=>showRadioState(false));radioPlayer.addEventListener('error',()=>{radioStatus.textContent='Le direct est momentanément indisponible'});radioPlayer.play().then(()=>showRadioState(true)).catch(()=>showRadioState(false))}
 </script>
 </body>
 </html>
