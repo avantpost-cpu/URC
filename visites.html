@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Statistiques privées — Commune Rouge</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+@font-face{font-family:'Archivo Black Local';src:url('./ArchivoBlack-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+:root{--red:#c51f26;--blue:#1f6675;--yellow:#f2b324;--paper:#f7f5f0;--line:#d8d3c9;--ink:#1e1e1e}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e7e2 url('https://avantpost-cpu.github.io/URC/fond.jpg') center/cover fixed no-repeat;color:var(--ink);font:15px/1.4 Arial,sans-serif}
+body::before{content:"";position:fixed;z-index:0;inset:0;pointer-events:none;background:url('https://avantpost-cpu.github.io/URC/taches.png') center top/125% auto no-repeat}
+.wrap{position:relative;z-index:1;width:min(940px,calc(100% - 24px));margin:24px auto}
+.card{padding:28px;margin-bottom:20px;background:rgba(247,245,240,.92);border-radius:22px;box-shadow:0 8px 25px #0002}
+.top{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:18px}.brand img{width:85px}
+h1,h2{margin:0;color:var(--red);font-family:'Archivo Black Local','Arial Black',sans-serif;font-weight:400;text-transform:uppercase}
+h1{font-size:32px;line-height:1}.muted{color:#6d6962}.hidden{display:none!important}
+.login{max-width:480px;margin:10vh auto}.field{margin:22px 0 16px}label{display:block;margin-bottom:6px;font-weight:800}
+input{width:100%;padding:12px 14px;border:2px solid var(--line);border-radius:10px;background:#fff;font:inherit}
+.btn{display:inline-block;padding:11px 16px;border:0;border-radius:999px;background:var(--blue);color:#fff;text-decoration:none;font-weight:900;cursor:pointer}.btn.light{background:#e4e0d8;color:#222}.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}.stat{padding:20px;border:2px solid var(--line);border-radius:16px;background:#fff}.stat-title{min-height:42px;color:var(--red);font-weight:900;text-transform:uppercase}.stat strong{display:block;margin:5px 0;color:var(--blue);font-size:36px}.details{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.message{display:none;padding:11px 14px;margin:12px 0;border-radius:10px;color:#8f151a;background:#fbe3e4;font-weight:800}.message.show{display:block}
+@media(max-width:700px){.stats{grid-template-columns:1fr}.top{display:block}.top .toolbar{margin-top:16px}.brand{align-items:flex-start}.brand img{width:65px}h1{font-size:25px}}
+</style>
+</head>
+<body><main class="wrap">
+<section id="loginView" class="card login"><div class="brand"><img src="https://avantpost-cpu.github.io/URC/logo_URC.png" alt="URC"><div><h1>Statistiques privées</h1><div class="muted">Accès personnel</div></div></div><form id="loginForm"><div class="field"><label for="password">Mot de passe</label><input id="password" type="password" autocomplete="current-password" required autofocus></div><div id="loginMessage" class="message"></div><div class="toolbar"><button class="btn" type="submit">Se connecter</button><a class="btn light" href="./index.html">Retour à l’accueil</a></div></form></section>
+<div id="statsView" class="hidden"><section class="card top"><div class="brand"><img src="https://avantpost-cpu.github.io/URC/logo_URC.png" alt="URC"><div><h1>Visites des pages</h1><div class="muted">Compteur anonyme — aucune donnée personnelle enregistrée</div></div></div><div class="toolbar"><button id="refresh" class="btn">Actualiser</button><button id="logout" class="btn light">Se déconnecter</button></div></section><section class="card"><div id="statsMessage" class="message"></div><div id="stats" class="stats"><div class="stat"><strong>—</strong>Chargement…</div></div></section></div>
+</main><script>
+const SUPABASE_URL='https://kzqoxggchcdhmdydgooe.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_P2J2awOCTYEYwrWIup6stg_n0u7adqe';
+const ADMIN_EMAIL='illustrations@cyrillesethi.com';
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY),$=s=>document.querySelector(s);
+const labels={accueil:'Page d’accueil',diffusion:'Inscriptions aux diffusions',affiches:'Page des affiches'};
+function error(text){$('#loginMessage').textContent=text;$('#loginMessage').className='message show'}
+async function verify(user){if(!user)return false;const {data}=await db.from('diffusion_admins').select('user_id').eq('user_id',user.id).maybeSingle();return !!data}
+async function loadStats(){const {data,error}=await db.rpc('get_page_view_stats');if(error){$('#statsMessage').textContent='Le compteur doit être configuré avec le script SQL fourni.';$('#statsMessage').className='message show';return}const order=['accueil','diffusion','affiches'],rows=[...(data||[])].sort((a,b)=>order.indexOf(a.page_path)-order.indexOf(b.page_path));$('#stats').innerHTML=rows.map(x=>`<article class="stat"><div class="stat-title">${labels[x.page_path]||x.page_path}</div><strong>${Number(x.total_visits||0).toLocaleString('fr-FR')}</strong>visites au total<div class="details">Aujourd’hui : <b>${Number(x.today_visits||0).toLocaleString('fr-FR')}</b><br>30 derniers jours : <b>${Number(x.last_30_days||0).toLocaleString('fr-FR')}</b></div></article>`).join('')}
+async function showSession(){const {data:{session}}=await db.auth.getSession();if(session&&await verify(session.user)){$('#loginView').classList.add('hidden');$('#statsView').classList.remove('hidden');loadStats()}else{$('#statsView').classList.add('hidden');$('#loginView').classList.remove('hidden');if(session)await db.auth.signOut()}}
+$('#loginForm').onsubmit=async e=>{e.preventDefault();const {data,error:authError}=await db.auth.signInWithPassword({email:ADMIN_EMAIL,password:$('#password').value});if(authError||!await verify(data.user)){if(data.user)await db.auth.signOut();$('#password').select();return error('Mot de passe incorrect.')}showSession()};
+$('#refresh').onclick=loadStats;$('#logout').onclick=async()=>{await db.auth.signOut();$('#password').value='';showSession()};showSession();
+</script></body></html>
