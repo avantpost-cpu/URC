@@ -62,7 +62,7 @@ function render(location){
     const isSunday=new Date(`${key}T12:00:00`).getDay()===0;
     const slot=locationSlots.get(key);
     if(isSunday&&slot){
-      const remaining=Math.max(0,Number(slot.capacity||3)-Number(slot.booked_count||0));
+      const remaining=Math.max(0,Number(slot.capacity||4)-Number(slot.booked_count||0));
       const label=slot.status==='available'?`${remaining} place${remaining>1?'s':''}`:slot.status==='full'?'Complet':'Indisponible';
       dayCells+=`<button type="button" class="month-day sunday ${slot.status}" data-id="${slot.id}" data-label="${label}" ${slot.status!=='available'?'disabled':''} aria-label="${readable(key)} : ${label}">${day}</button>`;
     }else{
