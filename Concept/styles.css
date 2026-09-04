@@ -93,6 +93,23 @@ nav a:hover, nav a.active { color: #ff2940; }
 #site::after,
 #suite::after { display: none; }
 
+/* Section formes : video transparente incrustee dans le fond */
+#formes { position: relative; overflow: hidden; }
+#formes .section-band.dark { background: transparent; color: #111; position: relative; z-index: 2; }
+#formes .section-band.dark b { background: var(--red); color: #fff; }
+#formes .rosas-video { position: absolute; z-index: 1; top: clamp(4.5rem, 8vw, 7rem); right: clamp(1rem, 5vw, 5rem); width: min(43vw, 42rem); height: auto; pointer-events: none; }
+#formes .forms-head { display: block; position: relative; z-index: 2; max-width: 42rem; }
+#formes .forms-head p { margin-top: 1.4rem; max-width: 32rem; }
+#formes .practice-grid { position: relative; z-index: 2; margin-top: 2rem; }
+
+@media (max-width: 900px) {
+  #formes .rosas-video { top: 5.5rem; right: 1rem; width: 48vw; }
+}
+@media (max-width: 560px) {
+  #formes .rosas-video { top: 8rem; right: -4vw; width: 70vw; }
+  #formes .forms-head p { max-width: 100%; }
+}
+
 .section-band { display: flex; align-items: stretch; min-height: 3.4rem; margin-bottom: 1.5rem; background: #111; color: #fff; font-family: var(--display); }
 .section-band b { display: grid; place-items: center; min-width: 5rem; background: var(--red); font-size: 1.45rem; }
 .section-band span { display: flex; align-items: center; padding: .6rem 1rem; font-size: clamp(.9rem, 1.5vw, 1.25rem); }
