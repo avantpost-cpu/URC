@@ -66,7 +66,6 @@ nav a:hover, nav a.active { color: #ff2940; }
 }
 .page::before { content: ""; position: absolute; inset: 0; z-index: -2; background: rgba(246,244,237,.9); }
 .page::after { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .08; background-image: radial-gradient(#111 1px, transparent 1px); background-size: 5px 5px; pointer-events: none; }
-.hero::before { background: rgba(240,237,228,.78); }
 .page-ink::before { background: rgba(241,238,230,.92); }
 
 .section-band { display: flex; align-items: stretch; min-height: 3.4rem; margin-bottom: 1.5rem; background: #111; color: #fff; font-family: var(--display); }
@@ -83,27 +82,34 @@ p, li { max-width: 75ch; }
 .lead { font-weight: 700; }
 blockquote { margin-inline: 0; }
 
-.hero { display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(20rem, 1fr); gap: clamp(2rem, 5vw, 6rem); align-items: center; }
-.hero-copy { align-self: center; }
-.eyebrow { font-weight: 700; letter-spacing: .04em; }
-.hero h1 { margin: 0; font: 900 clamp(3.15rem, 7.5vw, 8rem)/.78 var(--display); letter-spacing: -.085em; }
-.hero h1 span { display: block; width: fit-content; }
-.hero h1 i { font-style: normal; color: var(--red); }
-.hero h1 .red { color: var(--red); }
-.hero h1 .white-block { color: #fff; background: #111; padding: .02em .14em .08em; transform: translateX(8%); }
-.hero-sub { max-width: 44rem; margin-top: 1.5rem; font: 800 clamp(1.15rem, 2vw, 2rem)/1 var(--display); }
-.manifesto-line { max-width: 62rem; padding: 1rem 1.25rem; background: #111; color: #fff; font: 700 clamp(1.15rem, 1.8vw, 1.7rem)/1.05 var(--body); text-transform: uppercase; }
-.hero-stat { align-self: stretch; display: flex; flex-direction: column; justify-content: center; padding: clamp(1.5rem, 3vw, 3.5rem); background: var(--red); color: #fff; clip-path: polygon(8% 0,100% 0,100% 94%,0 100%,0 7%); }
-.hero-stat > strong { font: 900 clamp(6rem, 10vw, 10rem)/.8 var(--display); letter-spacing: -.07em; }
-.hero-stat h2 { margin: .5rem 0 1.2rem; font-size: clamp(2rem, 3vw, 3.2rem); letter-spacing: -.05em; }
-.split-count { display: grid; grid-template-columns: 1fr 1fr; border-block: 2px solid #fff; }
-.split-count span { padding: .8rem .4rem; font-weight: 700; }
-.split-count span + span { border-left: 2px solid #fff; }
-.hero-stat .small { margin-top: 1rem; font-size: .85rem; font-weight: 700; }
-.ink { position: absolute; z-index: -1; opacity: .28; pointer-events: none; }
-.ink-home { width: min(55rem, 60vw); left: 4%; bottom: -9%; transform: rotate(-4deg); }
-.next { position: absolute; bottom: 1.4rem; left: var(--pad); text-decoration: none; font-weight: 700; }
-.next span { color: var(--red); font-size: 1.5rem; }
+.hero-art {
+  min-height: 100svh;
+  padding: 0;
+  background: #e9e5da;
+}
+.hero-art::before,
+.hero-art::after { display: none; }
+.home-background,
+.home-title {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+.home-background {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.home-title {
+  z-index: 1;
+  top: 6svh;
+  left: 4vw;
+  width: min(86vw, 1650px);
+  height: auto;
+}
 
 .vision-grid { display: grid; grid-template-columns: .9fr 1.25fr 1fr; gap: 1.2rem; }
 .intro-panel h2, .site-intro h2 { color: var(--red); font-size: clamp(3.2rem, 6vw, 6rem); }
@@ -164,9 +170,9 @@ blockquote { margin-inline: 0; }
   .menu-toggle { display: block; }
   nav { display: none; position: absolute; top: 100%; right: 0; left: 0; padding: 1rem var(--pad); background: #111; flex-direction: column; }
   nav.open { display: flex; }
-  .hero, .vision-grid, .cycle-grid, .forms-head, .site-grid, .future-grid { grid-template-columns: 1fr; }
-  .hero { padding-top: 7rem; }
-  .hero-stat { min-height: 32rem; }
+  .vision-grid, .cycle-grid, .forms-head, .site-grid, .future-grid { grid-template-columns: 1fr; }
+  .hero-art { min-height: 100svh; padding: 0; }
+  .home-title { top: 5.5rem; left: -8vw; width: 108vw; }
   .practice-grid { grid-template-columns: 1fr 1fr; }
   .roadmap li { grid-template-columns: 2.3rem 8rem 1fr; }
   .final-footer { position: static; margin-top: 3rem; gap: 1rem; flex-direction: column; }
@@ -174,7 +180,8 @@ blockquote { margin-inline: 0; }
 
 @media (max-width: 560px) {
   :root { --pad: 1rem; }
-  .hero h1 { font-size: clamp(3rem, 15vw, 5rem); }
+  .home-background { object-position: 48% center; }
+  .home-title { left: -25vw; width: 145vw; }
   .section-band b { min-width: 3.5rem; }
   .practice-grid { grid-template-columns: 1fr; }
   .roadmap li { grid-template-columns: 2rem 1fr; }
