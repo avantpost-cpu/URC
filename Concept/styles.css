@@ -130,7 +130,7 @@ blockquote { margin-inline: 0; }
 }
 .home-title {
   z-index: 1;
-  top: 6svh;
+  top: 10svh;
   left: 4vw;
   width: min(86vw, 1650px);
   height: auto;
@@ -197,7 +197,7 @@ blockquote { margin-inline: 0; }
   nav.open { display: flex; }
   .vision-grid, .cycle-grid, .forms-head, .site-grid, .future-grid { grid-template-columns: 1fr; }
   .hero-art { min-height: 100svh; padding: 0; }
-  .home-title { top: 5.5rem; left: -8vw; width: 108vw; }
+  .home-title { top: 7rem; left: -8vw; width: 108vw; }
   .practice-grid { grid-template-columns: 1fr 1fr; }
   .roadmap li { grid-template-columns: 2.3rem 8rem 1fr; }
   .final-footer { position: static; margin-top: 3rem; gap: 1rem; flex-direction: column; }
@@ -206,7 +206,7 @@ blockquote { margin-inline: 0; }
 @media (max-width: 560px) {
   :root { --pad: 1rem; }
   .home-background { object-position: 48% center; }
-  .home-title { left: -25vw; width: 145vw; }
+  .home-title { top: 6.5rem; left: -25vw; width: 145vw; }
   .section-band b { min-width: 3.5rem; }
   .practice-grid { grid-template-columns: 1fr; }
   .roadmap li { grid-template-columns: 2rem 1fr; }
