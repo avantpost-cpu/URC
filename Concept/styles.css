@@ -70,20 +70,28 @@ nav a:hover, nav a.active { color: #ff2940; }
 
 #vision,
 #cycle,
-#formes {
+#formes,
+#site,
+#suite {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 #vision { background-image: url("Image_home2.jpg"); }
 #cycle { background-image: url("Image_home3.jpg"); }
-#formes { background-image: url("Image_home4.jpg"); }
+#formes,
+#site,
+#suite { background-image: url("Image_home4.jpg"); }
 #vision::before,
 #cycle::before,
-#formes::before { background: transparent; }
+#formes::before,
+#site::before,
+#suite::before { background: transparent; }
 #vision::after,
 #cycle::after,
-#formes::after { display: none; }
+#formes::after,
+#site::after,
+#suite::after { display: none; }
 
 .section-band { display: flex; align-items: stretch; min-height: 3.4rem; margin-bottom: 1.5rem; background: #111; color: #fff; font-family: var(--display); }
 .section-band b { display: grid; place-items: center; min-width: 5rem; background: var(--red); font-size: 1.45rem; }
