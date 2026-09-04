@@ -8,7 +8,48 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=4">
+  <style>
+    /* Composition de la home : ces règles restent ici pour éviter tout ancien CSS en cache. */
+    .hero-art {
+      position: relative;
+      min-height: 100svh;
+      padding: 0;
+      overflow: hidden;
+      background: #e9e5da;
+    }
+    .hero-art::before,
+    .hero-art::after { display: none; }
+    .home-background,
+    .home-title {
+      position: absolute;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+    }
+    .home-background {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .home-title {
+      z-index: 1;
+      top: 6svh;
+      left: 4vw;
+      width: min(86vw, 1650px);
+      height: auto;
+    }
+    @media (max-width: 900px) {
+      .hero-art { min-height: 100svh; padding: 0; }
+      .home-title { top: 5.5rem; left: -8vw; width: 108vw; }
+    }
+    @media (max-width: 560px) {
+      .home-background { object-position: 48% center; }
+      .home-title { left: -25vw; width: 145vw; }
+    }
+  </style>
 </head>
 <body>
   <a class="skip" href="#vision">Aller au contenu</a>
