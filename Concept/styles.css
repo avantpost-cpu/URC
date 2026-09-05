@@ -46,6 +46,7 @@ a { color: inherit; }
   background: rgba(17,17,17,.96); color: #fff;
   border-bottom: .25rem solid var(--red);
 }
+.topbar { display: none; }
 .brand { text-decoration: none; font-family: var(--display); font-size: 1rem; letter-spacing: -.04em; }
 .brand strong { color: #ff1530; margin-left: .25rem; }
 nav { display: flex; gap: clamp(.8rem, 2vw, 2rem); }
@@ -73,7 +74,7 @@ nav a:hover, nav a.active { color: #ff2940; }
 .sound-toggle[aria-pressed="true"] { color: #111; background: rgba(255,255,255,.9); border-color: #111; }
 
 .page {
-  position: relative; min-height: 100svh; padding: calc(3.6rem + 2.1rem) var(--pad) 3rem;
+  position: relative; min-height: 100svh; padding: 2.1rem var(--pad) 3rem;
   overflow: hidden; scroll-snap-align: start; isolation: isolate;
 }
 .page::before { content: ""; position: absolute; inset: 0; z-index: -2; background: rgba(246,244,237,.9); }
