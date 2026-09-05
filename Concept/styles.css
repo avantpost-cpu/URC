@@ -51,6 +51,8 @@ a { color: inherit; }
 nav { display: flex; gap: clamp(.8rem, 2vw, 2rem); }
 nav a { text-decoration: none; font-weight: 700; font-size: .95rem; text-transform: uppercase; }
 nav a:hover, nav a.active { color: #ff2940; }
+.topbar nav,
+.topbar .menu-toggle { display: none !important; }
 .menu-toggle { display: none; border: 0; color: #fff; background: var(--red); padding: .55rem .7rem; font: 700 .9rem var(--body); }
 .topbar nav, .topbar .menu-toggle { display: none !important; }
 
