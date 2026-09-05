@@ -107,16 +107,20 @@ nav a:hover, nav a.active { color: #ff2940; }
 #suite::after { display: none; }
 
 /* Section formes : video transparente incrustee dans le fond */
-#formes { position: relative; overflow: hidden; }
+#formes { position: relative; overflow: visible; }
 #formes .section-band.dark { background: transparent; color: #111; position: relative; z-index: 2; }
 #formes .section-band.dark b { background: var(--red); color: #fff; }
-#formes .rosas-video { position: absolute; z-index: 3; top: 2rem; right: 0; width: min(56vw, 56rem); height: auto; display: block; visibility: visible; opacity: 1; pointer-events: none; }
+#formes .rosas-video { position: absolute; z-index: 3; top: -11rem; right: 0; width: min(56vw, 56rem); height: auto; display: block; visibility: visible; opacity: 1; pointer-events: none; }
 #formes .forms-head { display: block; position: relative; z-index: 2; max-width: 42rem; }
-#formes .forms-head p { margin-top: 1.4rem; max-width: 32rem; }
-#formes .practice-grid { position: relative; z-index: 2; margin-top: 2rem; }
+#formes .forms-head p { margin-top: .65rem; max-width: 32rem; }
+#formes .practice-grid { position: relative; z-index: 2; margin-top: .8rem; }
+#formes .forms-head h2 { font-size: clamp(3rem, 5vw, 5rem); }
+#formes .practice-grid article { min-height: 9rem; padding: 1rem; }
+#formes .practice-grid h3 { margin-bottom: .55rem; }
+#formes .wide-quote { margin-top: .8rem; padding-block: .8rem; }
 
 @media (max-width: 900px) {
-  #formes .rosas-video { top: 3rem; right: 0; width: 62vw; }
+  #formes .rosas-video { top: -5rem; right: 0; width: 62vw; }
 }
 @media (max-width: 560px) {
   #formes .rosas-video { top: 4rem; right: 0; width: 78vw; }

@@ -58,6 +58,25 @@ document.querySelectorAll('.rosas-video, .vision-video').forEach((video) => {
   }, { threshold: 0.05 }).observe(video);
 });
 
+const rosasVideo = document.querySelector('#formes .rosas-video');
+const formesSection = document.querySelector('#formes');
+if (rosasVideo && formesSection) {
+  rosasVideo.volume = 0.55;
+  new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      if (backgroundMusic) backgroundMusic.pause();
+      rosasVideo.muted = false;
+      rosasVideo.removeAttribute('muted');
+      rosasVideo.play().catch(() => {});
+    } else {
+      rosasVideo.muted = true;
+      if (backgroundMusic && soundToggle?.getAttribute('aria-pressed') !== 'true') {
+        backgroundMusic.play().catch(() => {});
+      }
+    }
+  }, { threshold: 0.45 }).observe(formesSection);
+}
+
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (!entry.isIntersecting) return;
