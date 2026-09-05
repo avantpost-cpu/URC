@@ -26,6 +26,7 @@ if (formasVideo) {
   formasVideo.setAttribute('muted', '');
   const playFormasVideo = () => formasVideo.play().catch(() => {});
   playFormasVideo();
+  formasVideo.addEventListener('loadeddata', playFormasVideo, { once: true });
   new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting) playFormasVideo();
   }, { threshold: 0.05 }).observe(formasVideo);

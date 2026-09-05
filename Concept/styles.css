@@ -97,7 +97,7 @@ nav a:hover, nav a.active { color: #ff2940; }
 #formes { position: relative; overflow: hidden; }
 #formes .section-band.dark { background: transparent; color: #111; position: relative; z-index: 2; }
 #formes .section-band.dark b { background: var(--red); color: #fff; }
-#formes .rosas-video { position: absolute; z-index: 1; top: clamp(4.5rem, 8vw, 7rem); right: clamp(1rem, 5vw, 5rem); width: min(43vw, 42rem); height: auto; pointer-events: none; }
+#formes .rosas-video { position: absolute; z-index: 3; top: clamp(4.5rem, 8vw, 7rem); right: clamp(1rem, 5vw, 5rem); width: min(43vw, 42rem); height: auto; display: block; visibility: visible; opacity: 1; pointer-events: none; }
 #formes .forms-head { display: block; position: relative; z-index: 2; max-width: 42rem; }
 #formes .forms-head p { margin-top: 1.4rem; max-width: 32rem; }
 #formes .practice-grid { position: relative; z-index: 2; margin-top: 2rem; }
