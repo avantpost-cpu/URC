@@ -115,6 +115,7 @@ nav a:hover, nav a.active { color: #ff2940; }
 .section-band span { display: flex; align-items: center; padding: .6rem 1rem; font-size: clamp(.9rem, 1.5vw, 1.25rem); }
 .section-band.pale { background: var(--paper-dark); color: #111; }
 .section-band.dark { background: #111; color: #fff; }
+#vision .section-band { background: transparent; color: #111; }
 
 h1,h2,h3,p,blockquote { margin-top: 0; }
 h2 { font-family: var(--display); font-weight: 900; letter-spacing: -.065em; line-height: .88; }
