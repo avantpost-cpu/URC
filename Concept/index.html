@@ -43,10 +43,17 @@
       height: 145%;
       width: auto;
       will-change: transform, filter;
-      animation: tower-expand 30s ease-in-out infinite alternate;
     }
-    .home-tower-left { left: 0; transform-origin: left bottom; --tower-start: -4%; --tower-exit: -14%; }
-    .home-tower-right { right: 0; transform-origin: right bottom; --tower-start: 4%; --tower-exit: 14%; }
+    .home-tower-left {
+      left: 0;
+      transform-origin: left bottom;
+      animation: tower-left-cycle 30s ease-in-out infinite alternate;
+    }
+    .home-tower-right {
+      right: 0;
+      transform-origin: right bottom;
+      animation: tower-right-cycle 30s ease-in-out infinite alternate;
+    }
     .home-stain {
       z-index: 2;
       right: 0;
@@ -63,9 +70,13 @@
       animation: title-drift 36s linear infinite;
       will-change: transform;
     }
-    @keyframes tower-expand {
-      0% { transform: translateX(var(--tower-start)) scale(.82); filter: blur(0); }
-      100% { transform: translateX(var(--tower-exit)) scale(1.16); filter: blur(5px); }
+    @keyframes tower-left-cycle {
+      0% { transform: translateX(-14%) scale(1.16); filter: blur(5px); }
+      100% { transform: translateX(-4%) scale(.82); filter: blur(0); }
+    }
+    @keyframes tower-right-cycle {
+      0% { transform: translateX(4%) scale(.82); filter: blur(0); }
+      100% { transform: translateX(14%) scale(1.16); filter: blur(5px); }
     }
     @keyframes title-drift {
       0%   { transform: translate(0, 0); }
