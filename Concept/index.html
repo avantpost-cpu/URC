@@ -40,6 +40,21 @@
       left: 4vw;
       width: min(86vw, 1650px);
       height: auto;
+      animation: title-drift 72s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+    @keyframes title-drift {
+      0%   { transform: translate(0, 0); }
+      14%  { transform: translate(.28cm, -.18cm); }
+      31%  { transform: translate(-.36cm, -.42cm); }
+      47%  { transform: translate(-.58cm, .16cm); }
+      63%  { transform: translate(.12cm, .52cm); }
+      79%  { transform: translate(.61cm, .24cm); }
+      92%  { transform: translate(.38cm, -.47cm); }
+      100% { transform: translate(-.15cm, -.08cm); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .home-title { animation: none; }
     }
     @media (max-width: 900px) {
       .hero-art { min-height: 100svh; padding: 0; }
