@@ -18,6 +18,19 @@ const links = [...document.querySelectorAll('.rail a, #main-nav a')];
 const sections = [...document.querySelectorAll('.page')];
 const reveals = [...document.querySelectorAll('.reveal')];
 
+// Certains navigateurs retardent l’autoplay : on relance la vidéo lorsqu’elle
+// entre dans la fenêtre, sans son et sans interrompre la navigation.
+const formasVideo = document.querySelector('#formes .rosas-video');
+if (formasVideo) {
+  formasVideo.muted = true;
+  formasVideo.setAttribute('muted', '');
+  const playFormasVideo = () => formasVideo.play().catch(() => {});
+  playFormasVideo();
+  new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) playFormasVideo();
+  }, { threshold: 0.05 }).observe(formasVideo);
+}
+
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (!entry.isIntersecting) return;
