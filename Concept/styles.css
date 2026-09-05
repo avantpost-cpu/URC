@@ -60,6 +60,15 @@ nav a:hover, nav a.active { color: #ff2940; }
 .rail a { width: 2.4rem; height: 2.4rem; display: grid; place-items: center; text-decoration: none; background: rgba(255,255,255,.86); border: 1px solid #111; font-weight: 700; font-size: .8rem; }
 .rail a.active { color: #fff; background: var(--red); border-color: var(--red); }
 
+.sound-toggle {
+  position: fixed; z-index: 16; left: 1rem; bottom: 1rem;
+  border: 1px solid #fff; padding: .55rem .75rem;
+  color: #fff; background: rgba(17,17,17,.88);
+  font: 800 .75rem var(--display); letter-spacing: .04em;
+  cursor: pointer;
+}
+.sound-toggle[aria-pressed="true"] { color: #111; background: rgba(255,255,255,.9); border-color: #111; }
+
 .page {
   position: relative; min-height: 100svh; padding: calc(3.6rem + 2.1rem) var(--pad) 3rem;
   overflow: hidden; scroll-snap-align: start; isolation: isolate;

@@ -18,6 +18,33 @@ const links = [...document.querySelectorAll('.rail a, #main-nav a')];
 const sections = [...document.querySelectorAll('.page')];
 const reveals = [...document.querySelectorAll('.reveal')];
 
+const backgroundMusic = document.querySelector('#background-music');
+const soundToggle = document.querySelector('.sound-toggle');
+
+if (backgroundMusic && soundToggle) {
+  backgroundMusic.volume = 0.18;
+  const startMusic = () => backgroundMusic.play().catch(() => {});
+  startMusic();
+
+  document.addEventListener('pointerdown', (event) => {
+    if (!event.target.closest('.sound-toggle')) startMusic();
+  }, { once: true });
+
+  soundToggle.addEventListener('click', () => {
+    if (backgroundMusic.paused) {
+      startMusic();
+      soundToggle.textContent = 'SON ON';
+      soundToggle.setAttribute('aria-pressed', 'false');
+      soundToggle.setAttribute('aria-label', 'Couper la musique');
+    } else {
+      backgroundMusic.pause();
+      soundToggle.textContent = 'SON OFF';
+      soundToggle.setAttribute('aria-pressed', 'true');
+      soundToggle.setAttribute('aria-label', 'Activer la musique');
+    }
+  });
+}
+
 // Certains navigateurs retardent l’autoplay : on relance la vidéo lorsqu’elle
 // entre dans la fenêtre, sans son et sans interrompre la navigation.
 document.querySelectorAll('.rosas-video, .vision-video').forEach((video) => {
