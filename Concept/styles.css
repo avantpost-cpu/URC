@@ -155,9 +155,11 @@ blockquote { margin-inline: 0; }
 
 .vision-grid { display: grid; grid-template-columns: .9fr 1.25fr 1fr; gap: 1.2rem; }
 .intro-panel h2, .site-intro h2 { color: var(--red); font-size: clamp(3.2rem, 6vw, 6rem); }
+#vision .intro-panel { position: relative; z-index: 3; }
 #vision .intro-panel h2 { margin-bottom: .8rem; }
 #vision .intro-panel > p { position: relative; z-index: 2; }
 #vision .vision-video { display: block; width: 150%; height: auto; margin: .8rem 0 -3rem -50%; pointer-events: none; }
+#vision .vision-cross { position: absolute; z-index: 4; left: 15%; bottom: -1.5rem; width: 140%; height: auto; pointer-events: none; }
 .red-panel, .black-panel, .frame-panel, .roadmap { padding: clamp(1.25rem, 2.5vw, 2.5rem); }
 .red-panel { background: var(--red); color: #fff; }
 .red-panel h3 { font-size: 1.4rem; }
