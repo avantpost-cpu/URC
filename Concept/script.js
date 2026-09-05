@@ -20,17 +20,16 @@ const reveals = [...document.querySelectorAll('.reveal')];
 
 // Certains navigateurs retardent l’autoplay : on relance la vidéo lorsqu’elle
 // entre dans la fenêtre, sans son et sans interrompre la navigation.
-const formasVideo = document.querySelector('#formes .rosas-video');
-if (formasVideo) {
-  formasVideo.muted = true;
-  formasVideo.setAttribute('muted', '');
-  const playFormasVideo = () => formasVideo.play().catch(() => {});
-  playFormasVideo();
-  formasVideo.addEventListener('loadeddata', playFormasVideo, { once: true });
+document.querySelectorAll('.rosas-video, .vision-video').forEach((video) => {
+  video.muted = true;
+  video.setAttribute('muted', '');
+  const playVideo = () => video.play().catch(() => {});
+  playVideo();
+  video.addEventListener('loadeddata', playVideo, { once: true });
   new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) playFormasVideo();
-  }, { threshold: 0.05 }).observe(formasVideo);
-}
+    if (entries[0].isIntersecting) playVideo();
+  }, { threshold: 0.05 }).observe(video);
+});
 
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
