@@ -40,7 +40,7 @@
       left: 4vw;
       width: min(86vw, 1650px);
       height: auto;
-      animation: title-drift 72s ease-in-out infinite alternate;
+      animation: title-drift 36s linear infinite;
       will-change: transform;
     }
     @keyframes title-drift {
@@ -51,7 +51,7 @@
       63%  { transform: translate(.12cm, .52cm); }
       79%  { transform: translate(.61cm, .24cm); }
       92%  { transform: translate(.38cm, -.47cm); }
-      100% { transform: translate(-.15cm, -.08cm); }
+      100% { transform: translate(0, 0); }
     }
     @media (prefers-reduced-motion: reduce) {
       .home-title { animation: none; }
