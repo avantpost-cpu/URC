@@ -5,75 +5,393 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Télécharge les affiches de la campagne pour la paix de l’URC.">
 <title>Affiches — URC</title>
+
 <style>
-@font-face{font-family:'Archivo Black Local';src:url('./ArchivoBlack-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
-:root{--red:#c51f26;--blue:#1f6675;--turq:#1cb6bd;--yellow:#f2b324;--ink:#1e1e1e;--paper:#f7f5f0;--border:#d8d3c9}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;min-height:100vh;background:#e9e7e2 url('https://avantpost-cpu.github.io/URC/fond.jpg') center/cover fixed no-repeat;color:var(--ink);font:16px/1.45 Arial,sans-serif}
-body::before{content:"";position:fixed;z-index:0;inset:0;pointer-events:none;background:url('https://avantpost-cpu.github.io/URC/taches.png') center top/125% auto no-repeat}
-.topbar{position:sticky;z-index:10;top:0;padding:12px 20px;background:#fffffff2;border-bottom:1px solid #d7d3cc}
-.topbar-inner{display:flex;justify-content:space-between;align-items:center;width:min(940px,100%);margin:auto;font-size:13px;font-weight:900;text-transform:uppercase}
-.topbar-actions{display:flex;gap:9px}
-.topbar-link{padding:5px 11px;color:#fff;background:var(--red);border-radius:999px;text-decoration:none;font-size:11px;letter-spacing:.03em}
-.topbar-link:hover{background:#9e171c}
-.document{position:relative;z-index:1;width:min(940px,calc(100% - 24px));margin:22px auto 48px}
-.page{margin-bottom:20px;padding:36px;border-radius:24px;background:rgba(247,245,240,.86);box-shadow:0 12px 34px #0002;backdrop-filter:blur(2px)}
-.hero{position:relative;min-height:330px;padding:38px 48px;overflow:hidden;color:#fff;background:var(--red);backdrop-filter:none}
-.header{display:grid;grid-template-columns:155px 1fr;gap:27px}
-.hero-art{position:relative;min-height:255px}
-.logo{display:block;width:125px;margin:10px auto 0}
-.crowd{position:absolute;left:-48px;bottom:-40px;width:210px;max-width:none}
-.hero-copy{position:relative;z-index:2}
-.kicker{font-weight:900;text-transform:uppercase}
-h1,h2{font-family:'Archivo Black Local','Arial Black',sans-serif;font-weight:400;text-transform:uppercase}
-h1{margin:4px 0 0;color:#fff;font-size:53px;line-height:.97;letter-spacing:-.035em}
-.subtitle{margin:20px 0 12px;color:#080808;font-size:20px;line-height:1.3;font-weight:900}
-.intro{margin:0;color:#fff;font-size:17px;line-height:1.4}
-.posters-title{margin:0 0 22px;color:var(--red);font-size:32px;line-height:1}
-.posters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-.poster-link{position:relative;display:block;overflow:hidden;color:#fff;background:var(--blue);border:4px solid #fff;border-radius:19px;box-shadow:0 8px 22px #0002;text-decoration:none;transition:transform .2s,box-shadow .2s}
-.poster-link:nth-child(2){background:var(--red)}
-.poster-link:nth-child(3){background:var(--turq)}
-.poster-link:hover,.poster-link:focus-visible{transform:translateY(-6px);box-shadow:0 15px 30px #0003}
-.poster-link:focus-visible{outline:5px solid var(--yellow);outline-offset:4px}
-.poster-image{display:block;width:100%;height:auto;aspect-ratio:639/925;object-fit:cover;background:#fff}
-.download-label{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;padding:13px 15px;font-size:14px;font-weight:900;text-transform:uppercase}
-.boxe-card{background:var(--blue)}
-.boxe-card .download-label{display:block;min-height:0}
-.format-note{display:block;margin-bottom:10px;font-size:13px}
-.format-links{display:flex;gap:8px}
-.format-link{display:inline-flex;align-items:center;justify-content:center;flex:1;padding:8px 6px;color:var(--ink);background:var(--yellow);border-radius:999px;font-size:12px;font-weight:900;text-decoration:none;transition:background .2s,transform .2s}
-.format-link:hover,.format-link:focus-visible{background:#ffd15a;transform:translateY(-2px)}
-.download-icon{display:grid;place-items:center;flex:0 0 35px;width:35px;height:35px;color:var(--ink);background:var(--yellow);border-radius:50%;font-size:21px}
-.note{margin:25px 0 0;padding:15px 20px;color:#fff;background:var(--blue);border-radius:15px;font-weight:700;text-align:center}
-@media(max-width:760px){
-body::before{background-size:auto 115%;opacity:.65}
-.document{width:min(100% - 16px,940px);margin-top:12px}
-.page{padding:24px 17px}
-.hero{padding:25px 22px 0}
-.header{grid-template-columns:1fr}
-.hero-art{min-height:180px}
-.logo{width:115px;margin:0}
-.crowd{left:-22px;bottom:0;width:175px}
-.hero h1{font-size:39px}
-.subtitle{font-size:17px}
-.intro{padding-bottom:25px;font-size:16px}
-.posters{grid-template-columns:repeat(2,minmax(0,1fr))}
-.poster-link{width:min(100%,410px);margin:auto}
-.topbar-inner>span{display:none}
-.topbar-inner{justify-content:flex-end}
+@font-face{
+  font-family:'Archivo Black Local';
+  src:url('./ArchivoBlack-Regular.ttf') format('truetype');
+  font-weight:400;
+  font-style:normal;
+  font-display:swap
 }
+
+:root{
+  --red:#c51f26;
+  --blue:#1f6675;
+  --turq:#1cb6bd;
+  --yellow:#f2b324;
+  --ink:#1e1e1e;
+  --paper:#f7f5f0;
+  --border:#d8d3c9
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:#e9e7e2 url('https://avantpost-cpu.github.io/URC/fond.jpg') center/cover fixed no-repeat;
+  color:var(--ink);
+  font:16px/1.45 Arial,sans-serif
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  z-index:0;
+  inset:0;
+  pointer-events:none;
+  background:url('https://avantpost-cpu.github.io/URC/taches.png') center top/125% auto no-repeat
+}
+
+.topbar{
+  position:sticky;
+  z-index:10;
+  top:0;
+  padding:12px 20px;
+  background:#fffffff2;
+  border-bottom:1px solid #d7d3cc
+}
+
+.topbar-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:min(940px,100%);
+  margin:auto;
+  font-size:13px;
+  font-weight:900;
+  text-transform:uppercase
+}
+
+.topbar-actions{
+  display:flex;
+  gap:9px
+}
+
+.topbar-link{
+  padding:5px 11px;
+  color:#fff;
+  background:var(--red);
+  border-radius:999px;
+  text-decoration:none;
+  font-size:11px;
+  letter-spacing:.03em
+}
+
+.topbar-link:hover{
+  background:#9e171c
+}
+
+.document{
+  position:relative;
+  z-index:1;
+  width:min(940px,calc(100% - 24px));
+  margin:22px auto 48px
+}
+
+.page{
+  margin-bottom:20px;
+  padding:36px;
+  border-radius:24px;
+  background:rgba(247,245,240,.86);
+  box-shadow:0 12px 34px #0002;
+  backdrop-filter:blur(2px)
+}
+
+.hero{
+  position:relative;
+  min-height:330px;
+  padding:38px 48px;
+  overflow:hidden;
+  color:#fff;
+  background:var(--red);
+  backdrop-filter:none
+}
+
+.header{
+  display:grid;
+  grid-template-columns:155px 1fr;
+  gap:27px
+}
+
+.hero-art{
+  position:relative;
+  min-height:255px
+}
+
+.logo{
+  display:block;
+  width:125px;
+  margin:10px auto 0
+}
+
+.crowd{
+  position:absolute;
+  left:-48px;
+  bottom:-40px;
+  width:210px;
+  max-width:none
+}
+
+.hero-copy{
+  position:relative;
+  z-index:2
+}
+
+.kicker{
+  font-weight:900;
+  text-transform:uppercase
+}
+
+h1,h2{
+  font-family:'Archivo Black Local','Arial Black',sans-serif;
+  font-weight:400;
+  text-transform:uppercase
+}
+
+h1{
+  margin:4px 0 0;
+  color:#fff;
+  font-size:53px;
+  line-height:.97;
+  letter-spacing:-.035em
+}
+
+.subtitle{
+  margin:20px 0 12px;
+  color:#080808;
+  font-size:20px;
+  line-height:1.3;
+  font-weight:900
+}
+
+.intro{
+  margin:0;
+  color:#fff;
+  font-size:17px;
+  line-height:1.4
+}
+
+.posters-title{
+  margin:0 0 22px;
+  color:var(--red);
+  font-size:32px;
+  line-height:1
+}
+
+.posters{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:20px
+}
+
+.poster-link{
+  position:relative;
+  display:block;
+  overflow:hidden;
+  color:#fff;
+  background:var(--blue);
+  border:4px solid #fff;
+  border-radius:19px;
+  box-shadow:0 8px 22px #0002;
+  text-decoration:none;
+  transition:transform .2s,box-shadow .2s
+}
+
+.poster-link:nth-child(2){
+  background:var(--red)
+}
+
+.poster-link:nth-child(3){
+  background:var(--turq)
+}
+
+.poster-link:hover,
+.poster-link:focus-visible{
+  transform:translateY(-6px);
+  box-shadow:0 15px 30px #0003
+}
+
+.poster-link:focus-visible{
+  outline:5px solid var(--yellow);
+  outline-offset:4px
+}
+
+.poster-image{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:639/925;
+  object-fit:cover;
+  background:#fff
+}
+
+.download-label{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  min-height:64px;
+  padding:13px 15px;
+  font-size:14px;
+  font-weight:900;
+  text-transform:uppercase
+}
+
+.boxe-card{
+  background:var(--blue)
+}
+
+.boxe-card .download-label{
+  display:block;
+  min-height:0
+}
+
+.format-note{
+  display:block;
+  margin-bottom:10px;
+  font-size:13px
+}
+
+.format-links{
+  display:flex;
+  gap:8px
+}
+
+.format-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:1;
+  padding:8px 6px;
+  color:var(--ink);
+  background:var(--yellow);
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+  text-decoration:none;
+  transition:background .2s,transform .2s
+}
+
+.format-link:hover,
+.format-link:focus-visible{
+  background:#ffd15a;
+  transform:translateY(-2px)
+}
+
+.download-icon{
+  display:grid;
+  place-items:center;
+  flex:0 0 35px;
+  width:35px;
+  height:35px;
+  color:var(--ink);
+  background:var(--yellow);
+  border-radius:50%;
+  font-size:21px
+}
+
+.note{
+  margin:25px 0 0;
+  padding:15px 20px;
+  color:#fff;
+  background:var(--blue);
+  border-radius:15px;
+  font-weight:700;
+  text-align:center
+}
+
+@media(max-width:760px){
+
+  body::before{
+    background-size:auto 115%;
+    opacity:.65
+  }
+
+  .document{
+    width:min(100% - 16px,940px);
+    margin-top:12px
+  }
+
+  .page{
+    padding:24px 17px
+  }
+
+  .hero{
+    padding:25px 22px 0
+  }
+
+  .header{
+    grid-template-columns:1fr
+  }
+
+  .hero-art{
+    min-height:180px
+  }
+
+  .logo{
+    width:115px;
+    margin:0
+  }
+
+  .crowd{
+    left:-22px;
+    bottom:0;
+    width:175px
+  }
+
+  .hero h1{
+    font-size:39px
+  }
+
+  .subtitle{
+    font-size:17px
+  }
+
+  .intro{
+    padding-bottom:25px;
+    font-size:16px
+  }
+
+  .posters{
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+
+  .poster-link{
+    width:min(100%,410px);
+    margin:auto
+  }
+
+  .topbar-inner>span{
+    display:none
+  }
+
+  .topbar-inner{
+    justify-content:flex-end
+  }
+}
+
 @media(prefers-reduced-motion:reduce){
-*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+
+  *,
+  *::before,
+  *::after{
+    scroll-behavior:auto!important;
+    transition:none!important
+  }
 }
 </style>
 </head>
 
 <body>
+
 <header class="topbar">
   <div class="topbar-inner">
     <span>Ressources</span>
+
     <div class="topbar-actions">
       <a class="topbar-link" href="./index.html">Accueil</a>
       <a class="topbar-link" href="./admin.html">Admin</a>
@@ -83,115 +401,172 @@ body::before{background-size:auto 115%;opacity:.65}
 
 <main class="document">
 
-<section class="page hero">
-  <div class="header">
-    <div class="hero-art">
-      <img class="logo" src="https://avantpost-cpu.github.io/URC/logo_URC2.png" alt="Logo URC">
-      <img class="crowd" src="https://avantpost-cpu.github.io/URC/foule.png" alt="">
+  <section class="page hero">
+    <div class="header">
+
+      <div class="hero-art">
+        <img
+          class="logo"
+          src="https://avantpost-cpu.github.io/URC/logo_URC2.png"
+          alt="Logo URC"
+        >
+
+        <img
+          class="crowd"
+          src="https://avantpost-cpu.github.io/URC/foule.png"
+          alt=""
+        >
+      </div>
+
+      <div class="hero-copy">
+        <div class="kicker"></div>
+
+        <h1>
+          Télécharge<br>
+          nos affiches
+        </h1>
+
+        <p class="subtitle">
+          Cinq affiches pour porter la campagne dans nos quartiers.
+        </p>
+
+        <p class="intro">
+          Clique sur l’affiche de ton choix pour télécharger sa version PDF prête à imprimer.
+        </p>
+      </div>
+
     </div>
+  </section>
 
-    <div class="hero-copy">
-      <div class="kicker"></div>
-      <h1>Télécharge<br>nos affiches</h1>
-      <p class="subtitle">Cinq affiches pour porter la campagne dans nos quartiers.</p>
-      <p class="intro">Clique sur l’affiche de ton choix pour télécharger sa version PDF prête à imprimer.</p>
-    </div>
-  </div>
-</section>
+  <section class="page">
 
-<section class="page">
-  <h2 class="posters-title">Les affiches</h2>
+    <h2 class="posters-title">Les affiches</h2>
 
-  <div class="posters">
+    <div class="posters">
 
-    <a class="poster-link"
-       href="Affiche%20Paix_3.pdf"
-       download="Affiche-URC-Paix-3.pdf"
-       aria-label="Télécharger l’affiche Pas un soldat, pas une arme, pas un centime pour leurs guerres au format PDF">
-      <img class="poster-image"
-           src="A.png"
-           alt="Affiche Pas un soldat, pas une arme, pas un centime pour leurs guerres">
-      <span class="download-label">
-        Télécharger en PDF
-        <span class="download-icon" aria-hidden="true">↓</span>
-      </span>
-    </a>
+      <a
+        class="poster-link"
+        href="Affiche%20Paix_3.pdf"
+        download="Affiche-URC-Paix-3.pdf"
+        aria-label="Télécharger l’affiche Pas un soldat, pas une arme, pas un centime pour leurs guerres au format PDF"
+      >
+        <img
+          class="poster-image"
+          src="A.png"
+          alt="Affiche Pas un soldat, pas une arme, pas un centime pour leurs guerres"
+        >
 
-    <a class="poster-link"
-       href="Affiche%20Paix_2.pdf"
-       download="Affiche-URC-Paix-2.pdf"
-       aria-label="Télécharger l’affiche 413 milliards d’euros pour financer la guerre, combien pour financer nos quartiers au format PDF">
-      <img class="poster-image"
-           src="B.png"
-           alt="Affiche 413 milliards d’euros pour financer la guerre, combien pour financer nos quartiers">
-      <span class="download-label">
-        Télécharger en PDF
-        <span class="download-icon" aria-hidden="true">↓</span>
-      </span>
-    </a>
-
-    <a class="poster-link"
-       href="Affiche%20Paix_1.pdf"
-       download="Affiche-URC-Paix-1.pdf"
-       aria-label="Télécharger l’affiche 413 milliards d’euros pour financer la guerre, combien pour le 18e au format PDF">
-      <img class="poster-image"
-           src="C.png"
-           alt="Affiche 413 milliards d’euros pour financer la guerre, combien pour le 18e">
-      <span class="download-label">
-        Télécharger en PDF
-        <span class="download-icon" aria-hidden="true">↓</span>
-      </span>
-    </a>
-
-    <a class="poster-link"
-       href="Affiche%20Disccussion_A3_18_Paix.pdf"
-       download="Affiche-Discussion-A3-18-Paix.pdf"
-       aria-label="Télécharger l’affiche Discussion au format PDF">
-      <img class="poster-image"
-           src="D.jpg"
-           alt="Affiche Discussion — A3 18 Paix">
-      <span class="download-label">
-        Télécharger en PDF
-        <span class="download-icon" aria-hidden="true">↓</span>
-      </span>
-    </a>
-
-    <div class="poster-link boxe-card">
-      <img class="poster-image"
-           src="Affiche_2.jpg"
-           alt="Affiche Boxe et lutte intellectuelle">
-
-      <span class="download-label">
-        <span class="format-note">Choisir le format de l’affiche :</span>
-
-        <span class="format-links">
-          <a class="format-link"
-             href="Boxe_exe_A3.pdf"
-             download="Boxe-exe-A3.pdf">
-            A3 ↓
-          </a>
-
-          <a class="format-link"
-             href="Boxe_exe_A5.pdf"
-             download="Boxe-exe-A5.pdf">
-            A5 ↓
-          </a>
-
-          <a class="format-link"
-             href="Boxe_exe_A6.pdf"
-             download="Boxe-exe-A6.pdf">
-            A6 ↓
-          </a>
+        <span class="download-label">
+          Télécharger en PDF
+          <span class="download-icon" aria-hidden="true">↓</span>
         </span>
-      </span>
+      </a>
+
+      <a
+        class="poster-link"
+        href="Affiche%20Paix_2.pdf"
+        download="Affiche-URC-Paix-2.pdf"
+        aria-label="Télécharger l’affiche 413 milliards d’euros pour financer la guerre, combien pour financer nos quartiers au format PDF"
+      >
+        <img
+          class="poster-image"
+          src="B.png"
+          alt="Affiche 413 milliards d’euros pour financer la guerre, combien pour financer nos quartiers"
+        >
+
+        <span class="download-label">
+          Télécharger en PDF
+          <span class="download-icon" aria-hidden="true">↓</span>
+        </span>
+      </a>
+
+      <a
+        class="poster-link"
+        href="Affiche%20Paix_1.pdf"
+        download="Affiche-URC-Paix-1.pdf"
+        aria-label="Télécharger l’affiche 413 milliards d’euros pour financer la guerre, combien pour le 18e au format PDF"
+      >
+        <img
+          class="poster-image"
+          src="C.png"
+          alt="Affiche 413 milliards d’euros pour financer la guerre, combien pour le 18e"
+        >
+
+        <span class="download-label">
+          Télécharger en PDF
+          <span class="download-icon" aria-hidden="true">↓</span>
+        </span>
+      </a>
+
+      <a
+        class="poster-link"
+        href="Affiche%20Disccussion_A3_18_Paix.pdf"
+        download="Affiche-Discussion-A3-18-Paix.pdf"
+        aria-label="Télécharger l’affiche Discussion au format PDF"
+      >
+        <img
+          class="poster-image"
+          src="D.jpg"
+          alt="Affiche Discussion — A3 18 Paix"
+        >
+
+        <span class="download-label">
+          Télécharger en PDF
+          <span class="download-icon" aria-hidden="true">↓</span>
+        </span>
+      </a>
+
+      <div class="poster-link boxe-card">
+
+        <img
+          class="poster-image"
+          src="Affiche_2.jpg"
+          alt="Affiche Boxe et lutte intellectuelle"
+        >
+
+        <span class="download-label">
+
+          <span class="format-note">
+            Choisir le format de l’affiche :
+          </span>
+
+          <span class="format-links">
+
+            <a
+              class="format-link"
+              href="Boxe_exe_A3.pdf"
+              download="Boxe-exe-A3.pdf"
+            >
+              A3 ↓
+            </a>
+
+            <a
+              class="format-link"
+              href="Boxe_exe_A5.pdf"
+              download="Boxe-exe-A5.pdf"
+            >
+              A5 ↓
+            </a>
+
+            <a
+              class="format-link"
+              href="Boxe_exe_A6.pdf"
+              download="Boxe-exe-A6.pdf"
+            >
+              A6 ↓
+            </a>
+
+          </span>
+        </span>
+      </div>
+
     </div>
 
-  </div>
+    <p class="note">
+      Les affiches sont disponibles au format A3, ainsi qu’en formats A5 et A6 pour l’affiche Boxe.
+    </p>
 
-  <p class="note">
-    Les affiches sont disponibles au format A3, ainsi qu’en formats A5 et A6 pour l’affiche Boxe.
-  </p>
-</section>
+  </section>
 
 </main>
 
@@ -206,7 +581,9 @@ fetch(`${SUPABASE_URL}/rest/v1/rpc/record_page_view`,{
     Authorization:`Bearer ${SUPABASE_ANON_KEY}`,
     'Content-Type':'application/json'
   },
-  body:JSON.stringify({p_page_path:'affiches'}),
+  body:JSON.stringify({
+    p_page_path:'affiches'
+  }),
   keepalive:true
 }).catch(()=>{});
 </script>
